@@ -32,8 +32,8 @@ namespace Playground
 
             dlg.Multiselect = true;
             // Set filter for file extension and default file extension 
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.DefaultExt = ".mp3";
+            dlg.Filter = "MP3 Files (*.mp3)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             
 
             // Display OpenFileDialog by calling ShowDialog method 
@@ -47,10 +47,24 @@ namespace Playground
 
                 Image img = new Image();
                 img.Source = new BitmapImage(new Uri(dlg.FileName));
-                string filename = dlg.FileName;
-                Image1.Source = img.Source;
-
+                string[] filename = dlg.FileNames;
+                foreach (var item in filename)
+                {
+                    var imgItem = new ListBoxItem();
+                    imgItem.Content = item;
+                    Playlist.Items.Add(imgItem);                   
+                }                
             }
         }
+
+        private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        //private void TextB_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    this.TextB.Text = Button_Click(object sender, SelectionChangedEventArgs e)
+        //}
     }
 }

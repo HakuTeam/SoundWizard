@@ -12,7 +12,7 @@
         </Grid>
 
         <Grid>
-            <Button Width="70" Height="70" Margin="21,100,351,599" Background="Transparent" Click="Button_Click">
+            <Button Name="ASD" Width="70" Height="70" Margin="21,100,351,599" Background="Transparent" Click="Button_Click">
                 <!--<Image Source="C:\Users\badbutcher\Desktop\Playground\Playground\U4LIR.png"/>-->
                 <Image Name="Image1">
 
@@ -35,7 +35,16 @@
 
             </Button>
 
-            
+            <!--<TextBox Margin="0,246,0,0" Name="TextB" TextChanged="TextB_TextChanged">
+                
+            </TextBox>-->
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="hdhdhdhf"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>
