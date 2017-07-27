@@ -45,6 +45,7 @@
                     <DataTemplate>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" />
             </ListBox>
         </Grid>
     </Grid>

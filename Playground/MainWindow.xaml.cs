@@ -68,18 +68,16 @@ namespace Playground
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Create an ImageBrush.
-            ImageBrush textImageBrush = new ImageBrush();
-            textImageBrush.ImageSource = new BitmapImage(new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\blue-sound-wave.jpg", UriKind.Relative));
-            textImageBrush.AlignmentX = AlignmentX.Left;
-            textImageBrush.Stretch = Stretch.None;
-            // Use the brush to paint the button's background.
-            Playlist.Background = textImageBrush;
-        }
 
-        //private void TextB_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    this.TextB.Text = Button_Click(object sender, SelectionChangedEventArgs e)
-        //}
+            mediaElement1.Source = new Uri(@"D:\music\RETRO\01-faithless-insomnia.mp3");
+            mediaElement1.Play();
+            //// Create an ImageBrush.
+            //ImageBrush textImageBrush = new ImageBrush();
+            //textImageBrush.ImageSource = new BitmapImage(new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\blue-sound-wave.jpg", UriKind.Relative));
+            //textImageBrush.AlignmentX = AlignmentX.Left;
+            //textImageBrush.Stretch = Stretch.None;
+            //// Use the brush to paint the button's background.
+            //Playlist.Background = textImageBrush;
+        }
     }
 }
