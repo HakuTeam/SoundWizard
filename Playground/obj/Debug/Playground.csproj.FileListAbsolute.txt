@@ -40,3 +40,17 @@ E:\Programs\Softuni\Playground\Playground\obj\Debug\Playground.Properties.Resour
 E:\Programs\Softuni\Playground\Playground\obj\Debug\Playground.csproj.GenerateResource.Cache
 E:\Programs\Softuni\Playground\Playground\obj\Debug\Playground.exe
 E:\Programs\Softuni\Playground\Playground\obj\Debug\Playground.pdb
+D:\SoftUni\HakuTeamProject\Playground\Playground\bin\Debug\Playground.exe.config
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.exe
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.pdb
+D:\SoftUni\HakuTeamProject\Playground\Playground\bin\Debug\Playground.exe
+D:\SoftUni\HakuTeamProject\Playground\Playground\bin\Debug\Playground.pdb
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.csprojResolveAssemblyReference.cache
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\MainWindow.g.cs
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\App.g.cs
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground_MarkupCompile.cache
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground_MarkupCompile.lref
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\MainWindow.baml
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.g.resources
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.Properties.Resources.resources
+D:\SoftUni\HakuTeamProject\Playground\Playground\obj\Debug\Playground.csproj.GenerateResource.Cache

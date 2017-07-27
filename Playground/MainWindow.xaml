@@ -7,11 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="450">
     <Grid Background="DeepSkyBlue">
+        
         <Grid Height="75" Width="400" Background="White" Margin="10,10,10,684">
             <TextBlock Text="3:41" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
 
         <Grid>
+            <Grid.Resources>
+                <SolidColorBrush x:Key="brownBrush" Color="Brown"></SolidColorBrush>
+            </Grid.Resources>
             <Button Name="ASD" Width="70" Height="70" Margin="21,100,351,599" Background="Transparent" Click="Button_Click">
                 <!--<Image Source="C:\Users\badbutcher\Desktop\Playground\Playground\U4LIR.png"/>-->
                 <Image Name="Image1">
@@ -34,14 +38,11 @@
             <Button Width="70" Height="70" Margin="351,100,21,599">
 
             </Button>
-
-            <!--<TextBox Margin="0,246,0,0" Name="TextB" TextChanged="TextB_TextChanged">
-                
-            </TextBox>-->
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
+            
+            
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="hdhdhdhf"></TextBlock>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

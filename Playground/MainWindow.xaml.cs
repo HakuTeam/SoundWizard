@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playground.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 
 namespace Playground
 {
@@ -23,6 +24,7 @@ namespace Playground
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,8 +35,9 @@ namespace Playground
             dlg.Multiselect = true;
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".mp3";
-            dlg.Filter = "MP3 Files (*.mp3)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-            
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
+
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
@@ -45,13 +48,19 @@ namespace Playground
             {
                 // Open document 
 
-                Image img = new Image();
-                img.Source = new BitmapImage(new Uri(dlg.FileName));
+                //Image img = new Image();
+                //img.Source = new BitmapImage(new Uri(dlg.FileName));
                 string[] filename = dlg.FileNames;
                 foreach (var item in filename)
                 {
                     var imgItem = new ListBoxItem();
-                    imgItem.Content = item;
+                    var pathItem = new ListBoxItem();
+                    pathItem.Content = item;
+
+                    var pathAndSong = item.LastIndexOf('\\');
+                    var songName = item.Substring(pathAndSong + 1);
+                    imgItem.Content = songName;
+
                     Playlist.Items.Add(imgItem);                   
                 }                
             }
@@ -59,7 +68,13 @@ namespace Playground
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            // Create an ImageBrush.
+            ImageBrush textImageBrush = new ImageBrush();
+            textImageBrush.ImageSource = new BitmapImage(new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\blue-sound-wave.jpg", UriKind.Relative));
+            textImageBrush.AlignmentX = AlignmentX.Left;
+            textImageBrush.Stretch = Stretch.None;
+            // Use the brush to paint the button's background.
+            Playlist.Background = textImageBrush;
         }
 
         //private void TextB_TextChanged(object sender, TextChangedEventArgs e)
