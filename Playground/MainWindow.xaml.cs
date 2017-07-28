@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using Microsoft.Win32;
 //using System.Windows.Shapes;
 
 namespace Playground
@@ -21,6 +22,8 @@ namespace Playground
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool isPlaying = false;
+
         public MainWindow()
         {
             InitializeComponent();            
@@ -28,7 +31,7 @@ namespace Playground
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            OpenFileDialog dlg = new OpenFileDialog();
             dlg.Multiselect = true; 
             dlg.DefaultExt = ".mp3";
             dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
@@ -73,11 +76,26 @@ namespace Playground
 
         private void Stop_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            mediaElement1.Stop();
         }
+
         private void Play_Button_Click(object sender, RoutedEventArgs e)
         {
+            mediaElement1.Play();
+        }
 
+        public void Stop_Play_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (!isPlaying)
+            {
+                mediaElement1.Pause();
+                isPlaying = true;
+            }
+            else
+            {
+                mediaElement1.Play();
+                isPlaying = false;
+            }
         }
     }
 }

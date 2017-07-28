@@ -14,14 +14,14 @@
             </Grid.Background>
             <Button Name="OpenButton" Height="70" Width="70" Background="#FFEC73F1" BorderThickness="5" BorderBrush="Black" Click="Open_Button_Click" Margin="63,146,485,382">Open</Button>
             <Button Name="RewindButton" Width="70" Height="70"  Background="#FFEC73F1" BorderBrush="Black" Margin="168,146,380,382" Click="Rewind_Button_Click">Rewind</Button>
-            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Play_Button_Click">
+            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Stop_Play_ButtonClick">
                 <StackPanel>
                     <Image Source="/PlayerSkin/Button/PlayButton1.png" />
                     <TextBlock>Play / Pause</TextBlock>
                 </StackPanel>
             </Button>
             <Button Name="ForwardButton" Width="70" Height="70" Background="#FFEC73F1" BorderBrush="Black" Margin="377,146,171,382" Click="Forward_Button_Click">Forward</Button>
-            <Button Name="StopButton" Width="70" Height="70"  Background="#FFEC73F1" BorderBrush="Black" Margin="481,146,67,382" Click="Stop_Button_Click">Stop</Button>
+            <Button Name="StopButton" Width="70" Height="70"  Background="#FFEC73F1" BorderBrush="Black" Margin="481,146,67,382" Click="Stop_Play_ButtonClick">Stop</Button>
         </Grid>
         <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Margin="0,10,0,589">Sound Wizard</TextBox>
         <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="36,262,38,18" SelectionChanged="Playlist_SelectionChanged">            
