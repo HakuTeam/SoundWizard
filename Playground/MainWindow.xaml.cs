@@ -66,17 +66,25 @@ namespace Playground
 
         private void Rewind_Button_Click(object sender, RoutedEventArgs e)
         {
+            if (Playlist.SelectedIndex > 1)
+            {
+                Playlist.SelectedIndex--;
+            }
 
         }
 
         private void Forward_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Playlist.SelectedIndex <= Playlist.Items.Count - 1)
+            {
+                Playlist.SelectedIndex++;
+            }
         }
 
         private void Stop_Button_Click(object sender, RoutedEventArgs e)
         {
-            mediaElement1.Stop();
+            isPlaying = true;
+            mediaElement1.Stop();  
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
