@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playground"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="450">
+        Title="Sound Wizard" Height="800" Width="450" Icon="D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\SoundWizard.ico">
     <Grid Background="DeepSkyBlue">
         
         <Grid Height="75" Width="400" Background="White" Margin="10,10,10,684">

@@ -24,7 +24,16 @@ namespace Playground
         public MainWindow()
         {
             InitializeComponent();
-            
+            Uri iconUri = new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\SoundWizard.ico", UriKind.RelativeOrAbsolute);
+
+            this.Icon = BitmapFrame.Create(iconUri);
+            // Create an ImageBrush.
+            ImageBrush textImageBrush = new ImageBrush();
+            textImageBrush.ImageSource = new BitmapImage(new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\blue-sound-wave.jpg", UriKind.Relative));
+            textImageBrush.AlignmentX = AlignmentX.Left;
+            textImageBrush.Stretch = Stretch.None;
+            // Use the brush to paint the button's background.
+            this.Background = textImageBrush;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
