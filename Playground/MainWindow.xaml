@@ -40,7 +40,7 @@
             </Button>
             
             
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                     </DataTemplate>

@@ -61,15 +61,16 @@ namespace Playground
                     var songName = item.Substring(pathAndSong + 1);
                     imgItem.Content = songName;
 
-                    Playlist.Items.Add(imgItem);                   
+                    Playlist.Items.Add(pathItem);                   
                 }                
             }
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            mediaElement1.Source = new Uri(@"D:\music\RETRO\01-faithless-insomnia.mp3");
+            int lastIndex = Playlist.SelectedItem.ToString().IndexOf(':');
+            string currentSongPath = Playlist.SelectedItem.ToString().Substring(lastIndex + 2);
+            mediaElement1.Source = new Uri($"{currentSongPath}");
             mediaElement1.Play();
             //// Create an ImageBrush.
             //ImageBrush textImageBrush = new ImageBrush();
