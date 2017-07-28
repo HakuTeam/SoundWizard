@@ -23,40 +23,20 @@ namespace Playground
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            //// Create an ImageBrush.
-            //ImageBrush textImageBrush = new ImageBrush();
-            //textImageBrush.ImageSource = new BitmapImage(new Uri(@"PlayerSkin\import.png", UriKind.Relative));
-            //textImageBrush.AlignmentX = AlignmentX.Left;
-            //textImageBrush.Stretch = Stretch.None;
-            //// Use the brush to paint the button's background.
-            //ASD.Background = textImageBrush;
+            InitializeComponent();            
         }
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-            dlg.Multiselect = true;
-            // Set filter for file extension and default file extension 
+            dlg.Multiselect = true; 
             dlg.DefaultExt = ".mp3";
             dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
-
-
-            // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
-
-
-            // Get the selected file name and display in a TextBox 
+            
             if (result == true)
             {
-                // Open document 
-
-                //Image img = new Image();
-                //img.Source = new BitmapImage(new Uri(dlg.FileName));
                 string[] filename = dlg.FileNames;
                 foreach (var item in filename)
                 {
@@ -79,13 +59,25 @@ namespace Playground
             string currentSongPath = Playlist.SelectedItem.ToString().Substring(lastIndex + 2);
             mediaElement1.Source = new Uri($"{currentSongPath}");
             mediaElement1.Play();
-            //// Create an ImageBrush.
-            //ImageBrush textImageBrush = new ImageBrush();
-            //textImageBrush.ImageSource = new BitmapImage(new Uri(@"D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\blue-sound-wave.jpg", UriKind.Relative));
-            //textImageBrush.AlignmentX = AlignmentX.Left;
-            //textImageBrush.Stretch = Stretch.None;
-            //// Use the brush to paint the button's background.
-            //Playlist.Background = textImageBrush;
+        }
+
+        private void Rewind_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Forward_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Stop_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Play_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

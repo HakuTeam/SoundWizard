@@ -107,5 +107,11 @@
     <Resource Include="PlayerSkin\blue-sound-wave.jpg" />
     <Resource Include="PlayerSkin\SoundWizard.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PlayerSkin\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PlayerSkin\Button\PlayButton1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
