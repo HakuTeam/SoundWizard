@@ -101,7 +101,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PlayerSkin\" />
+    <Resource Include="PlayerSkin\Button\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PlayerSkin\blue-sound-wave.jpg" />
+    <Resource Include="PlayerSkin\SoundWizard.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

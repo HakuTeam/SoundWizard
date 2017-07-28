@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playground"
         mc:Ignorable="d"
-        Title="Sound Wizard" Height="800" Width="450" Icon="D:\SoftUni\HakuTeamProject\Playground\Playground\PlayerSkin\SoundWizard.ico">
+        Title="Sound Wizard" Height="800" Width="450" Icon="PlayerSkin\SoundWizard.ico">
     <Grid Background="DeepSkyBlue">
         
         <Grid Height="75" Width="400" Background="White" Margin="10,10,10,684">
@@ -17,10 +17,7 @@
                 <SolidColorBrush x:Key="brownBrush" Color="Brown"></SolidColorBrush>
             </Grid.Resources>
             <Button Name="ASD" Width="70" Height="70" Margin="21,100,351,599" Background="Transparent" Click="Button_Click">
-                <!--<Image Source="C:\Users\badbutcher\Desktop\Playground\Playground\U4LIR.png"/>-->
-                <Image Name="Image1">
-
-                </Image>
+                <Image Name="Image1" Source="PlayerSkin\Button\import.png" />
             </Button>
 
             <Button Width="70" Height="70" Margin="96,100,276,599">
