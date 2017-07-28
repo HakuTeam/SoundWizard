@@ -34,7 +34,7 @@ namespace Playground
             //ASD.Background = textImageBrush;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 

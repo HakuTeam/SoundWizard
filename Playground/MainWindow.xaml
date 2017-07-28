@@ -5,45 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playground"
         mc:Ignorable="d"
-        Title="Sound Wizard" Height="800" Width="450" Icon="PlayerSkin\SoundWizard.ico">
-    <Grid Background="DeepSkyBlue">
-        
-        <Grid Height="75" Width="400" Background="White" Margin="10,10,10,684">
-            <TextBlock Text="3:41" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        </Grid>
+        Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
+    <Grid>
 
-        <Grid>
+        <Grid Background="CornflowerBlue" Margin="-24,-100,-20,0" Height="771" VerticalAlignment="Bottom">
             <Grid.Resources>
-                <SolidColorBrush x:Key="brownBrush" Color="Brown"></SolidColorBrush>
+                <SolidColorBrush x:Key="brownBrush" Color="Wheat"></SolidColorBrush>
             </Grid.Resources>
-            <Button Name="ASD" Width="70" Height="70" Margin="21,100,351,599" Background="Transparent" Click="Button_Click">
-                <Image Name="Image1" Source="PlayerSkin\Button\import.png" />
-            </Button>
-
-            <Button Width="70" Height="70" Margin="96,100,276,599">
-
-            </Button>
-
-            <Button Width="70" Height="70" Margin="186,100,186,599">
-
-            </Button>
-
-            <Button Width="70" Height="70" Margin="276,100,96,599">
-
-            </Button>
-
-            <Button Width="70" Height="70" Margin="351,100,21,599">
-
-            </Button>
-            
-            
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="0,217,0,0" SelectionChanged="Playlist_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" />
-            </ListBox>
+            <Button Name="OpenButton" Height="70" Width="70" Background="Azure" BorderThickness="5" BorderBrush="Black" Click="Open_Button_Click" Margin="63,146,485,382">Open</Button>
+            <Button Width="70" Height="70"  Background="Azure" BorderBrush="Black" Margin="168,146,380,382">Rewind</Button>
+            <Button Width="70" Height="70"  Background="Azure" BorderBrush="Black" Margin="269,146,279,382">Play / Pause</Button>
+            <Button Width="70" Height="70" Background="Azure" BorderBrush="Black" Margin="377,146,171,382">Forward</Button>
+            <Button Width="70" Height="70"  Background="Azure" BorderBrush="Black" Margin="481,146,67,382">Stop</Button>
         </Grid>
+        <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Margin="0,10,0,589">Sound Wizard</TextBox>
+        <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="36,262,38,18" SelectionChanged="Playlist_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" />
+        </ListBox>
     </Grid>
 </Window>
