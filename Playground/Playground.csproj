@@ -113,5 +113,11 @@
   <ItemGroup>
     <Resource Include="PlayerSkin\Button\PlayButton1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Playground.Core\Playground.Core.csproj">
+      <Project>{22e4ec7a-0ae2-4c70-a2fb-dd3e35e2ac64}</Project>
+      <Name>Playground.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,22 +1,14 @@
-﻿using Playground.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using Microsoft.Win32;
 //using System.Windows.Shapes;
 
 namespace Playground
 {
+    using Core;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -41,18 +33,22 @@ namespace Playground
             if (result == true)
             {
                 string[] filename = dlg.FileNames;
+                List<Song> playList = new List<Song>();
+
+                Playlist.DisplayMemberPath = ToString();
+
                 foreach (var item in filename)
                 {
-                    var imgItem = new ListBoxItem();
-                    var pathItem = new ListBoxItem();
-                    pathItem.Content = item;
-
                     var pathAndSong = item.LastIndexOf('\\');
                     var songName = item.Substring(pathAndSong + 1);
-                    imgItem.Content = songName;
 
-                    Playlist.Items.Add(pathItem);                   
-                }                
+                    Song song = new Song(songName, TimeSpan.FromMinutes(3.0), item);
+                    var songItem = new ListBoxItem();
+
+                    songItem.Content = song.Path;
+                    Playlist.Items.Add(songItem);
+                }
+                
             }
         }
 
