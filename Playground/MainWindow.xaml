@@ -9,7 +9,7 @@
     <Grid>
         <Grid Margin="-24,-100,-20,0" Height="771" VerticalAlignment="Bottom">
             <Grid.Background>
-                <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
             </Grid.Background>
             <Button FontWeight="DemiBold" Name="OpenButton" Height="70" Width="70" Background="SlateGray" BorderBrush="Black" Click="Click" Margin="63,146,485,382">Open</Button>
             <Button FontWeight="DemiBold" Name="RewindButton" Width="70" Height="70"  Background="SlateGray" BorderBrush="Black" Margin="168,146,380,382" Click="Click">Rewind</Button>
@@ -26,9 +26,9 @@
         <ListBox Opacity="0.8" Background="DimGray" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="36,262,38,18" SelectionChanged="Playlist_SelectionChanged">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
-                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Background" Value="LightGray" />
                     <Setter Property="FontWeight" Value="DemiBold"></Setter>
-                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderThickness" Value="2" />
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Win32;
+
 //using System.Windows.Shapes;
 
 namespace Playground
 {
-    using Core;
     using Interfaces;
     using Models;
     using Models.Buttons;
@@ -42,22 +40,27 @@ namespace Playground
                     ICommand play = new PlayCommand(mediaElement);
                     play.Execute();
                     break;
+
                 case "OpenButton":
                     ICommand open = new OpenCommand(mediaElement);
                     open.Execute(Playlist);
                     break;
+
                 case "ForwardButton":
                     ICommand forward = new ForwardCommand(mediaElement);
                     forward.Execute(Playlist);
                     break;
+
                 case "RewindButton":
                     ICommand rewind = new RewindCommand(mediaElement);
                     rewind.Execute(Playlist);
                     break;
+
                 case "StopButton":
                     ICommand stop = new StopCommand(mediaElement);
                     stop.Execute();
                     break;
+
                 default:
                     break;
             }
