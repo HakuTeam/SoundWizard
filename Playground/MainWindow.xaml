@@ -31,6 +31,18 @@
                     <Setter Property="BorderThickness" Value="2"/>
                 </Style>
             </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Title" />
+                                <Binding Path="Duration" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" />
     </Grid>
