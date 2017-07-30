@@ -46,6 +46,7 @@ namespace Playground
                     var songItem = new ListBoxItem();
 
                     songItem.Content = song.Path;
+                    //dsfdsfsdfd
                     Playlist.Items.Add(songItem);
                 }
                 
