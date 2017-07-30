@@ -15,10 +15,12 @@ namespace Playground
     public partial class MainWindow : Window
     {
         public static bool isPlaying = false;
+        public MediaElement mediaElement { get; set; }
 
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.mediaElement = mediaElement1;            
         }
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
@@ -57,8 +59,9 @@ namespace Playground
         {
             int lastIndex = Playlist.SelectedItem.ToString().IndexOf(':');
             string currentSongPath = Playlist.SelectedItem.ToString().Substring(lastIndex + 2);
-            mediaElement1.Source = new Uri($"{currentSongPath}");
-            mediaElement1.Play();
+            this.mediaElement.Source = new Uri($"{currentSongPath}");
+            this.mediaElement.Play();
+            this.mediaElement.Position.TotalMinutes.ToString();
         }
 
         private void Rewind_Button_Click(object sender, RoutedEventArgs e)
@@ -81,24 +84,24 @@ namespace Playground
         private void Stop_Button_Click(object sender, RoutedEventArgs e)
         {
             isPlaying = true;
-            mediaElement1.Stop();  
+            this.mediaElement.Stop();  
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
         {
-            mediaElement1.Play();
+            this.mediaElement.Play();
         }
 
         public void Stop_Play_ButtonClick(object sender, RoutedEventArgs e)
         {
             if (!isPlaying)
             {
-                mediaElement1.Pause();
+                this.mediaElement.Pause();
                 isPlaying = true;
             }
             else
             {
-                mediaElement1.Play();
+                this.mediaElement.Play();
                 isPlaying = false;
             }
         }
