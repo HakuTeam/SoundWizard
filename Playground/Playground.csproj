@@ -71,11 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Buttons\ButtonFunction.cs" />
-    <Compile Include="Models\Buttons\LastSong.cs" />
-    <Compile Include="Models\Buttons\NextSong.cs" />
+    <Compile Include="Models\Buttons\ForwardCommand.cs" />
     <Compile Include="Models\Buttons\OpenCommand.cs" />
-    <Compile Include="Models\Buttons\PauseButton.cs" />
     <Compile Include="Models\Buttons\PlayCommand.cs" />
+    <Compile Include="Models\Buttons\RewindCommand.cs" />
     <Compile Include="Models\Buttons\StopCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

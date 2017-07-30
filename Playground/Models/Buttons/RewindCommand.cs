@@ -1,5 +1,4 @@
 ﻿using Playground.Interfaces;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Playground.Models
+namespace Playground.Models.Buttons
 {
-    public class StopCommand : ICommand
+    class RewindCommand : ICommand
     {
         private MediaElement mediaElement;
 
-        public StopCommand(MediaElement mediaElement)
+        public RewindCommand(MediaElement mediaElement)
         {
             this.mediaElement = mediaElement;
         }
 
         public void Execute()
         {
-            MainWindow.isPlaying = true;
-            this.mediaElement.Stop();
+            throw new NotImplementedException();
         }
 
-        public void Execute(ListBox listBox)
+        public void Execute(ListBox Playlist)
         {
-            throw new NotImplementedException();
+            if (Playlist.SelectedIndex > 0)
+            {
+                Playlist.SelectedIndex--;
+            }
         }
     }
 }

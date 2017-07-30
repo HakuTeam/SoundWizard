@@ -46,6 +46,18 @@ namespace Playground
                     ICommand open = new OpenCommand(mediaElement);
                     open.Execute(Playlist);
                     break;
+                case "ForwardButton":
+                    ICommand forward = new ForwardCommand(mediaElement);
+                    forward.Execute(Playlist);
+                    break;
+                case "RewindButton":
+                    ICommand rewind = new RewindCommand(mediaElement);
+                    rewind.Execute(Playlist);
+                    break;
+                case "StopButton":
+                    ICommand stop = new StopCommand(mediaElement);
+                    stop.Execute();
+                    break;
                 default:
                     break;
             }
@@ -59,29 +71,6 @@ namespace Playground
             this.mediaElement.Play();
             var songLength = this.mediaElement.NaturalDuration;
             //this.mediaElement.Position
-        }
-
-        private void Rewind_Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Playlist.SelectedIndex > 1)
-            {
-                Playlist.SelectedIndex--;
-            }
-
-        }
-
-        private void Forward_Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Playlist.SelectedIndex <= Playlist.Items.Count - 1)
-            {
-                Playlist.SelectedIndex++;
-            }
-        }
-
-        private void Stop_Button_Click(object sender, RoutedEventArgs e)
-        {
-            isPlaying = true;
-            this.mediaElement.Stop();  
         }
     }
 }
