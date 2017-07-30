@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using NAudio.Wave;
 //using System.Windows.Shapes;
 
 namespace Playground
@@ -18,18 +19,17 @@ namespace Playground
 
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Multiselect = true; 
+            dlg.Multiselect = true;
             dlg.DefaultExt = ".mp3";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
             Nullable<bool> result = dlg.ShowDialog();
-            
+
             if (result == true)
             {
                 string[] filename = dlg.FileNames;
@@ -41,22 +41,19 @@ namespace Playground
                 {
                     var pathAndSong = item.LastIndexOf('\\');
                     var songName = item.Substring(pathAndSong + 1);
-
-                    Song song = new Song(songName, TimeSpan.FromMinutes(3.0), item);
-                    var songItem = new ListBoxItem();
-
-                    songItem.Content = song.Path;
-                    Playlist.Items.Add(songItem);
+                    Mp3FileReader getSongDuration = new Mp3FileReader(item);
+                    TimeSpan time = getSongDuration.TotalTime;
+                    string duration = string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
+                    Song song = new Song(songName, duration, item);
+                    Playlist.Items.Add(song);
                 }
-                
             }
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int lastIndex = Playlist.SelectedItem.ToString().IndexOf(':');
-            string currentSongPath = Playlist.SelectedItem.ToString().Substring(lastIndex + 2);
-            mediaElement1.Source = new Uri($"{currentSongPath}");
+            var lastIndex = Playlist.SelectedItems[0] as Song;
+            mediaElement1.Source = new Uri($"{lastIndex.Path}");
             mediaElement1.Play();
         }
 
@@ -80,7 +77,7 @@ namespace Playground
         private void Stop_Button_Click(object sender, RoutedEventArgs e)
         {
             isPlaying = true;
-            mediaElement1.Stop();  
+            mediaElement1.Stop();
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
