@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Playground.Models
 {
-    public class PauseButton : Button
+    public class PauseButton
     {
     }
 }

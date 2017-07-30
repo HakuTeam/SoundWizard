@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Playground.Models
 {
-    public class LastSong : Button
+    public class LastSong
     {
     }
 }

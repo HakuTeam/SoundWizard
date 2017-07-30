@@ -11,9 +11,9 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill"/>
             </Grid.Background>
-            <Button FontWeight="DemiBold" Name="OpenButton" Height="70" Width="70" Background="SlateGray" BorderBrush="Black" Click="Open_Button_Click" Margin="63,146,485,382">Open</Button>
+            <Button FontWeight="DemiBold" Name="OpenButton" Height="70" Width="70" Background="SlateGray" BorderBrush="Black" Click="Click" Margin="63,146,485,382">Open</Button>
             <Button FontWeight="DemiBold" Name="RewindButton" Width="70" Height="70"  Background="SlateGray" BorderBrush="Black" Margin="168,146,380,382" Click="Rewind_Button_Click">Rewind</Button>
-            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Stop_Play_ButtonClick">
+            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Click">
                 <StackPanel>
                     <Image Source="/PlayerSkin/Button/PlayButton1.png" />
                     <TextBlock>Play / Pause</TextBlock>
