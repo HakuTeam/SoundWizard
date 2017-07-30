@@ -5,7 +5,7 @@
 
     public class Song
     {
-        public Song(string title, TimeSpan duration, string path)
+        public Song(string title, string duration, string path)
         {
             Title = title;
             Duration = duration;
@@ -13,7 +13,7 @@
         }
 
         public string Title { get; set; }
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
         public string Path { get; set; }
 
         public override string ToString()
