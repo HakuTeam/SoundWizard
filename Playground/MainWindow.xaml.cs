@@ -27,7 +27,8 @@ namespace Playground
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.AudioSlider.Value = 1;
         }
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
@@ -67,7 +68,6 @@ namespace Playground
             {
                 Playlist.SelectedIndex--;
             }
-
         }
 
         private void Forward_Button_Click(object sender, RoutedEventArgs e)
@@ -101,6 +101,13 @@ namespace Playground
                 mediaElement1.Play();
                 isPlaying = false;
             }
+        }
+
+        private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var slider = sender as Slider;
+            double value = slider.Value;
+            this.mediaElement1.Volume = value;
         }
     }
 }
