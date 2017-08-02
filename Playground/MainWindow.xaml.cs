@@ -7,8 +7,9 @@ using System.Windows.Controls;
 namespace Playground
 {
     using Interfaces;
-    using Models;
-    using Models.Buttons;
+    using IO;
+    using IO.Command;
+    using System.Reflection;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -32,38 +33,9 @@ namespace Playground
 
         public void Click(object sender, RoutedEventArgs e)
         {
+            CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
             Button currentButton = (Button)sender;
-
-            switch (currentButton.Name)
-            {
-                case "PlayButton":
-                    ICommand play = new PlayCommand(mediaElement);
-                    play.Execute();
-                    break;
-
-                case "OpenButton":
-                    ICommand open = new OpenCommand(mediaElement);
-                    open.Execute(Playlist);
-                    break;
-
-                case "ForwardButton":
-                    ICommand forward = new ForwardCommand(mediaElement);
-                    forward.Execute(Playlist);
-                    break;
-
-                case "RewindButton":
-                    ICommand rewind = new RewindCommand(mediaElement);
-                    rewind.Execute(Playlist);
-                    break;
-
-                case "StopButton":
-                    ICommand stop = new StopCommand(mediaElement);
-                    stop.Execute();
-                    break;
-
-                default:
-                    break;
-            }
+            command.InterpretCommand(currentButton.Name);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)

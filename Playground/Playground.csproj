@@ -63,19 +63,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\IClickable.cs" />
-    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IExecutable.cs" />
+    <Compile Include="Interfaces\IInterpreter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Buttons\ButtonFunction.cs" />
-    <Compile Include="Models\Buttons\ForwardCommand.cs" />
-    <Compile Include="Models\Buttons\OpenCommand.cs" />
-    <Compile Include="Models\Buttons\PlayCommand.cs" />
-    <Compile Include="Models\Buttons\RewindCommand.cs" />
-    <Compile Include="Models\Buttons\StopCommand.cs" />
+    <Compile Include="IO\Command\Command.cs" />
+    <Compile Include="IO\Command\ForwardCommand.cs" />
+    <Compile Include="IO\Command\OpenCommand.cs" />
+    <Compile Include="IO\Command\PlayCommand.cs" />
+    <Compile Include="IO\Command\RewindCommand.cs" />
+    <Compile Include="IO\Command\StopCommand.cs" />
+    <Compile Include="IO\CommandInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +121,9 @@
       <Project>{22e4ec7a-0ae2-4c70-a2fb-dd3e35e2ac64}</Project>
       <Name>Playground.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,10 +2,8 @@
 
 namespace Playground.Interfaces
 {
-    public interface ICommand
+    public interface IExecutable
     {
         void Execute();
-
-        void Execute(ListBox listBox);
     }
 }
