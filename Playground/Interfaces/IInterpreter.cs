@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playground.Models
+namespace Playground.Interfaces
 {
-    public class NextSong : Button
+    public interface IInterpreter
     {
+        void InterpretCommand(string command);
     }
 }

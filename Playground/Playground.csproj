@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAudio, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.8.1\lib\net35\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -66,19 +63,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\IClickable.cs" />
+    <Compile Include="Interfaces\IExecutable.cs" />
+    <Compile Include="Interfaces\IInterpreter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Buttons\Button.cs" />
-    <Compile Include="Models\Buttons\LastSong.cs" />
-    <Compile Include="Models\Buttons\NextSong.cs" />
-    <Compile Include="Models\Buttons\PauseButton.cs" />
-    <Compile Include="Models\Buttons\PlayButton.cs" />
-    <Compile Include="Models\Buttons\StopButton.cs" />
-    <Compile Include="Models\Song.cs" />
+    <Compile Include="IO\Command\Command.cs" />
+    <Compile Include="IO\Command\ForwardCommand.cs" />
+    <Compile Include="IO\Command\OpenCommand.cs" />
+    <Compile Include="IO\Command\PlayCommand.cs" />
+    <Compile Include="IO\Command\RewindCommand.cs" />
+    <Compile Include="IO\Command\StopCommand.cs" />
+    <Compile Include="IO\CommandInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,7 +95,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,21 +104,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="PlayerSkin\Button\import.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="PlayerSkin\blue-sound-wave.jpg" />
-    <Resource Include="PlayerSkin\ButtonIcons\OpenSongsButtonIcon.png" />
     <Resource Include="PlayerSkin\SoundWizard.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PlayerSkin\bg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PlayerSkin\ButtonIcons\NextSongButtonIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\PauseButtonIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonOffIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonOnIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\PreviousSongButtonIcon.png" />
-    <Resource Include="PlayerSkin\ButtonIcons\StopButtonIcon.png" />
+    <Resource Include="PlayerSkin\Button\PlayButton1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Playground.Core\Playground.Core.csproj">
+      <Project>{22e4ec7a-0ae2-4c70-a2fb-dd3e35e2ac64}</Project>
+      <Name>Playground.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
