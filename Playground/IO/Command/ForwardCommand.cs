@@ -1,14 +1,12 @@
-﻿using Playground.Interfaces;
-using System;
-using System.Windows.Controls;
-
-namespace Playground.IO.Command
+﻿namespace Playground.IO.Command
 {
+    using System.Windows.Controls;
+    using Playground.Interfaces;
+
     public class ForwardCommand : Command, IExecutable
     {
-
-        public ForwardCommand(MediaElement mediaElement, ListBox PlayList) 
-            : base(mediaElement, PlayList)
+        public ForwardCommand(MediaElement mediaElement, ListBox playList)
+            : base(mediaElement, playList)
         {
         }
 

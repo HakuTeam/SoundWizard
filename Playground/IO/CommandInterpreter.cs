@@ -1,23 +1,19 @@
-﻿using Playground.Interfaces;
-using Playground.IO.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-
-namespace Playground.IO
+﻿namespace Playground.IO
 {
-    class CommandInterpreter : IInterpreter
+    using System;
+    using System.Windows.Controls;
+    using Playground.Interfaces;
+    using Playground.IO.Command;
+
+    internal class CommandInterpreter : IInterpreter
     {
         private MediaElement mediaElement;
         private ListBox playList;
 
-        public CommandInterpreter(MediaElement mediaElement, ListBox PlayList)
+        public CommandInterpreter(MediaElement mediaElement, ListBox playList)
         {
             this.mediaElement = mediaElement;
-            this.playList = PlayList;
+            this.playList = playList;
         }
 
         public void InterpretCommand(string commandName)
@@ -38,15 +34,15 @@ namespace Playground.IO
             switch (command)
             {
                 case "PlayButton":
-                    return new PlayCommand(mediaElement, playList);
+                    return new PlayCommand(this.mediaElement, this.playList);
                 case "OpenButton":
-                    return new OpenCommand(mediaElement, playList);
+                    return new OpenCommand(this.mediaElement, this.playList);
                 case "ForwardButton":
-                    return new ForwardCommand(mediaElement, playList);
+                    return new ForwardCommand(this.mediaElement, this.playList);
                 case "RewindButton":
-                    return new RewindCommand(mediaElement, playList);
+                    return new RewindCommand(this.mediaElement, this.playList);
                 case "StopButton":
-                    return new StopCommand(mediaElement, playList);
+                    return new StopCommand(this.mediaElement, this.playList);
                 default:
                     throw new ArgumentException("Invalid Command");
             }

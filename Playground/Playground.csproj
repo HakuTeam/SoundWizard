@@ -104,17 +104,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PlayerSkin\Button\import.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="PlayerSkin\blue-sound-wave.jpg" />
     <Resource Include="PlayerSkin\SoundWizard.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PlayerSkin\bg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="PlayerSkin\Button\PlayButton1.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playground.Core\Playground.Core.csproj">
@@ -124,6 +118,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PlayerSkin\ButtonIcons\NextSongButtonIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\OpenSongsButtonIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\PauseButtonIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonOffIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\PlayButtonOnIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\PreviousSongButtonIcon.png" />
+    <Resource Include="PlayerSkin\ButtonIcons\StopButtonIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

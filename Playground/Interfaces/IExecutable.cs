@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Playground.Interfaces
+﻿namespace Playground.Interfaces
 {
     public interface IExecutable
     {

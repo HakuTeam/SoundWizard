@@ -1,79 +1,40 @@
-﻿using Microsoft.Win32;
-using Playground.Core;
-using Playground.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
-
-namespace Playground.IO.Command
+﻿namespace Playground.IO.Command
 {
+    using System;
+    using System.Windows.Controls;
+    using Microsoft.Win32;
+    using Playground.Core;
+    using Playground.Interfaces;
+
     public class OpenCommand : Command, IExecutable
     {
-        public OpenCommand(MediaElement mediaElement, ListBox PlayList) 
+        public OpenCommand(MediaElement mediaElement, ListBox PlayList)
             : base(mediaElement, PlayList)
         {
         }
 
-       public void Execute()
-       {
-           OpenFileDialog dlg = new OpenFileDialog();
-           dlg.Multiselect = true;
-           dlg.DefaultExt = ".mp3";
-           dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-           dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
-           Nullable<bool> result = dlg.ShowDialog();
-       
-           if (result == true)
-           {
-               string[] filename = dlg.FileNames;
-               List<Song> playList = new List<Song>();
-       
-               this.PlayList.DisplayMemberPath = ToString();
-       
-               foreach (var item in filename)
-               {
-                   var pathAndSong = item.LastIndexOf('\\');
-                   var songName = item.Substring(pathAndSong + 1);
-       
-                   Song song = new Song(songName, TimeSpan.FromMinutes(3.0), item);
-                   var songItem = new ListBoxItem();
-       
-                   songItem.Content = song.Path;
-                   //dsfdsfsdfd
-                   this.PlayList.Items.Add(songItem);
-               }
-           }
-       }
-       
-       public void Execute(ListBox Playlist)
-       {
-           OpenFileDialog dlg = new OpenFileDialog();
-           dlg.Multiselect = true;
-           dlg.DefaultExt = ".mp3";
-           dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-           dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
-           Nullable<bool> result = dlg.ShowDialog();
-       
-           if (result == true)
-           {
-               string[] filename = dlg.FileNames;
-               List<Song> playList = new List<Song>();
-       
-               Playlist.DisplayMemberPath = ToString();
-       
-               foreach (var item in filename)
-               {
-                   var pathAndSong = item.LastIndexOf('\\');
-                   var songName = item.Substring(pathAndSong + 1);
-       
-                   Song song = new Song(songName, TimeSpan.FromMinutes(3.0), item);
-                   var songItem = new ListBoxItem();
-       
-                   songItem.Content = song.Path;
-                   //dsfdsfsdfd
-                   Playlist.Items.Add(songItem);
-               }
-           }
-       }
+        public void Execute()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Multiselect = true;
+            dlg.DefaultExt = ".mp3";
+            dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string[] filename = dlg.FileNames;
+                foreach (var item in filename)
+                {
+                    var pathAndSong = item.LastIndexOf('\\');
+                    var songName = item.Substring(pathAndSong + 1);
+                    //Mp3FileReader getSongDuration = new Mp3FileReader(item);
+                    //TimeSpan time = getSongDuration.TotalTime;
+                    //string duration = string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
+                    Song song = new Song(songName, TimeSpan.MaxValue, item);
+                    PlayList.Items.Add(song);
+                }
+            }
+        }
     }
 }

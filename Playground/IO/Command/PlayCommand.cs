@@ -1,19 +1,16 @@
-﻿using Playground.Interfaces;
-using System;
-using System.Windows.Controls;
-
-namespace Playground.IO.Command
+﻿namespace Playground.IO.Command
 {
+    using System.Windows.Controls;
+    using Playground.Interfaces;
+
     public class PlayCommand : Command, IExecutable
     {
-
-        public PlayCommand(MediaElement mediaElement, ListBox PlayList) 
-            : base(mediaElement, PlayList)
+        public PlayCommand(MediaElement mediaElement, ListBox playList)
+            : base(mediaElement, playList)
         {
         }
 
         //public static bool isPlaying = false;
-
 
         public void Execute()
         {

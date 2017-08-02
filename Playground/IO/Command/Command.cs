@@ -1,20 +1,17 @@
-﻿using Playground.Interfaces;
-using System.Collections.Generic;
-using System;
-using System.Windows.Controls;
-
-namespace Playground.IO.Command
+﻿namespace Playground.IO.Command
 {
-    public abstract class Command 
-    {
+    using System.Windows.Controls;
 
-        public Command(MediaElement mediaElement, ListBox PlayList)
+    public abstract class Command
+    {
+        public Command(MediaElement mediaElement, ListBox playList)
         {
             this.MediaElement = mediaElement;
-            this.PlayList = PlayList;
+            this.PlayList = playList;
         }
 
         public ListBox PlayList { get; set; }
+
         public MediaElement MediaElement { get; set; }
     }
 }
