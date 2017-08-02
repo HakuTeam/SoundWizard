@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playground"
+        xmlns:i="clr-Playground:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
     <Grid>
@@ -61,5 +62,10 @@
         </ListBox>
         <Slider Name="AudioSlider" Minimum="0" Maximum="1" Width="400" ValueChanged="Volume_ValueChanged" Margin="0,206,0,440" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" />
         <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" />
+        <StackPanel>
+            <ToggleButton x:Name = "tb" Content = "Toggle"  
+         Checked = "HandleCheck" Unchecked = "HandleUnchecked" Margin = "20"
+         Width = "108" HorizontalAlignment = "Center" />
+        </StackPanel>
     </Grid>
 </Window>

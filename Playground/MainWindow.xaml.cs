@@ -19,6 +19,7 @@
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
+            MediaPlayer.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
         }
 
         public MediaElement MediaElement
@@ -34,6 +35,22 @@
             this.MediaPlayer.Volume = value;
         }
 
+        void LoopMediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (Playlist.SelectedIndex == this.Playlist.Items.Count - 1)
+            {
+                MediaPlayer.Stop();
+                Playlist.SelectedIndex = 0;
+                MediaPlayer.Play();
+            }
+            else
+            {
+                MediaPlayer.Stop();
+                Playlist.SelectedIndex++;
+                MediaPlayer.Play();
+            }
+        }
+
         public void Click(object sender, RoutedEventArgs e)
         {
             CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
@@ -43,16 +60,19 @@
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //int lastIndex = Playlist.SelectedItem.ToString().IndexOf(':');
-            //string currentSongPath = Playlist.SelectedItem.ToString().Substring(lastIndex + 2);
-            //this.mediaElement.Source = new Uri($"{currentSongPath}");
-            //this.mediaElement.Play();
-            //var songLength = this.mediaElement.NaturalDuration;
-            //this.mediaElement.Position
-
             var song = Playlist.SelectedItems[0] as Song;
             MediaPlayer.Source = new Uri($"{song.Path}");
             MediaPlayer.Play();
+        }
+
+        private void HandleCheck(object sender, RoutedEventArgs e)
+        {
+            MediaPlayer.Position += TimeSpan.FromMinutes(1);
+        }
+
+        private void HandleUnchecked(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
