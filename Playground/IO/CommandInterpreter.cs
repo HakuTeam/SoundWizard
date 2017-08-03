@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows.Controls;
+    using Playground.Exceptions;
     using Playground.Interfaces;
     using Playground.IO.Command;
 
@@ -25,7 +26,7 @@
             }
             catch (Exception)
             {
-                throw new ArgumentException("Cannot parse command");
+                throw new CustomException("CommandInterpreter: InterpretCommand - Cannot parse command"); //Cannot parse command
             }
         }
 
@@ -44,7 +45,7 @@
                 case "StopButton":
                     return new StopCommand(this.mediaElement, this.playList);
                 default:
-                    throw new ArgumentException("Invalid Command");
+                    throw new CustomException("CommandInterpreter: ParseCommand - Invalid Command");
             }
         }
     }

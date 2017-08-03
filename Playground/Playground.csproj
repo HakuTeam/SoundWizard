@@ -76,6 +76,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Interfaces\IClickable.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IInterpreter.cs" />
