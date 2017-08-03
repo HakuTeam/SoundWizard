@@ -4,34 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playground"
+        xmlns:i="clr-Playground:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
     <Grid>
         <Grid Margin="-24,-100,-20,0" Height="771" VerticalAlignment="Bottom">
             <Grid.Background>
-                <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
             </Grid.Background>
-            <Button BorderThickness="0" Name="OpenButton" Height="70" Width="70" Background="Transparent" BorderBrush="Black" Click="Open_Button_Click" Margin="63,146,485,382" >
+            <Button BorderThickness="0" Name="OpenButton" Height="70" Width="70" Background="Transparent" BorderBrush="Black" Click="Click" Margin="63,146,485,382">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/OpenSongsButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="RewindButton" Width="70" Height="70"  Background="Transparent" BorderBrush="Black" Margin="168,146,380,382" Click="Rewind_Button_Click">
+            <Button BorderThickness="0" Name="RewindButton" Width="70" Height="70"  Background="Transparent" BorderBrush="Black" Margin="168,146,380,382" Click="Click">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/PreviousSongButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Stop_Play_ButtonClick">
+            <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="Click">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/PlayButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="ForwardButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="377,146,171,382" Click="Forward_Button_Click">
+            <Button BorderThickness="0" Name="ForwardButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="377,146,171,382" Click="Click">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/NextSongButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="StopButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="481,146,67,382" Click="Stop_Button_Click">
+            <Button BorderThickness="0" Name="StopButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="481,146,67,382" Click="Click">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/StopButtonIcon.png" />
                 </StackPanel>
@@ -41,9 +42,9 @@
         <ListBox Opacity="0.8" Background="DimGray" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="36,262,38,18" SelectionChanged="Playlist_SelectionChanged">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
-                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Background" Value="LightGray" />
                     <Setter Property="FontWeight" Value="DemiBold"></Setter>
-                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderThickness" Value="2" />
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
@@ -59,6 +60,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" />
+        <Slider Name="AudioSlider" Minimum="0" Maximum="1" Width="400" ValueChanged="Volume_ValueChanged" Margin="0,206,0,440" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" />
+        <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" />
+        <StackPanel>
+            <ToggleButton x:Name = "tb" Content = "Toggle"  
+         Checked = "HandleCheck" Unchecked = "HandleUnchecked" Margin = "20"
+         Width = "108" HorizontalAlignment = "Center" />
+        </StackPanel>
     </Grid>
 </Window>

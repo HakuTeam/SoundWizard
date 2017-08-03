@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Win32;
-using NAudio.Wave;
-//using System.Windows.Shapes;
-
-namespace Playground
+﻿namespace Playground
 {
-    using Core;
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using IO;
+    using Playground.Core;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -16,87 +12,67 @@ namespace Playground
     public partial class MainWindow : Window
     {
         public static bool isPlaying = false;
+        private MediaElement mediaElement;
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.MediaElement = this.MediaPlayer;
+            this.AudioSlider.Value = 1;
+            MediaPlayer.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
         }
 
-        private void Open_Button_Click(object sender, RoutedEventArgs e)
+        public MediaElement MediaElement
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Multiselect = true;
-            dlg.DefaultExt = ".mp3";
-            dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
-            Nullable<bool> result = dlg.ShowDialog();
+            get { return this.mediaElement; }
+            set { this.mediaElement = value; }
+        }
 
-            if (result == true)
+        private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var slider = sender as Slider;
+            double value = slider.Value;
+            this.MediaPlayer.Volume = value;
+        }
+
+        void LoopMediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (Playlist.SelectedIndex == this.Playlist.Items.Count - 1)
             {
-                string[] filename = dlg.FileNames;
-                List<Song> playList = new List<Song>();
-
-                Playlist.DisplayMemberPath = ToString();
-
-                foreach (var item in filename)
-                {
-                    var pathAndSong = item.LastIndexOf('\\');
-                    var songName = item.Substring(pathAndSong + 1);
-                    Mp3FileReader getSongDuration = new Mp3FileReader(item);
-                    TimeSpan time = getSongDuration.TotalTime;
-                    string duration = string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
-                    Song song = new Song(songName, duration, item);
-                    Playlist.Items.Add(song);
-                }
+                MediaPlayer.Stop();
+                Playlist.SelectedIndex = 0;
+                MediaPlayer.Play();
             }
+            else
+            {
+                MediaPlayer.Stop();
+                Playlist.SelectedIndex++;
+                MediaPlayer.Play();
+            }
+        }
+
+        public void Click(object sender, RoutedEventArgs e)
+        {
+            CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
+            Button currentButton = (Button)sender;
+            command.InterpretCommand(currentButton.Name);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var lastIndex = Playlist.SelectedItems[0] as Song;
-            mediaElement1.Source = new Uri($"{lastIndex.Path}");
-            mediaElement1.Play();
+            var song = Playlist.SelectedItems[0] as Song;
+            MediaPlayer.Source = new Uri($"{song.Path}");
+            MediaPlayer.Play();
         }
 
-        private void Rewind_Button_Click(object sender, RoutedEventArgs e)
+        private void HandleCheck(object sender, RoutedEventArgs e)
         {
-            if (Playlist.SelectedIndex > 1)
-            {
-                Playlist.SelectedIndex--;
-            }
-
+            MediaPlayer.Position += TimeSpan.FromMinutes(1);
         }
 
-        private void Forward_Button_Click(object sender, RoutedEventArgs e)
+        private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
-            if (Playlist.SelectedIndex <= Playlist.Items.Count - 1)
-            {
-                Playlist.SelectedIndex++;
-            }
-        }
-
-        private void Stop_Button_Click(object sender, RoutedEventArgs e)
-        {
-            isPlaying = true;
-            mediaElement1.Stop();
-        }
-
-        private void Play_Button_Click(object sender, RoutedEventArgs e)
-        {
-            mediaElement1.Play();
-        }
-
-        public void Stop_Play_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (!isPlaying)
-            {
-                mediaElement1.Pause();
-                isPlaying = true;
-            }
-            else
-            {
-                mediaElement1.Play();
-                isPlaying = false;
-            }
+            
         }
     }
 }
