@@ -60,16 +60,18 @@
         public void Click(object sender, RoutedEventArgs e)
         {
             CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
-            Button currentButton = (Button)sender;
-            command.InterpretCommand(currentButton.Name);
+            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+            command.InterpretCommand(incomingCommand);
 
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var song = Playlist.SelectedItems[0] as Song;
-            MediaPlayer.Source = new Uri($"{song.Path}");
-            MediaPlayer.Play(); DispatcherTimer timer = new DispatcherTimer();
+            CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
+            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+            command.InterpretCommand(incomingCommand);
+ 
+            DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
@@ -86,7 +88,7 @@
 
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             if (MediaElement.NaturalDuration.HasTimeSpan)
             {

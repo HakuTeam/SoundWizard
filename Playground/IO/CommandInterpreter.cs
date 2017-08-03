@@ -16,6 +16,7 @@
             this.playList = playList;
         }
 
+
         public void InterpretCommand(string commandName)
         {
             try
@@ -43,6 +44,8 @@
                     return new RewindCommand(this.mediaElement, this.playList);
                 case "StopButton":
                     return new StopCommand(this.mediaElement, this.playList);
+                case "Playlist":
+                    return new SelectionChangerCommand(this.mediaElement, this.playList);
                 default:
                     throw new ArgumentException("Invalid Command");
             }
