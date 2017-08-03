@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Threading;
     using IO;
     using Playground.Core;
 
@@ -30,7 +31,7 @@
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -61,23 +62,36 @@
             CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
             Button currentButton = (Button)sender;
             command.InterpretCommand(currentButton.Name);
+
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var song = Playlist.SelectedItems[0] as Song;
             MediaPlayer.Source = new Uri($"{song.Path}");
-            MediaPlayer.Play();
+            MediaPlayer.Play(); DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
 
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
             MediaPlayer.Position += TimeSpan.FromMinutes(1);
+
         }
 
         private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (MediaElement.NaturalDuration.HasTimeSpan)
+            {
+                songStatus.Content = string.Format("{0} - {1}", MediaElement.Position.ToString(@"mm\:ss"), MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+            }
         }
     }
 }
