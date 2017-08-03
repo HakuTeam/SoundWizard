@@ -1,10 +1,8 @@
 ﻿namespace Playground.IO.Command
 {
-    using System;
     using System.Windows.Controls;
-    using Playground.Interfaces;
 
-    public class StopCommand : Command, IExecutable
+    public class StopCommand : Command
     {
         public StopCommand(MediaElement mediaElement, ListBox playList)
             : base(mediaElement, playList)
