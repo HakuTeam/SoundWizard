@@ -1,8 +1,11 @@
 ﻿namespace Playground.IO.Command
 {
     using System;
+    using System.IO;
     using System.Windows.Controls;
+    using System.Windows.Media;
     using Microsoft.Win32;
+    using Microsoft.WindowsAPICodePack.Shell;
     using Playground.Core;
     using Playground.Interfaces;
 
@@ -24,14 +27,20 @@
             if (result == true)
             {
                 string[] filename = dlg.FileNames;
-                foreach (var item in filename)
+                foreach (var songPath in filename)
                 {
-                    var pathAndSong = item.LastIndexOf('\\');
-                    var songName = item.Substring(pathAndSong + 1);
+                    ShellFile songFile = ShellFile.FromFilePath(songPath);
+                    int nameStartIndex = songPath.LastIndexOf('\\') + 1;
+                    int extensionDotIndex = songPath.LastIndexOf('.');
+                    int nameLength = extensionDotIndex - nameStartIndex;
+                    string songName = songFile.Name;
                     //Mp3FileReader getSongDuration = new Mp3FileReader(item);
                     //TimeSpan time = getSongDuration.TotalTime;
                     //string duration = string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
-                    Song song = new Song(songName, TimeSpan.MaxValue, item);
+                    TimeSpan songDuration = new TimeSpan(0, 0, 0, (int)(songFile.Properties.System.Media.Duration.Value / 10000000));
+
+                    Song song = new Song(songName, songDuration, songPath);
+
                     PlayList.Items.Add(song);
                 }
             }
