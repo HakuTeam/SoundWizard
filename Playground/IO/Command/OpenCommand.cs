@@ -30,14 +30,13 @@
                 foreach (var songPath in filename)
                 {
                     ShellFile songFile = ShellFile.FromFilePath(songPath);
-                    int nameStartIndex = songPath.LastIndexOf('\\') + 1;
-                    int extensionDotIndex = songPath.LastIndexOf('.');
-                    int nameLength = extensionDotIndex - nameStartIndex;
-                    string songName = songFile.Name;
-                    //Mp3FileReader getSongDuration = new Mp3FileReader(item);
-                    //TimeSpan time = getSongDuration.TotalTime;
-                    //string duration = string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
-                    TimeSpan songDuration = new TimeSpan(0, 0, 0, (int)(songFile.Properties.System.Media.Duration.Value / 10000000));
+                    int extensionDotIndex = songFile.Name.LastIndexOf('.');
+                    string songName = songFile.Name.Substring(0, extensionDotIndex);
+
+                    // System.Media.Duration is in 100nS (hundreds of nanoseconds) => 1sec = 10 000 000 100nS
+                    int songDuraitonSeconds = (int)(songFile.Properties.System.Media.Duration.Value / 10000000);
+
+                    TimeSpan songDuration = TimeSpan.FromSeconds(songDuraitonSeconds);
 
                     Song song = new Song(songName, songDuration, songPath);
 
