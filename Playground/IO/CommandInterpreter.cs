@@ -49,6 +49,9 @@
                 case "StopButton":
                     return new StopCommand(this.mediaElement, this.playList);
 
+                case "Playlist":
+                    return new SelectionChangerCommand(this.mediaElement, this.playList);
+
                 default:
                     throw new CustomException("CommandInterpreter: ParseCommand - Invalid Command");
             }
