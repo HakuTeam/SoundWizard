@@ -28,6 +28,11 @@
             set { this.mediaElement = value; }
         }
 
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;

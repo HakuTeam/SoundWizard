@@ -1,5 +1,6 @@
 ﻿namespace Playground.IO.Command
 {
+    using System;
     using System.Windows.Controls;
     using Playground.Interfaces;
 
@@ -10,7 +11,7 @@
         {
         }
 
-        public void Execute()
+        public override void Execute()
         {
             if (this.PlayList.SelectedIndex <= this.PlayList.Items.Count - 1)
             {

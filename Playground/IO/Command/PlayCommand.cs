@@ -1,5 +1,6 @@
 ﻿namespace Playground.IO.Command
 {
+    using System;
     using System.Windows.Controls;
     using Playground.Interfaces;
 
@@ -10,9 +11,7 @@
         {
         }
 
-        //public static bool isPlaying = false;
-
-        public void Execute()
+        public override void Execute()
         {
             if (!MainWindow.isPlaying)
             {
