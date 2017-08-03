@@ -1,8 +1,7 @@
 ﻿namespace Playground.IO.Command
 {
-    using System;
-    using System.Windows.Controls;
     using Playground.Interfaces;
+    using System.Windows.Controls;
 
     internal class RewindCommand : Command, IExecutable
     {

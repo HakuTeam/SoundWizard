@@ -2,7 +2,6 @@
 {
     using Interfaces;
     using System.Windows.Controls;
-    using System;
 
     public abstract class Command : IExecutable
     {

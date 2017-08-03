@@ -1,13 +1,11 @@
 ﻿namespace Playground.IO.Command
 {
-    using System;
-    using System.IO;
-    using System.Windows.Controls;
-    using System.Windows.Media;
     using Microsoft.Win32;
     using Microsoft.WindowsAPICodePack.Shell;
     using Playground.Core;
     using Playground.Interfaces;
+    using System;
+    using System.Windows.Controls;
 
     public class OpenCommand : Command, IExecutable
     {

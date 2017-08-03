@@ -1,11 +1,11 @@
 ﻿namespace Playground
 {
+    using IO;
+    using Playground.Core;
     using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Threading;
-    using IO;
-    using Playground.Core;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -31,7 +31,6 @@
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -41,7 +40,7 @@
             this.MediaPlayer.Volume = value;
         }
 
-        void LoopMediaEnded(object sender, RoutedEventArgs e)
+        private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             if (Playlist.SelectedIndex == this.Playlist.Items.Count - 1)
             {
@@ -62,7 +61,6 @@
             CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
             Button currentButton = (Button)sender;
             command.InterpretCommand(currentButton.Name);
-
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,15 +76,13 @@
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
             MediaPlayer.Position += TimeSpan.FromMinutes(1);
-
         }
 
         private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
-
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             if (MediaElement.NaturalDuration.HasTimeSpan)
             {

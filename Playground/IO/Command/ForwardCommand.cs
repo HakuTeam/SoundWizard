@@ -1,9 +1,7 @@
 ﻿namespace Playground.IO.Command
 {
-    using System;
-    using System.Windows.Controls;
-    using System.Windows.Threading;
     using Playground.Interfaces;
+    using System.Windows.Controls;
 
     public class ForwardCommand : Command, IExecutable
     {

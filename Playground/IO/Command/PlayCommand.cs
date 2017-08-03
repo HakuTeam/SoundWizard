@@ -1,8 +1,7 @@
 ﻿namespace Playground.IO.Command
 {
-    using System;
-    using System.Windows.Controls;
     using Playground.Interfaces;
+    using System.Windows.Controls;
 
     public class PlayCommand : Command, IExecutable
     {
