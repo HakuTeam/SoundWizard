@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows.Controls;
+    using System.Windows.Threading;
     using Playground.Interfaces;
 
     public class ForwardCommand : Command, IExecutable
