@@ -1,9 +1,8 @@
 ﻿namespace Playground.IO.Command
 {
-    using Playground.Interfaces;
     using System.Windows.Controls;
 
-    public class PlayCommand : Command, IExecutable
+    public class PlayCommand : Command
     {
         public PlayCommand(MediaElement mediaElement, ListBox playList)
             : base(mediaElement, playList)

@@ -1,9 +1,8 @@
 ﻿namespace Playground.IO.Command
 {
-    using Playground.Interfaces;
     using System.Windows.Controls;
 
-    internal class RewindCommand : Command, IExecutable
+    internal class RewindCommand : Command
     {
         public RewindCommand(MediaElement mediaElement, ListBox playList)
             : base(mediaElement, playList)

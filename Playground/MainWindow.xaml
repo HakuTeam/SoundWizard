@@ -12,7 +12,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
             </Grid.Background>
-            <Button BorderThickness="0" Name="OpenButton" Height="70" Width="70" Background="Transparent" BorderBrush="Black" Click="Click" Margin="63,146,485,382">
+            <Button BorderThickness="0" Name="OpenButton"  Height="70" Width="70" Background="Transparent" BorderBrush="Black" Click="Click" Margin="63,146,485,382">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/OpenSongsButtonIcon.png" />
                 </StackPanel>

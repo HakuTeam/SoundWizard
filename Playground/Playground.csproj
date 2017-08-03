@@ -76,10 +76,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Exceptions\CustomException.cs" />
-    <Compile Include="Interfaces\IClickable.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IInterpreter.cs" />
+    <Compile Include="IO\Command\SelectionChangerCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -111,6 +110,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
