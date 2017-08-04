@@ -22,6 +22,7 @@
         {
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
+            this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
             this.command = new CommandInterpreter(this.mediaElement, Playlist);
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
@@ -33,9 +34,10 @@
             set { this.mediaElement = value; }
         }
 
-
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        public Song CurrentSong
         {
+            get { return this.Playlist.SelectedItem as Song; }
+            set { this.Playlist.SelectedItem = value; }
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -59,7 +61,7 @@
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var song = Playlist.SelectedItems[0] as Song;
+            var song = CurrentSong;
             var incomingCommand = ((FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
 
