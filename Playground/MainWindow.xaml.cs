@@ -16,6 +16,7 @@
         public static bool isPlaying = false;
         private bool isDragging = false;
         private MediaElement mediaElement;
+        private CommandInterpreter command;
 
         public MainWindow()
         {
@@ -31,10 +32,13 @@
             set { this.mediaElement = value; }
         }
 
+<<<<<<< HEAD
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
         }
 
+=======
+>>>>>>> c3d0ed09b6b26e2d2e31459e702ad7d37ad77f5c
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;
@@ -44,32 +48,33 @@
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
-            if (Playlist.SelectedIndex == this.Playlist.Items.Count - 1)
-            {
-                MediaPlayer.Stop();
-                Playlist.SelectedIndex = 0;
-                MediaPlayer.Play();
-            }
-            else
-            {
-                MediaPlayer.Stop();
-                Playlist.SelectedIndex++;
-                MediaPlayer.Play();
-            }
+            command = new CommandInterpreter(mediaElement, Playlist);
+            var incomingCommand = $"{((System.Windows.FrameworkElement)e.Source).Name}PlayBack";
+            command.InterpretCommand(incomingCommand);
         }
 
-        public void Click(object sender, RoutedEventArgs e)
+        public void CommandProcessing(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             CommandInterpreter command = new CommandInterpreter(this.mediaElement, Playlist);
             var incomingCommand = ((FrameworkElement)e.Source).Name;
+=======
+            command = new CommandInterpreter(mediaElement, Playlist);
+            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+>>>>>>> c3d0ed09b6b26e2d2e31459e702ad7d37ad77f5c
             command.InterpretCommand(incomingCommand);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+<<<<<<< HEAD
             var song = Playlist.SelectedItems[0] as Song;
             CommandInterpreter command = new CommandInterpreter(this.mediaElement, Playlist);
             var incomingCommand = ((FrameworkElement)e.Source).Name;
+=======
+            command = new CommandInterpreter(mediaElement, Playlist);
+            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+>>>>>>> c3d0ed09b6b26e2d2e31459e702ad7d37ad77f5c
             command.InterpretCommand(incomingCommand);
             seekBar.Maximum = song.Duration.TotalSeconds;
             seekBar.Value = 0;
@@ -81,11 +86,15 @@
 
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             MediaPlayer.Position += TimeSpan.FromMinutes(1);
         }
 
         private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
+=======
+            MediaPlayer.Position += TimeSpan.FromSeconds(5);
+>>>>>>> c3d0ed09b6b26e2d2e31459e702ad7d37ad77f5c
         }
 
         public void Timer_Tick(object sender, EventArgs e)
