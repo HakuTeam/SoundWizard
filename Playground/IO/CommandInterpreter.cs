@@ -26,7 +26,8 @@
             }
             catch (Exception)
             {
-                throw new CustomException("CommandInterpreter: InterpretCommand - Cannot parse command"); //Cannot parse command
+                // You can either write custom message or use the one written in the exception class.
+                throw new CannotParseCommandException(); 
             }
         }
 
@@ -56,7 +57,9 @@
                     return new MediaPlaybackCommand(this.mediaElement, this.playList);
 
                 default:
-                    throw new CustomException("CommandInterpreter: ParseCommand - Invalid Command");
+                    // You can either write custom message or use the one written in the exception class.
+
+                    throw new InvalidCommandException();
             }
         }
     }
