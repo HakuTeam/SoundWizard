@@ -52,6 +52,9 @@
                 case "Playlist":
                     return new SelectionChangerCommand(this.mediaElement, this.playList);
 
+                case "MediaPlayerPlayBack":
+                    return new MediaPlaybackCommand(this.mediaElement, this.playList);
+
                 default:
                     throw new CustomException("CommandInterpreter: ParseCommand - Invalid Command");
             }
