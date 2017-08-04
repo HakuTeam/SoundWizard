@@ -74,7 +74,6 @@
     </Compile>
     <Compile Include="Enums\AudioFormats.cs" />
     <Compile Include="Exceptions\CannotParseCommandException.cs" />
-    <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Exceptions\InvalidCommandException.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IInterpreter.cs" />
