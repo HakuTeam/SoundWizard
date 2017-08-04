@@ -7,13 +7,15 @@
     {
         public Song(string title, TimeSpan duration, string path)
         {
-            Title = title;
-            Duration = duration;
-            Path = path;
+            this.Title = title;
+            this.Duration = duration;
+            this.Path = path;
         }
 
         public string Title { get; set; }
+
         public TimeSpan Duration { get; set; }
+
         public string Path { get; set; }
 
         public override string ToString()

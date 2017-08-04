@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using IO;
     using Playground.Core;
@@ -13,6 +14,7 @@
     public partial class MainWindow : Window
     {
         public static bool isPlaying = false;
+        private bool isDragging = false;
         private MediaElement mediaElement;
 
         public MainWindow()
@@ -20,7 +22,7 @@
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
-            MediaPlayer.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
+            this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
         }
 
         public MediaElement MediaElement
@@ -31,7 +33,6 @@
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -41,7 +42,7 @@
             this.MediaPlayer.Volume = value;
         }
 
-        void LoopMediaEnded(object sender, RoutedEventArgs e)
+        private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             if (Playlist.SelectedIndex == this.Playlist.Items.Count - 1)
             {
@@ -59,41 +60,52 @@
 
         public void Click(object sender, RoutedEventArgs e)
         {
-            CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
-            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+            CommandInterpreter command = new CommandInterpreter(this.mediaElement, Playlist);
+            var incomingCommand = ((FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
-
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommandInterpreter command = new CommandInterpreter(mediaElement, Playlist);
-            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+            var song = Playlist.SelectedItems[0] as Song;
+            CommandInterpreter command = new CommandInterpreter(this.mediaElement, Playlist);
+            var incomingCommand = ((FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
- 
+            seekBar.Maximum = song.Duration.TotalSeconds;
+            seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
+            timer.Tick += this.Timer_Tick;
             timer.Start();
         }
 
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
             MediaPlayer.Position += TimeSpan.FromMinutes(1);
-
         }
 
         private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
-
         }
 
-        public void timer_Tick(object sender, EventArgs e)
+        public void Timer_Tick(object sender, EventArgs e)
         {
-            if (MediaElement.NaturalDuration.HasTimeSpan)
+            if (this.MediaElement.NaturalDuration.HasTimeSpan && !this.isDragging)
             {
-                songStatus.Content = string.Format("{0} - {1}", MediaElement.Position.ToString(@"mm\:ss"), MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                songStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                seekBar.Value = this.MediaElement.Position.TotalSeconds;
             }
+        }
+
+        private void SeekBar_DragStarted(object sender, DragStartedEventArgs e)
+        {
+            this.isDragging = true;
+        }
+
+        private void SeekBar_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            this.isDragging = false;
+            this.MediaPlayer.Position = TimeSpan.FromSeconds(seekBar.Value);
         }
     }
 }

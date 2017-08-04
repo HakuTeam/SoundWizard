@@ -1,10 +1,10 @@
 ﻿namespace Playground.IO
 {
+    using System;
+    using System.Windows.Controls;
     using Playground.Exceptions;
     using Playground.Interfaces;
     using Playground.IO.Command;
-    using System;
-    using System.Windows.Controls;
 
     internal class CommandInterpreter : IInterpreter
     {

@@ -1,15 +1,17 @@
 ﻿namespace Playground.IO.Command
 {
     using System;
+    using System.Text;
     using System.Windows.Controls;
     using Microsoft.Win32;
     using Microsoft.WindowsAPICodePack.Shell;
     using Playground.Core;
+    using Playground.Enums;
 
     public class OpenCommand : Command
     {
-        public OpenCommand(MediaElement mediaElement, ListBox PlayList)
-            : base(mediaElement, PlayList)
+        public OpenCommand(MediaElement mediaElement, ListBox playList)
+            : base(mediaElement, playList)
         {
         }
 
@@ -18,7 +20,7 @@
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Multiselect = true;
             dlg.DefaultExt = ".mp3";
-            dlg.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
+            dlg.Filter = this.AudioFormater();
             Nullable<bool> result = dlg.ShowDialog();
 
             if (result == true)
@@ -40,6 +42,23 @@
                     PlayList.Items.Add(song);
                 }
             }
+        }
+
+        private string AudioFormater()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("All Supported Audio | ");
+            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            {
+                sb.Append($"*.{type}; ");
+            }
+
+            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            {
+                sb.Append($"|{type}s |*.{type}");
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }

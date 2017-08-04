@@ -1,18 +1,12 @@
-﻿using Playground.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using System.Windows;
-
-namespace Playground.IO.Command
+﻿namespace Playground.IO.Command
 {
+    using System;
+    using System.Windows.Controls;
+    using Playground.Core;
+
     public class SelectionChangerCommand : Command
     {
-        public SelectionChangerCommand(MediaElement mediaElement, ListBox playList) 
+        public SelectionChangerCommand(MediaElement mediaElement, ListBox playList)
             : base(mediaElement, playList)
         {
         }
