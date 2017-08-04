@@ -1,7 +1,7 @@
 ﻿namespace Playground.IO.Command
 {
-    using Interfaces;
     using System.Windows.Controls;
+    using Interfaces;
 
     public abstract class Command : IExecutable
     {
