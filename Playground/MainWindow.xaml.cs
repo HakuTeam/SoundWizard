@@ -5,7 +5,6 @@
     using System.Windows.Controls;
     using System.Windows.Threading;
     using IO;
-    using Playground.Core;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -21,6 +20,7 @@
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
+            this.command = new CommandInterpreter(mediaElement, Playlist);
             MediaPlayer.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
         }
 
@@ -39,22 +39,18 @@
 
         void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
-            command = new CommandInterpreter(mediaElement, Playlist);
             var incomingCommand = $"{((System.Windows.FrameworkElement)e.Source).Name}PlayBack";
             command.InterpretCommand(incomingCommand);
         }
 
         public void CommandProcessing(object sender, RoutedEventArgs e)
         {
-            command = new CommandInterpreter(mediaElement, Playlist);
             var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
-
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            command = new CommandInterpreter(mediaElement, Playlist);
             var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
  
@@ -66,7 +62,7 @@
 
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
-            MediaPlayer.Position += TimeSpan.FromSeconds(5);
+            MediaPlayer.Position += TimeSpan.FromMinutes(1);
         }
 
         public void timer_Tick(object sender, EventArgs e)
