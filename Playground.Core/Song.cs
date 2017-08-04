@@ -3,7 +3,6 @@
     using System;
     using System.Text;
 
-
     public class Song
     {
         public Song(string title, TimeSpan duration, string path)
