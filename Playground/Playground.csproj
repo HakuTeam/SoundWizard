@@ -132,15 +132,7 @@
   <ItemGroup>
     <Resource Include="PlayerSkin\bg.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Playground.Core\Playground.Core.csproj">
-      <Project>{22e4ec7a-0ae2-4c70-a2fb-dd3e35e2ac64}</Project>
-      <Name>Playground.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="PlayerSkin\ButtonIcons\NextSongButtonIcon.png" />
     <Resource Include="PlayerSkin\ButtonIcons\OpenSongsButtonIcon.png" />

@@ -1,4 +1,4 @@
-﻿namespace Playground.Core
+﻿namespace Playground.Model
 {
     using System;
     using System.Text;
