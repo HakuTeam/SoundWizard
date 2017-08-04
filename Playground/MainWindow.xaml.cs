@@ -6,6 +6,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using IO;
+    using Playground.Core;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,6 +23,7 @@
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
+            this.command = new CommandInterpreter(this.mediaElement, Playlist);
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
         }
 
@@ -58,12 +60,9 @@
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var song = Playlist.SelectedItems[0] as Song;
-            CommandInterpreter command = new CommandInterpreter(this.mediaElement, Playlist);
             var incomingCommand = ((FrameworkElement)e.Source).Name;
-
-            command = new CommandInterpreter(mediaElement, Playlist);
-
             command.InterpretCommand(incomingCommand);
+
             seekBar.Maximum = song.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
