@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playground.DAL
+namespace Playground.Services
 {
-    public interface ISongRepository
+    public interface ISongDataService
     {
-        Song GetSong(int songId);
-        List<Song> GetAllSongs();
         void DeleteSong(Song song);
+        List<Song> GetAllSongs();
+        Song GetSongDetail(int songId);
     }
 }

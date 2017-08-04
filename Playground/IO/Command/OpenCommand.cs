@@ -4,9 +4,11 @@
     using System.Text;
     using System.Windows.Controls;
     using Microsoft.Win32;
-    using Microsoft.WindowsAPICodePack.Shell;
-    using Playground.Core;
     using Playground.Enums;
+    using Playground.Model;
+    using Microsoft.WindowsAPICodePack.Shell;
+    using System.Collections.Generic;
+    using Playground.Services;
 
     public class OpenCommand : Command
     {

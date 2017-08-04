@@ -2,7 +2,7 @@
 {
     using System;
     using System.Windows.Controls;
-    using Playground.Core;
+    using Playground.Model;
 
     public class SelectionChangerCommand : Command
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Playground.DAL
 {
-    public class SongRepository
+    public class SongRepository : ISongRepository
     {
         private List<Song> songs;
 
@@ -15,9 +15,9 @@ namespace Playground.DAL
         {
         }
 
-        public Song GetSong()
+        public Song GetSong(int songId)
         {
-            return songs.FirstOrDefault();
+            return songs.ElementAtOrDefault(songId);
         }
 
         public List<Song> GetAllSongs()
@@ -28,6 +28,6 @@ namespace Playground.DAL
         public void DeleteSong(Song song)
         {
             this.songs.Remove(song);
-        }
+        }        
     }
 }

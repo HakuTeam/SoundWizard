@@ -5,13 +5,15 @@
     using Playground.Exceptions;
     using Playground.Interfaces;
     using Playground.IO.Command;
+    using System.Collections.ObjectModel;
+    using Playground.Model;
 
     internal class CommandInterpreter : IInterpreter
     {
         private MediaElement mediaElement;
-        private ListBox playList;
+        private ObservableCollection<Song> playList;
 
-        public CommandInterpreter(MediaElement mediaElement, ListBox playList)
+        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList)
         {
             this.mediaElement = mediaElement;
             this.playList = playList;

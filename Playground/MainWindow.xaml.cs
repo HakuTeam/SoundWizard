@@ -6,7 +6,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using IO;
-    using Playground.Core;
+    using Playground.Model;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -15,22 +15,14 @@
     {
         public static bool isPlaying = false;
         private bool isDragging = false;
-        private MediaElement mediaElement;
         private CommandInterpreter command;
 
         public MainWindow()
         {
             this.InitializeComponent();
-            this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
-            this.command = new CommandInterpreter(this.mediaElement, Playlist);
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-        }
-
-        public MediaElement MediaElement
-        {
-            get { return this.mediaElement; }
-            set { this.mediaElement = value; }
+            this.command = new CommandInterpreter(this.mediaElement, PlayList);
         }
 
 
