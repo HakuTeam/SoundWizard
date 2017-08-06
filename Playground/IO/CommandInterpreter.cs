@@ -14,12 +14,6 @@
         private ObservableCollection<Song> playList;
         private ListBox ListBoxView;
 
-        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList)
-        {
-            this.mediaElement = mediaElement;
-            this.playList = playList;
-        }
-
         public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
         {
             this.mediaElement = mediaElement;

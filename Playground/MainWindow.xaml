@@ -6,10 +6,32 @@
         xmlns:viewmodel="clr-namespace:Playground.ViewModel"
         xmlns:local="clr-namespace:Playground"
         xmlns:i="clr-Playground:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:model="clr-namespace:Playground.Model;assembly=Playground.Model"
         mc:Ignorable="d"
         Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
-
-        <Grid>
+    <!--Refactor the Playlist to use this template or delete the comment!-->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type model:Song}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="420" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="Title"
+                           HorizontalAlignment="Left"
+                           Grid.Column="0" Grid.Row="0"
+                           Text="{Binding Path=Title}"/>
+                <TextBlock Name="Duration"
+                           Grid.Column="1" Grid.Row="0"
+                           HorizontalAlignment="Right"
+                           Text="{Binding Path=Duration}"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
         <Grid Margin="-24,-100,-20,0" Height="771" VerticalAlignment="Bottom">
             <Grid.Background>
                 <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
@@ -41,7 +63,17 @@
             </Button>
         </Grid>
         <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Margin="0,10,0,589">Sound Wizard</TextBox>
-        <ListBox Opacity="0.8" Background="DimGray" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Playlist" Margin="36,298,38,18" AllowDrop="True" SelectionChanged="Playlist_SelectionChanged">
+
+        <ListBox Name="Playlist"
+                 ItemsSource="{Binding}"
+                 
+                 Opacity="0.8" 
+                 Background="DimGray" 
+                 BorderBrush="Transparent"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                 Margin="36,298,38,18" 
+                 AllowDrop="True" 
+                 SelectionChanged="Playlist_SelectionChanged">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Background" Value="LightGray" />
@@ -49,7 +81,7 @@
                     <Setter Property="BorderThickness" Value="2" />
                 </Style>
             </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
+            <!--<ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
@@ -60,8 +92,9 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
+            </ListBox.ItemTemplate>-->
         </ListBox>
+
         <Slider Name="AudioSlider" Minimum="0" Maximum="1" ValueChanged="Volume_ValueChanged" Margin="20,206,210,440" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" />
         <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" />
         <StackPanel>

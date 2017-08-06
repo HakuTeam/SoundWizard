@@ -26,8 +26,12 @@
             this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-            this.command = new CommandInterpreter(this.mediaElement, new ObservableCollection<Song>(),Playlist);
+            this.PlayListSongs = new ObservableCollection<Song>();
+            this.DataContext = this.PlayListSongs;
+            this.command = new CommandInterpreter(this.mediaElement, PlayListSongs, Playlist);
         }
+
+        public ObservableCollection<Song> PlayListSongs { get; set; }
 
         public MediaElement MediaElement
         {
