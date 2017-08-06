@@ -7,7 +7,7 @@
 
     public abstract class Command : IExecutable
     {
-        public Command(MediaElement mediaElement, ObservableCollection<Song> playList)
+        protected Command(MediaElement mediaElement, ObservableCollection<Song> playList)
         {
             this.MediaElement = mediaElement;
             this.PlayList = playList;
