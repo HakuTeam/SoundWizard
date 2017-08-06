@@ -13,6 +13,8 @@ namespace Playground.DAL
 
         public SongRepository()
         {
+            songs = new List<Song>();
+            songs.Add(new Song("Dummy Song",TimeSpan.FromSeconds(55),"Dummy path" ));
         }
 
         public Song GetSong(int songId)

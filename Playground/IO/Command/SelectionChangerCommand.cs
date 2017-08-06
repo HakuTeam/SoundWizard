@@ -1,19 +1,20 @@
 ﻿namespace Playground.IO.Command
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows.Controls;
     using Playground.Model;
 
     public class SelectionChangerCommand : Command
     {
-        public SelectionChangerCommand(MediaElement mediaElement, ListBox playList)
-            : base(mediaElement, playList)
+        public SelectionChangerCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+            : base(mediaElement, playList, listBoxView)
         {
         }
 
         public override void Execute()
         {
-            var song = PlayList.SelectedItems[0] as Song;
+            var song = this.ListBoxView.SelectedItems[0] as Song;
             MediaElement.Source = new Uri($"{song.Path}");
             MediaElement.Play();
         }

@@ -8,26 +8,27 @@
     using Playground.Model;
     using Microsoft.WindowsAPICodePack.Shell;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Playground.Services;
 
     public class OpenCommand : Command
     {
-        public OpenCommand(MediaElement mediaElement, ListBox playList)
+        public OpenCommand(MediaElement mediaElement, ObservableCollection<Song> playList)
             : base(mediaElement, playList)
         {
         }
 
         public override void Execute()
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Multiselect = true;
-            dlg.DefaultExt = ".mp3";
-            dlg.Filter = this.AudioFormater();
-            Nullable<bool> result = dlg.ShowDialog();
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            fileDialog.DefaultExt = ".mp3";
+            fileDialog.Filter = this.AudioFormater();
+            Nullable<bool> result = fileDialog.ShowDialog();
 
             if (result == true)
             {
-                string[] filename = dlg.FileNames;
+                string[] filename = fileDialog.FileNames;
                 foreach (var songPath in filename)
                 {
                     ShellFile songFile = ShellFile.FromFilePath(songPath);
@@ -41,7 +42,7 @@
 
                     Song song = new Song(songName, songDuration, songPath);
 
-                    PlayList.Items.Add(song);
+                    this.PlayList.Add(song);
                 }
             }
         }

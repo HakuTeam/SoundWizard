@@ -3,10 +3,13 @@ using System.Windows.Controls;
 
 namespace Playground.IO.Command
 {
+    using System.Collections.ObjectModel;
+    using Model;
+
     class MediaPlaybackCommand : Command
     {
-        public MediaPlaybackCommand(MediaElement mediaElement, ListBox playList)
-            : base(mediaElement, playList)
+        public MediaPlaybackCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+            : base(mediaElement, playList, listBoxView)
         {
         }
 
@@ -14,13 +17,13 @@ namespace Playground.IO.Command
         {
             this.MediaElement.Stop();
 
-            if (this.PlayList.SelectedIndex == this.PlayList.Items.Count - 1)
+            if (this.ListBoxView.SelectedIndex == this.PlayList.Count - 1)
             {
-                this.PlayList.SelectedIndex = 0;
+                this.ListBoxView.SelectedIndex = 0;
             }
             else
             {
-                this.PlayList.SelectedIndex++;
+                this.ListBoxView.SelectedIndex++;
             }
 
             this.MediaElement.Play();

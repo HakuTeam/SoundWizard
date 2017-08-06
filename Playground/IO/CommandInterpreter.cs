@@ -12,11 +12,19 @@
     {
         private MediaElement mediaElement;
         private ObservableCollection<Song> playList;
+        private ListBox ListBoxView;
 
         public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList)
         {
             this.mediaElement = mediaElement;
             this.playList = playList;
+        }
+
+        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        {
+            this.mediaElement = mediaElement;
+            this.playList = playList;
+            this.ListBoxView = listBoxView;
         }
 
         public void InterpretCommand(string commandName)
@@ -44,19 +52,19 @@
                     return new OpenCommand(this.mediaElement, this.playList);
 
                 case "ForwardButton":
-                    return new ForwardCommand(this.mediaElement, this.playList);
+                    return new ForwardCommand(this.mediaElement, this.playList, this.ListBoxView);
 
                 case "RewindButton":
-                    return new RewindCommand(this.mediaElement, this.playList);
+                    return new RewindCommand(this.mediaElement, this.playList, this.ListBoxView);
 
                 case "StopButton":
                     return new StopCommand(this.mediaElement, this.playList);
 
                 case "Playlist":
-                    return new SelectionChangerCommand(this.mediaElement, this.playList);
+                    return new SelectionChangerCommand(this.mediaElement, this.playList, this.ListBoxView);
 
                 case "MediaPlayerPlayBack":
-                    return new MediaPlaybackCommand(this.mediaElement, this.playList);
+                    return new MediaPlaybackCommand(this.mediaElement, this.playList, this.ListBoxView);
 
                 default:
                     // You can either write custom message or use the one written in the exception class.

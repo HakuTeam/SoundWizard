@@ -13,9 +13,18 @@
             this.PlayList = playList;
         }
 
+        protected Command(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        {
+            this.MediaElement = mediaElement;
+            this.PlayList = playList;
+            this.ListBoxView = listBoxView;
+        }
+
         public ObservableCollection<Song> PlayList { get; set; }
 
         public MediaElement MediaElement { get; set; }
+
+        public ListBox ListBoxView { get; set; }
 
         public abstract void Execute();
     }

@@ -1,6 +1,7 @@
 ﻿namespace Playground
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -14,6 +15,7 @@
     public partial class MainWindow : Window
     {
         public static bool isPlaying = false;
+        private MediaElement mediaElement;
         private bool isDragging = false;
         private CommandInterpreter command;
 
@@ -24,7 +26,13 @@
             this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-            this.command = new CommandInterpreter(this.mediaElement, PlayList);
+            this.command = new CommandInterpreter(this.mediaElement, new ObservableCollection<Song>(),Playlist);
+        }
+
+        public MediaElement MediaElement
+        {
+            get { return this.mediaElement; }
+            set { this.mediaElement = value; }
         }
 
         public Song CurrentSong
