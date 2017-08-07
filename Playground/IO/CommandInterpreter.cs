@@ -2,11 +2,11 @@
 {
     using System;
     using System.Windows.Controls;
-    using Playground.Exceptions;
-    using Playground.Interfaces;
-    using Playground.IO.Command;
+    using Exceptions;
+    using Interfaces;
+    using Command;
     using System.Collections.ObjectModel;
-    using Playground.Model;
+    using Model;
 
     internal class CommandInterpreter : IInterpreter
     {
@@ -31,7 +31,7 @@
             catch (Exception e)
             {
                 // You can either write custom message or use the one written in the exception class.
-                throw e; 
+                throw new CannotParseCommandException($"{e.Message}"); 
             }
         }
 
