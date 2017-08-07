@@ -65,7 +65,7 @@
         <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Margin="0,10,0,589">Sound Wizard</TextBox>
 
         <ListBox Name="Playlist"
-                 ItemsSource="{Binding}"
+                 ItemsSource="{Binding Mode=OneWay}"
                  
                  Opacity="0.8" 
                  Background="DimGray" 
