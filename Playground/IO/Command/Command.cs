@@ -3,7 +3,7 @@
     using System.Windows.Controls;
     using Interfaces;
     using System.Collections.ObjectModel;
-    using Playground.Model;
+    using Model;
 
     public abstract class Command : IExecutable
     {

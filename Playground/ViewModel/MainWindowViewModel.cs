@@ -1,13 +1,6 @@
-﻿using Playground.Extensions;
-using Playground.IO;
-using Playground.Model;
+﻿using Playground.Model;
 using Playground.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Playground.ViewModel

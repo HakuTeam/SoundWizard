@@ -3,7 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Playground.Model;
+    using Model;
 
     public class SelectionChangerCommand : Command
     {

@@ -7,12 +7,12 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using IO;
-    using Playground.Model;
+    using Model;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public static bool isPlaying = false;
         private MediaElement mediaElement;
@@ -54,13 +54,13 @@
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
-            var incomingCommand = $"{((System.Windows.FrameworkElement)e.Source).Name}PlayBack";
+            var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
             command.InterpretCommand(incomingCommand);
         }
 
         public void CommandProcessing(object sender, RoutedEventArgs e)
         {
-            var incomingCommand = ((System.Windows.FrameworkElement)e.Source).Name;
+            var incomingCommand = ((FrameworkElement)e.Source).Name;
             command.InterpretCommand(incomingCommand);
         }
 

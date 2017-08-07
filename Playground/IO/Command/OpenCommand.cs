@@ -4,10 +4,9 @@
     using System.Text;
     using System.Windows.Controls;
     using Microsoft.Win32;
-    using Playground.Enums;
-    using Playground.Model;
+    using Enums;
+    using Model;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.IO;
     using NAudio.Wave;
 

@@ -3,9 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:Playground.ViewModel"
-        xmlns:local="clr-namespace:Playground"
-        xmlns:i="clr-Playground:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:model="clr-namespace:Playground.Model;assembly=Playground.Model"
         mc:Ignorable="d"
         Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
