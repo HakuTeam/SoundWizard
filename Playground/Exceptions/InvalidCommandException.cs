@@ -7,15 +7,13 @@
         private const string InvalidCommand = "ParseCommand - Invalid Command";
 
         public InvalidCommandException()
-            :base(InvalidCommand)
+            : base(InvalidCommand)
         {
-                
         }
 
-        public InvalidCommandException(string message):
+        public InvalidCommandException(string message) :
             base(message)
         {
-            
         }
     }
 }

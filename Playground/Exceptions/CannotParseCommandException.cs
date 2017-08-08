@@ -9,13 +9,11 @@
         public CannotParseCommandException()
             :base(CannotParseCommand)
         {
-                
         }
 
-        public CannotParseCommandException(string message):
+        public CannotParseCommandException(string message) :
             base(message)
         {
-                
         }
     }
 }
