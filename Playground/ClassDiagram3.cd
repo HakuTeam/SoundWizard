@@ -10,7 +10,7 @@
   <Class Name="Playground.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="19.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABQAAAJWAAAIEAAAAAQAAAAEAAAQAAEAAAE=</HashCode>
+      <HashCode>AAAAAAAAABQAAAJWAAAIEAAAAAQAAAAEAAAYAAEAAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -85,7 +85,6 @@
       <HashCode>AAgAAAAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAABAAAA=</HashCode>
       <FileName>IO\CommandInterpreter.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Playground.Properties.Resources" Collapsed="true">
     <Position X="21" Y="1.5" Width="1.5" />

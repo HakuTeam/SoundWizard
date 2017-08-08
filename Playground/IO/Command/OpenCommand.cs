@@ -31,7 +31,11 @@
                     ShellFile songFile = ShellFile.FromFilePath(songPath);
                     int extensionDotIndex = songFile.Name.LastIndexOf('.');
                     string songName = songFile.Name.Substring(0, extensionDotIndex);
-
+                    string extName = songFile.Name.Substring(extensionDotIndex + 1).ToUpper();
+                    if (!Enum.IsDefined(typeof(AudioFormats), extName))
+                    {
+                        throw new ArgumentException();
+                    }
                     // System.Media.Duration is in 100nS (hundreds of nanoseconds) => 1sec = 10 000 000 100nS
                     int songDuraitonSeconds = (int)(songFile.Properties.System.Media.Duration.Value / 10000000);
 

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Playground.IO.Command
 {
-    class MediaPlaybackCommand : Command
+    internal class MediaPlaybackCommand : Command
     {
         public MediaPlaybackCommand(MediaElement mediaElement, ListBox playList)
             : base(mediaElement, playList)

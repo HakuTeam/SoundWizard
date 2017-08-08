@@ -26,8 +26,7 @@
             }
             catch (Exception)
             {
-                // You can either write custom message or use the one written in the exception class.
-                throw new CannotParseCommandException(); 
+                throw new CannotParseCommandException();
             }
         }
 
