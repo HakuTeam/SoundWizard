@@ -1,11 +1,11 @@
 ﻿namespace Playground.IO
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows.Controls;
+    using Command;
     using Exceptions;
     using Interfaces;
-    using Command;
-    using System.Collections.ObjectModel;
     using Model;
 
     internal class CommandInterpreter : IInterpreter
@@ -31,7 +31,7 @@
             catch (Exception e)
             {
                 // You can either write custom message or use the one written in the exception class.
-                throw new CannotParseCommandException($"{e.Message}"); 
+                throw new CannotParseCommandException($"{e.Message}");
             }
         }
 

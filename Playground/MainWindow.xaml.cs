@@ -28,7 +28,7 @@
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
             this.PlayListSongs = new ObservableCollection<Song>();
             this.DataContext = this.PlayListSongs;
-            this.command = new CommandInterpreter(this.mediaElement, PlayListSongs, Playlist);
+            this.command = new CommandInterpreter(this.mediaElement, this.PlayListSongs, Playlist);
         }
 
         public ObservableCollection<Song> PlayListSongs { get; set; }
@@ -55,20 +55,20 @@
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            command.InterpretCommand(incomingCommand);
+            this.command.InterpretCommand(incomingCommand);
         }
 
         public void CommandProcessing(object sender, RoutedEventArgs e)
         {
             var incomingCommand = ((FrameworkElement)e.Source).Name;
-            command.InterpretCommand(incomingCommand);
+            this.command.InterpretCommand(incomingCommand);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var song = CurrentSong;
+            var song = this.CurrentSong;
             var incomingCommand = ((FrameworkElement)e.Source).Name;
-            command.InterpretCommand(incomingCommand);
+            this.command.InterpretCommand(incomingCommand);
 
             seekBar.Maximum = song.Duration.TotalSeconds;
             seekBar.Value = 0;

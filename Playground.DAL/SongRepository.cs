@@ -1,9 +1,7 @@
-﻿using Playground.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Playground.Model;
 
 namespace Playground.DAL
 {
@@ -14,7 +12,7 @@ namespace Playground.DAL
         public SongRepository()
         {
             songs = new List<Song>();
-            songs.Add(new Song("Dummy Song",TimeSpan.FromSeconds(55),"Dummy path" ));
+            songs.Add(new Song("Dummy Song", TimeSpan.FromSeconds(55), "Dummy path"));
         }
 
         public Song GetSong(int songId)
@@ -30,6 +28,6 @@ namespace Playground.DAL
         public void DeleteSong(Song song)
         {
             this.songs.Remove(song);
-        }        
+        }
     }
 }

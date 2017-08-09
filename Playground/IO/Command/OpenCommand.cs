@@ -1,13 +1,13 @@
 ﻿namespace Playground.IO.Command
 {
     using System;
-    using System.Text;
-    using System.Windows.Controls;
-    using Microsoft.Win32;
-    using Enums;
-    using Model;
     using System.Collections.ObjectModel;
     using System.IO;
+    using System.Text;
+    using System.Windows.Controls;
+    using Enums;
+    using Microsoft.Win32;
+    using Model;
     using NAudio.Wave;
 
     public class OpenCommand : Command
@@ -34,11 +34,21 @@
                 foreach (var songPath in filename)
                 {
                     string songName = Path.GetFileNameWithoutExtension(songPath);
-                    TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
+                    int extensionDotIndex = songPath.LastIndexOf('.');
+                    string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
+                    if (!Enum.IsDefined(typeof(AudioFormats), extName))
+                    {
+                        ErrorWindow errowWindow = new ErrorWindow();
+                        errowWindow.ShowDialog();
+                    }
+                    else
+                    {
+                        TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
 
-                    Song song = new Song(songName, songDuration, songPath);
+                        Song song = new Song(songName, songDuration, songPath);
 
-                    this.PlayList.Add(song);
+                        this.PlayList.Add(song);
+                    }
                 }
             }
         }

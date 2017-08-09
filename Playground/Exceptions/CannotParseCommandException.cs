@@ -7,7 +7,7 @@
         private const string CannotParseCommand = "InterpretCommand - Cannot parse command";
 
         public CannotParseCommandException()
-            :base(CannotParseCommand)
+            : base(CannotParseCommand)
         {
         }
 

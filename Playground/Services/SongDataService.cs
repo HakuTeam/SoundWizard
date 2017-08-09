@@ -1,16 +1,12 @@
-﻿using Playground.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Playground.Model;
-
-namespace Playground.Services
+﻿namespace Playground.Services
 {
+    using System.Collections.Generic;
+    using Playground.DAL;
+    using Playground.Model;
+
     public class SongDataService : ISongDataService
     {
-        ISongRepository songRepository = new SongRepository();
+        private ISongRepository songRepository = new SongRepository();
 
         public SongDataService()
         {

@@ -15,16 +15,16 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="420" />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="Title"
                            HorizontalAlignment="Left"
                            Grid.Column="0" Grid.Row="0"
-                           Text="{Binding Path=Title}"/>
+                           Text="{Binding Path=Title}" />
                 <TextBlock Name="Duration"
                            Grid.Column="1" Grid.Row="0"
                            HorizontalAlignment="Right"
-                           Text="{Binding Path=DurationFormated}"/>
+                           Text="{Binding Path=DurationFormated}" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -63,13 +63,13 @@
 
         <ListBox Name="Playlist"
                  ItemsSource="{Binding Mode=OneWay}"
-                 
-                 Opacity="0.8" 
-                 Background="DimGray" 
+
+                 Opacity="0.8"
+                 Background="DimGray"
                  BorderBrush="Transparent"
-                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
-                 Margin="36,298,38,18" 
-                 AllowDrop="True" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 Margin="36,298,38,18"
+                 AllowDrop="True"
                  SelectionChanged="Playlist_SelectionChanged">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">

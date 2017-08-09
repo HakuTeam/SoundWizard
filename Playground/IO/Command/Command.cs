@@ -1,8 +1,8 @@
 ﻿namespace Playground.IO.Command
 {
+    using System.Collections.ObjectModel;
     using System.Windows.Controls;
     using Interfaces;
-    using System.Collections.ObjectModel;
     using Model;
 
     public abstract class Command : IExecutable
