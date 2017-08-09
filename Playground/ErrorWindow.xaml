@@ -10,7 +10,7 @@
         <TextBlock x:Name="ErrorText" Margin="0,0,0,53" TextAlignment="Center">
             Invalid audio format.
         </TextBlock>
-        <Button Click="CommandProcessing" Margin="62,54,62,10">
+        <Button Click="CloseOnClick" Margin="62,54,62,10">
             <TextBlock>
                 OK
             </TextBlock>
