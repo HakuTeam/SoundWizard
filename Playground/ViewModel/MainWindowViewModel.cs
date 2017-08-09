@@ -9,11 +9,11 @@
     {
         private MediaElement mediaElement;
         private SongDataService songDataService = new SongDataService();
-        public ObservableCollection<Song> PlayList { get; set; }
+        public ObservableCollection<SongViewModel> PlayList { get; set; }
 
         public MainWindowViewModel()
         {
-            this.PlayList = new ObservableCollection<Song>();
+            this.PlayList = new ObservableCollection<SongViewModel>();
         }
 
         public MediaElement MediaElement

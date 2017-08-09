@@ -61,9 +61,11 @@
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ISongDataService.cs" />
     <Compile Include="Services\SongDataService.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SongViewModel.cs" />
     <Page Include="ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

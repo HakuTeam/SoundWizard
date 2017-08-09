@@ -2,11 +2,11 @@
 {
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Model;
+    using ViewModel;
 
     public class PlayCommand : Command
     {
-        public PlayCommand(MediaElement mediaElement, ObservableCollection<Song> playList)
+        public PlayCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList)
             : base(mediaElement, playList)
         {
         }

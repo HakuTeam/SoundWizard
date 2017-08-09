@@ -7,7 +7,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using IO;
-    using Model;
+    using ViewModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,12 +26,12 @@
             this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-            this.PlayListSongs = new ObservableCollection<Song>();
+            this.PlayListSongs = new ObservableCollection<SongViewModel>();
             this.DataContext = this.PlayListSongs;
             this.command = new CommandInterpreter(this.mediaElement, this.PlayListSongs, Playlist);
         }
 
-        public ObservableCollection<Song> PlayListSongs { get; set; }
+        public ObservableCollection<SongViewModel> PlayListSongs { get; set; }
 
         public MediaElement MediaElement
         {
@@ -39,9 +39,9 @@
             set { this.mediaElement = value; }
         }
 
-        public Song CurrentSong
+        public SongViewModel CurrentSong
         {
-            get { return this.Playlist.SelectedItem as Song; }
+            get { return this.Playlist.SelectedItem as SongViewModel; }
             set { this.Playlist.SelectedItem = value; }
         }
 
@@ -70,7 +70,7 @@
             var incomingCommand = ((FrameworkElement)e.Source).Name;
             this.command.InterpretCommand(incomingCommand);
 
-            seekBar.Maximum = song.Duration.TotalSeconds;
+            seekBar.Maximum = song.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);

@@ -2,11 +2,11 @@
 {
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Model;
+    using ViewModel;
 
     public class ForwardCommand : Command
     {
-        public ForwardCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        public ForwardCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
             : base(mediaElement, playList, listBoxView)
         {
         }

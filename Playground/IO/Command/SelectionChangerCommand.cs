@@ -3,18 +3,18 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Model;
+    using ViewModel;
 
     public class SelectionChangerCommand : Command
     {
-        public SelectionChangerCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        public SelectionChangerCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
             : base(mediaElement, playList, listBoxView)
         {
         }
 
         public override void Execute()
         {
-            var song = this.ListBoxView.SelectedItems[0] as Song;
+            var song = this.ListBoxView.SelectedItems[0] as SongViewModel;
             MediaElement.Source = new Uri($"{song.Path}");
             MediaElement.Play();
         }

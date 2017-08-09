@@ -6,15 +6,15 @@
     using Command;
     using Exceptions;
     using Interfaces;
-    using Model;
+    using ViewModel;
 
     internal class CommandInterpreter : IInterpreter
     {
         private MediaElement mediaElement;
-        private ObservableCollection<Song> playList;
+        private ObservableCollection<SongViewModel> playList;
         private ListBox ListBoxView;
 
-        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
         {
             this.mediaElement = mediaElement;
             this.playList = playList;

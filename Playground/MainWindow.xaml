@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:model="clr-namespace:Playground.Model;assembly=Playground.Model"
+        xmlns:viewModel="clr-namespace:Playground.ViewModel"
         mc:Ignorable="d"
         Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
     <!--Refactor the Playlist to use this template or delete the comment!-->
     <Window.Resources>
-        <DataTemplate DataType="{x:Type model:Song}">
+        <DataTemplate DataType="{x:Type viewModel:SongViewModel}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -24,7 +24,7 @@
                 <TextBlock Name="Duration"
                            Grid.Column="1" Grid.Row="0"
                            HorizontalAlignment="Right"
-                           Text="{Binding Path=DurationFormated}" />
+                           Text="{Binding Path=Duration}" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -62,7 +62,7 @@
         <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Margin="0,10,0,589">Sound Wizard</TextBox>
 
         <ListBox Name="Playlist"
-                 ItemsSource="{Binding Mode=OneWay}"
+                 ItemsSource="{Binding}"
 
                  Opacity="0.8"
                  Background="DimGray"

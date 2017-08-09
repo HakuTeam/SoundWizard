@@ -2,11 +2,11 @@
 {
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Model;
+    using ViewModel;
 
     public class StopCommand : Command
     {
-        public StopCommand(MediaElement mediaElement, ObservableCollection<Song> playList)
+        public StopCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList)
             : base(mediaElement, playList)
         {
         }

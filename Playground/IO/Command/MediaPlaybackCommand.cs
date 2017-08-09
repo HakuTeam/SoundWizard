@@ -3,11 +3,11 @@
 namespace Playground.IO.Command
 {
     using System.Collections.ObjectModel;
-    using Model;
+    using ViewModel;
 
     internal class MediaPlaybackCommand : Command
     {
-        public MediaPlaybackCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        public MediaPlaybackCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
             : base(mediaElement, playList, listBoxView)
         {
         }

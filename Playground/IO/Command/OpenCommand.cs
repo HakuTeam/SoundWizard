@@ -7,12 +7,12 @@
     using System.Windows.Controls;
     using Enums;
     using Microsoft.Win32;
-    using Model;
     using NAudio.Wave;
+    using ViewModel;
 
     public class OpenCommand : Command
     {
-        public OpenCommand(MediaElement mediaElement, ObservableCollection<Song> playList)
+        public OpenCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList)
             : base(mediaElement, playList)
         {
         }
@@ -45,7 +45,7 @@
                     {
                         TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
 
-                        Song song = new Song(songName, songDuration, songPath);
+                        SongViewModel song = new SongViewModel(songName, songDuration, songPath);
 
                         this.PlayList.Add(song);
                     }

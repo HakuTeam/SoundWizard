@@ -2,11 +2,11 @@
 {
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
-    using Model;
+    using ViewModel;
 
     internal class RewindCommand : Command
     {
-        public RewindCommand(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        public RewindCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
             : base(mediaElement, playList, listBoxView)
         {
         }

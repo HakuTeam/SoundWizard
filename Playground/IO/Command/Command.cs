@@ -3,24 +3,24 @@
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
     using Interfaces;
-    using Model;
+    using ViewModel;
 
     public abstract class Command : IExecutable
     {
-        protected Command(MediaElement mediaElement, ObservableCollection<Song> playList)
+        protected Command(MediaElement mediaElement, ObservableCollection<SongViewModel> playList)
         {
             this.MediaElement = mediaElement;
             this.PlayList = playList;
         }
 
-        protected Command(MediaElement mediaElement, ObservableCollection<Song> playList, ListBox listBoxView)
+        protected Command(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
         {
             this.MediaElement = mediaElement;
             this.PlayList = playList;
             this.ListBoxView = listBoxView;
         }
 
-        public ObservableCollection<Song> PlayList { get; set; }
+        public ObservableCollection<SongViewModel> PlayList { get; set; }
 
         public MediaElement MediaElement { get; set; }
 
