@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico"
-        >
+        KeyDown="MainWindowKeys"
+        Title="Sound Wizard" Height="700"  Width="600" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
     <!--Refactor the Playlist to use this template or delete the comment!-->
     <StackPanel>
         <Grid>
@@ -109,7 +109,7 @@
             <Border BorderThickness="2" BorderBrush="Black" Margin="425,206,31,420">
                 <Label Background="White" Name="songStatus" HorizontalContentAlignment="Center" />
             </Border>
-            <Slider IsMoveToPointEnabled="True" Name="seekBar" Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted" Margin="36,256,36,378" />
+            <Slider IsMoveToPointEnabled="True" Name="seekBar" Margin="36,256,36,378" ValueChanged="ChangeValue"/>
         </Grid>
     </StackPanel>
 </Window>

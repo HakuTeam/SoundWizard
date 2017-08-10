@@ -3,11 +3,10 @@
     using System;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using ViewModel;
     using Playground.Model;
-    using System.ComponentModel;
+    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -21,15 +20,14 @@
             this.DataContext = songViewModel;
 
             this.MediaElement = this.MediaPlayer;
-            this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
+            this.MediaElement.Volume = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
         }
 
         public static bool isPlaying = false;
         private MediaElement mediaElement;
         private SongViewModel songViewModel;
-        private bool isDragging = false;
 
         public MediaElement MediaElement
         {
@@ -81,22 +79,45 @@
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            if (this.MediaElement.NaturalDuration.HasTimeSpan && !this.isDragging)
+            if (this.MediaElement.NaturalDuration.HasTimeSpan)
             {
                 songStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
                 seekBar.Value = this.MediaElement.Position.TotalSeconds;
             }
         }
 
-        private void SeekBar_DragStarted(object sender, DragStartedEventArgs e)
+        private void ChangeValue(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            this.isDragging = true;
+            var slider = sender as Slider;
+            double value = slider.Value;
+
+            seekBar.Value = value;
+            this.MediaPlayer.Position = TimeSpan.FromSeconds(value);
         }
 
-        private void SeekBar_DragCompleted(object sender, DragCompletedEventArgs e)
+        private void MainWindowKeys(object sender, KeyEventArgs e)
         {
-            this.isDragging = false;
-            this.MediaPlayer.Position = TimeSpan.FromSeconds(seekBar.Value);
+            if (e.Key == Key.Left)
+            {
+                this.MediaPlayer.Position -= TimeSpan.FromSeconds(1);
+            }
+
+            if (e.Key == Key.Right)
+            {
+                this.MediaPlayer.Position += TimeSpan.FromSeconds(1);
+            }
+
+            if (e.Key == Key.Add)
+            {
+                this.MediaElement.Volume += 0.05;
+                this.AudioSlider.Value += 0.05;
+            }
+
+            if (e.Key == Key.Subtract)
+            {
+                this.MediaElement.Volume -= 0.05;
+                this.AudioSlider.Value -= 0.05;
+            }
         }
     }
 }
