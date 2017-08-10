@@ -1,50 +1,41 @@
 ﻿namespace Playground
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
-    using IO;
     using ViewModel;
+    using Playground.Model;
+    using System.ComponentModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
-        public static bool isPlaying = false;
-        private MediaElement mediaElement;
-        private bool isDragging = false;
-        private CommandInterpreter command;
-
         public MainWindow()
         {
             this.InitializeComponent();
+            this.songViewModel = new SongViewModel();
+            this.DataContext = songViewModel;
+
             this.MediaElement = this.MediaPlayer;
             this.MediaElement.Volume = 1;
             this.AudioSlider.Value = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-            this.PlayListSongs = new ObservableCollection<SongViewModel>();
-            this.DataContext = this.PlayListSongs;
-            this.command = new CommandInterpreter(this.mediaElement, this.PlayListSongs, Playlist);
         }
 
-        public ObservableCollection<SongViewModel> PlayListSongs { get; set; }
+        public static bool isPlaying = false;
+        private MediaElement mediaElement;
+        private SongViewModel songViewModel;
+        private bool isDragging = false;
 
         public MediaElement MediaElement
         {
             get { return this.mediaElement; }
             set { this.mediaElement = value; }
         }
-
-        public SongViewModel CurrentSong
-        {
-            get { return this.Playlist.SelectedItem as SongViewModel; }
-            set { this.Playlist.SelectedItem = value; }
-        }
-
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;
@@ -55,22 +46,27 @@
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            this.command.InterpretCommand(incomingCommand);
+            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
         }
 
         public void CommandProcessing(object sender, RoutedEventArgs e)
         {
             var incomingCommand = ((FrameworkElement)e.Source).Name;
-            this.command.InterpretCommand(incomingCommand);
+            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var song = this.CurrentSong;
-            var incomingCommand = ((FrameworkElement)e.Source).Name;
-            this.command.InterpretCommand(incomingCommand);
+            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            var song = songViewModel.CurrentSong;
+            var incomingCommand = "PlayButton";
+            songViewModel.command.InterpretCommand(incomingCommand, song);
 
-            seekBar.Maximum = song.TotalSeconds;
+            this.MediaElement.Source = new Uri(songViewModel.CurrentSong.Path);
+            this.MediaElement.Play();
+            seekBar.Maximum = songViewModel.CurrentSong.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);

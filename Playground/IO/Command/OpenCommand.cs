@@ -8,14 +8,13 @@
     using Enums;
     using Microsoft.Win32;
     using NAudio.Wave;
-    using ViewModel;
-    using TagLib;
     using System.Linq;
+    using Playground.Model;
 
     public class OpenCommand : Command
     {
-        public OpenCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList)
-            : base(mediaElement, playList)
+        public OpenCommand(ObservableCollection<Song> playList, Song currentSong)
+            : base(playList, currentSong)
         {
         }
 
@@ -53,9 +52,9 @@
                         string album = fileInfo.Tag.Album;
                         string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
 
-                        SongViewModel song = new SongViewModel(songName, songDuration, songPath, album, artist, genre);
+                        Song song = new Song(songName, songDuration, songPath, album, artist, genre); 
 
-                        this.PlayList.Add(song);
+                        this.PlayList.Add(song);                        
                     }
                 }
             }
