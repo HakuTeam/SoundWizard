@@ -14,6 +14,18 @@ namespace Playground.IO.Command
 
         public override void Execute()
         {
+            this.MediaElement.Stop();
+
+            if (this.ListBoxView.SelectedIndex == this.ListBoxView.Items.Count - 1)
+            {
+                this.ListBoxView.SelectedIndex = 0;
+            }
+            else
+            {
+                this.ListBoxView.SelectedIndex++;
+            }
+
+            this.MediaElement.Play();
         }
     }
 }
