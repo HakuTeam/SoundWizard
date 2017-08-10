@@ -6,13 +6,13 @@
     using Annotations;
     using Model;
 
-    public class SongViewModel: INotifyPropertyChanged
+    public class SongViewModel : INotifyPropertyChanged
     {
         Song song;
 
-        public SongViewModel(string title, TimeSpan duration, string path)
+        public SongViewModel(string title, TimeSpan duration, string path, string album, string artist, string genre)
         {
-            song = new Song(title,duration,path);
+            song = new Song(title, duration, path, album, artist, genre);
         }
 
         public string Duration
@@ -33,8 +33,24 @@
             get { return this.song.Title; }
         }
 
-        public string Path {
+        public string Path
+        {
             get { return this.song.Path; }
+        }
+
+        public string Album
+        {
+            get { return this.song.Album; }
+        }
+
+        public string Artist
+        {
+            get { return this.song.Artist; }
+        }
+
+        public string Genre
+        {
+            get { return this.song.Genre; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

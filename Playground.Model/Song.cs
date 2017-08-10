@@ -5,16 +5,25 @@
 
     public class Song
     {
-        public Song(string title, TimeSpan duration, string path)
+        public Song(string title, TimeSpan duration, string path, string album, string artist, string genre)
         {
             this.Title = title;
             this.Duration = duration;
             this.Path = path;
+            this.Album = album;
+            this.Artist = artist;
+            this.Genre = genre;
         }
 
         public string Title { get; set; }
 
         public TimeSpan Duration { get; set; }
+
+        public string Album { get; set; }
+
+        public string Artist { get; set; }
+
+        public string Genre { get; set; }
 
         public string DurationFormated
         {
