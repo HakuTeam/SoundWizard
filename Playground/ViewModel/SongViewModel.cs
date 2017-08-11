@@ -77,7 +77,7 @@
 
         private bool CanForwardLoop(object obj)
         {
-            return this.ListBox.SelectedIndex < this.Playlist.Count - 1 || this.Repeat;
+            return (this.ListBox.SelectedIndex < this.Playlist.Count - 1 || this.Repeat) && this.Playlist.Count != 0;
         }
 
         private void ForwardLoop(object obj)
@@ -94,7 +94,7 @@
 
         private bool CanRewindLoop(object obj)
         {
-            return this.ListBox.SelectedIndex != 0 || this.Repeat;
+            return (this.ListBox.SelectedIndex != 0 || this.Repeat) && this.Playlist.Count > 0;
         }
 
         private void RewindLoop(object obj)
