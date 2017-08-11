@@ -29,6 +29,8 @@
             LoadCommands();
         }
 
+        public bool Repeat { get; set; }
+
         public ICommand ForwardCommand { get; set; }
 
         public ICommand StopCommand { get; set; }
@@ -75,22 +77,36 @@
 
         private bool CanForwardLoop(object obj)
         {
-            return this.ListBox.SelectedIndex <= this.Playlist.Count - 1;
+            return this.ListBox.SelectedIndex < this.Playlist.Count - 1 || this.Repeat;
         }
 
         private void ForwardLoop(object obj)
         {
-            this.ListBox.SelectedIndex++;
+            if (this.ListBox.SelectedIndex == this.Playlist.Count - 1 && this.Repeat)
+            {
+                this.ListBox.SelectedIndex = 0;
+            }
+            else
+            {
+                this.ListBox.SelectedIndex++;
+            }
         }
 
         private bool CanRewindLoop(object obj)
         {
-            return this.ListBox.SelectedIndex > 0;
+            return this.ListBox.SelectedIndex != 0 || this.Repeat;
         }
 
         private void RewindLoop(object obj)
         {
-            this.ListBox.SelectedIndex--;
+            if (this.ListBox.SelectedIndex == 0 && this.Repeat)
+            {
+                this.ListBox.SelectedIndex = this.Playlist.Count - 1;
+            }
+            else
+            {
+                this.ListBox.SelectedIndex--;
+            }
         }
 
         private bool CanStopSong(object obj)

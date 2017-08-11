@@ -103,7 +103,7 @@
         <MediaElement Height="120" Margin="10,10,108,0" LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" Visibility="Hidden" />
         <StackPanel>
             <ToggleButton x:Name = "tb" Content = "Toggle"
-         Checked = "HandleCheck" Unchecked = "HandleCheck" Margin = "20"
+         IsChecked="{Binding Path=Repeat}" Margin = "20"
          Width = "108" HorizontalAlignment = "Center" />
         </StackPanel>
         <Border BorderThickness="2" BorderBrush="Black" Margin="425,206,31,420">
