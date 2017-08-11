@@ -7,7 +7,8 @@
     using Model;
     using System.Collections.ObjectModel;
     using Playground.IO;
-    using System.Windows.Controls;
+    using System.Windows.Input;
+    using Playground.Utility;
 
     public class SongViewModel : INotifyPropertyChanged
     {
@@ -15,12 +16,29 @@
         {
             this.playlist = new ObservableCollection<Song>();
             this.command = new CommandInterpreter(playlist);
+            LoadCommands();
         }
-        
+
+        private void LoadCommands()
+        {
+            PlayCommand = new CustomCommand(PlaySong, CanPlaySong);
+        }       
+
+        private bool CanPlaySong(object obj)
+        {
+            return true;
+        }
+
+        public void PlaySong(object obj)
+        {
+            //MediaElement play
+        }
+
+        public ICommand PlayCommand { get; set; }
         private Song currentSong;
         public CommandInterpreter command;
-        public ObservableCollection<Song> playlist { get; set; } 
-        public Song CurrentSong { get; set; }       
+        public ObservableCollection<Song> playlist { get; set; }
+        public Song CurrentSong { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

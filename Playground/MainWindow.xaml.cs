@@ -21,10 +21,10 @@
 
             this.MediaElement = this.MediaPlayer;
             this.AudioSlider.Value = 1;
-            this.MediaElement.Volume = 1;
+            this.MediaElement.Volume = 1;           
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-        }
-
+        }        
+        
         public static bool isPlaying = false;
         private MediaElement mediaElement;
         private SongViewModel songViewModel;
@@ -46,7 +46,7 @@
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
             songViewModel.CurrentSong = Playlist.SelectedItem as Song;
             songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
-        }
+        }        
 
         public void CommandProcessing(object sender, RoutedEventArgs e)
         {

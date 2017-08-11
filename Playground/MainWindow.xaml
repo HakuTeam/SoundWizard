@@ -23,7 +23,7 @@
                         <Image Source="/PlayerSkin/ButtonIcons/PreviousSongButtonIcon.png" />
                     </StackPanel>
                 </Button>
-                <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Click="CommandProcessing">
+                <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Margin="269,146,279,382" Command="{Binding PlayCommand}">
                     <StackPanel>
                         <Image Source="/PlayerSkin/ButtonIcons/PlayButtonIcon.png" />
                     </StackPanel>
