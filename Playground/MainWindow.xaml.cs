@@ -45,15 +45,8 @@
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
             songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
+            //songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
         }        
-
-        public void CommandProcessing(object sender, RoutedEventArgs e)
-        {
-            var incomingCommand = ((FrameworkElement)e.Source).Name;
-            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
-        }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

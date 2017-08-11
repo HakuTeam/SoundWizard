@@ -18,7 +18,7 @@
                     <Image Source="/PlayerSkin/ButtonIcons/OpenSongsButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="RewindButton" Width="70" Height="70"  Background="Transparent" BorderBrush="Black" Margin="168,146,380,382" Click="CommandProcessing">
+            <Button BorderThickness="0" Name="RewindButton" Width="70" Height="70"  Background="Transparent" BorderBrush="Black" Margin="168,146,380,382" Command="{Binding RewindCommand}">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/PreviousSongButtonIcon.png" />
                 </StackPanel>
@@ -28,7 +28,7 @@
                     <Image Source="/PlayerSkin/ButtonIcons/PlayButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="ForwardButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="377,146,171,382" Click="CommandProcessing">
+            <Button BorderThickness="0" Name="ForwardButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="377,146,171,382" Command="{Binding ForwardCommand}">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/NextSongButtonIcon.png" />
                 </StackPanel>

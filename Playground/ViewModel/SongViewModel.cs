@@ -16,8 +16,11 @@
     using Playground.IO.Command;
     using System.Windows;
 
-    public class SongViewModel : INotifyPropertyChanged
+    public class SongViewModel 
     {
+        private MediaElement mediaElement;
+        private Song currentSong;
+
         public SongViewModel(MediaElement mediaElement, ListBox listBox)
         {
             this.Playlist = new ObservableCollection<Song>();
@@ -26,7 +29,39 @@
             LoadCommands();
         }
 
+        public ICommand ForwardCommand { get; set; }
+
+        public ICommand StopCommand { get; set; }
+
+        public ICommand PlayCommand { get; set; }
+
+        public ICommand OpenCommand { get; set; }
+
+        public ICommand ExitCommand { get; set; }
+
+        public ICommand RewindCommand { get; set; }
+
         public ListBox ListBox { get; set; }
+
+        public ObservableCollection<Song> Playlist { get; set; }
+
+        public Song CurrentSong
+        {
+            get
+            {
+                return this.currentSong;
+            }
+            set
+            {
+                this.currentSong = value;
+            }
+        }
+
+        public MediaElement MediaElement
+        {
+            get { return mediaElement; }
+            set { mediaElement = value; }
+        }
 
         private void LoadCommands()
         {
@@ -34,6 +69,28 @@
             OpenCommand = new CustomCommand(LoadNewSong, CanLoadNewSong);
             ExitCommand = new CustomCommand(CloseApp, CanCloseApp);
             StopCommand = new CustomCommand(StopSong, CanStopSong);
+            RewindCommand = new CustomCommand(RewindLoop, CanRewindLoop);
+            ForwardCommand = new CustomCommand(ForwardLoop, CanForwardLoop);
+        }
+
+        private bool CanForwardLoop(object obj)
+        {
+            return this.ListBox.SelectedIndex <= this.Playlist.Count - 1;
+        }
+
+        private void ForwardLoop(object obj)
+        {
+            this.ListBox.SelectedIndex++;
+        }
+
+        private bool CanRewindLoop(object obj)
+        {
+            return this.ListBox.SelectedIndex > 0;
+        }
+
+        private void RewindLoop(object obj)
+        {
+            this.ListBox.SelectedIndex--;
         }
 
         private bool CanStopSong(object obj)
@@ -95,39 +152,6 @@
             this.MediaElement.Play();
         }
 
-        private MediaElement mediaElement;
-        public MediaElement MediaElement
-        {
-            get { return mediaElement; }
-            set { mediaElement = value; }
-        }
-
-        public ICommand StopCommand { get; set; }
-        public ICommand PlayCommand { get; set; }
-        public ICommand OpenCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
-        private Song currentSong;
-        public CommandInterpreter command;
-        public ObservableCollection<Song> Playlist { get; set; }
-        public Song CurrentSong
-        {
-            get
-            {
-                return this.currentSong;
-            }
-            set
-            {
-                this.currentSong = value;
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private string AudioFormater()
         {
             StringBuilder sb = new StringBuilder();
@@ -144,6 +168,7 @@
 
             return sb.ToString().Trim();
         }
+
         private TimeSpan GetSongDurationInSeconds(string filePath)
         {
             MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
