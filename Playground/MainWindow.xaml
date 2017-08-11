@@ -33,7 +33,7 @@
                     <Image Source="/PlayerSkin/ButtonIcons/NextSongButtonIcon.png" />
                 </StackPanel>
             </Button>
-            <Button BorderThickness="0" Name="StopButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="481,146,67,382" Click="CommandProcessing">
+            <Button BorderThickness="0" Name="StopButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Margin="481,146,67,382" Command="{Binding StopCommand}">
                 <StackPanel>
                     <Image Source="/PlayerSkin/ButtonIcons/StopButtonIcon.png" />
                 </StackPanel>

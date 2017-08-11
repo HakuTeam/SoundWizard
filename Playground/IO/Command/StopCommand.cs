@@ -14,7 +14,7 @@
         public override void Execute()
         {
             MainWindow.isPlaying = true;
-           // this.MediaElement.Stop();
+            //this.MediaElement.Stop();
         }
     }
 }

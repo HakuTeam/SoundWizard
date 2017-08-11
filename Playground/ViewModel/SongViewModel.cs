@@ -30,6 +30,18 @@
             PlayCommand = new CustomCommand(PlaySong, CanPlaySong);
             OpenCommand = new CustomCommand(LoadNewSong, CanLoadNewSong);
             ExitCommand = new CustomCommand(CloseApp, CanCloseApp);
+            StopCommand = new CustomCommand(StopSong, CanStopSong);
+        }
+
+        private bool CanStopSong(object obj)
+        {
+            return true;
+        }
+
+        private void StopSong(object obj)
+        {
+            MainWindow.isPlaying = true;
+            this.MediaElement.Stop();
         }
 
         private bool CanCloseApp(object obj)
@@ -55,6 +67,10 @@
         {
             OpenCommand open = new OpenCommand(Playlist, currentSong);
             open.Execute();
+            if (this.Playlist.Count > 0)
+            {
+                currentSong = Playlist[0];
+            }
         }
 
         private bool CanPlaySong(object obj)
@@ -75,6 +91,7 @@
             set { mediaElement = value; }
         }
 
+        public ICommand StopCommand { get; set; }
         public ICommand PlayCommand { get; set; }
         public ICommand OpenCommand { get; set; }
         public ICommand ExitCommand { get; set; }
