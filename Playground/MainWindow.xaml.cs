@@ -16,10 +16,10 @@
         public MainWindow()
         {
             this.InitializeComponent();
-            this.songViewModel = new SongViewModel();
-            this.DataContext = songViewModel;
-
             this.MediaElement = this.MediaPlayer;
+            this.songViewModel = new SongViewModel(mediaElement);
+            this.DataContext = songViewModel;
+            
             this.AudioSlider.Value = 1;
             this.MediaElement.Volume = 1;           
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
@@ -59,11 +59,7 @@
         {
             songViewModel.CurrentSong = Playlist.SelectedItem as Song;
             var song = songViewModel.CurrentSong;
-            var incomingCommand = "PlayButton";
-            songViewModel.command.InterpretCommand(incomingCommand, song);
-
-            this.MediaElement.Source = new Uri(songViewModel.CurrentSong.Path);
-            this.MediaElement.Play();
+            songViewModel.PlaySong(sender);
             seekBar.Maximum = songViewModel.CurrentSong.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
