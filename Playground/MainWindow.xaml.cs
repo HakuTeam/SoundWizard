@@ -17,7 +17,7 @@
         {
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
-            this.songViewModel = new SongViewModel(mediaElement);
+            this.songViewModel = new SongViewModel(mediaElement, Playlist);
             this.DataContext = songViewModel;
             
             this.AudioSlider.Value = 1;

@@ -18,12 +18,15 @@
 
     public class SongViewModel : INotifyPropertyChanged
     {
-        public SongViewModel(MediaElement mediaElement)
+        public SongViewModel(MediaElement mediaElement, ListBox listBox)
         {
             this.Playlist = new ObservableCollection<Song>();
             this.MediaElement = mediaElement;
+            this.ListBox = listBox;
             LoadCommands();
         }
+
+        public ListBox ListBox { get; set; }
 
         private void LoadCommands()
         {
@@ -65,17 +68,25 @@
 
         private void LoadNewSong(object obj)
         {
+            bool firstLoad = false;
+            if (this.Playlist.Count == 0)
+            {
+                firstLoad = true;
+            }
             OpenCommand open = new OpenCommand(Playlist, currentSong);
             open.Execute();
-            if (this.Playlist.Count > 0)
+            if (firstLoad)
             {
-                currentSong = Playlist[0];
+                this.CurrentSong = this.Playlist[0];
+                this.ListBox.SelectedIndex = 0;
+                mediaElement.Pause();
             }
         }
 
         private bool CanPlaySong(object obj)
         {
-            return true;
+
+            return this.Playlist.Count > 0;
         }
 
         public void PlaySong(object obj)
