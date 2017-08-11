@@ -10,13 +10,11 @@
     using System.Windows.Input;
     using Playground.Utility;
     using System.Windows.Controls;
-    using Microsoft.Win32;
     using System.Text;
     using Playground.Enums;
     using NAudio.Wave;
-    using System.IO;
-    using System.Linq;
     using Playground.IO.Command;
+    using System.Windows;
 
     public class SongViewModel : INotifyPropertyChanged
     {
@@ -31,6 +29,21 @@
         {
             PlayCommand = new CustomCommand(PlaySong, CanPlaySong);
             OpenCommand = new CustomCommand(LoadNewSong, CanLoadNewSong);
+            ExitCommand = new CustomCommand(CloseApp, CanCloseApp);
+        }
+
+        private bool CanCloseApp(object obj)
+        {
+            if (Application.Current != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void CloseApp(object obj)
+        {
+            Application.Current.Shutdown();
         }
 
         private bool CanLoadNewSong(object obj)
@@ -54,6 +67,7 @@
             this.MediaElement.Source = new Uri(currentSong.Path);
             this.MediaElement.Play();
         }
+
         private MediaElement mediaElement;
         public MediaElement MediaElement
         {
@@ -63,6 +77,7 @@
 
         public ICommand PlayCommand { get; set; }
         public ICommand OpenCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
         private Song currentSong;
         public CommandInterpreter command;
         public ObservableCollection<Song> Playlist { get; set; }
