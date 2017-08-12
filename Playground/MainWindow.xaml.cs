@@ -9,6 +9,12 @@
     using ViewModel;
     using System.Collections.Generic;
     using Services;
+    using IO.Command;
+    using NAudio.Wave;
+    using System.Text;
+    using Enums;
+    using System.Linq;
+    using System.IO;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -141,11 +147,54 @@
         private void Playlist_Drop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string file in files)
+            foreach (var songPath in files)
             {
-                
+                int extensionDotIndex = songPath.LastIndexOf('.');
+                string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
+                if (!Enum.IsDefined(typeof(AudioFormats), extName))
+                {
+                    ErrorWindow errowWindow = new ErrorWindow();
+                    errowWindow.ShowDialog();
+                }
+                else
+                {
+                    TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
+                    TagLib.File fileInfo = TagLib.File.Create(songPath);
+
+                    string songName = Path.GetFileNameWithoutExtension(songPath);
+                    string genre = fileInfo.Tag.Genres.FirstOrDefault();
+                    string album = fileInfo.Tag.Album;
+                    string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
+
+                    Song song = new Song(songName, songDuration, songPath, album, artist, genre);
+
+                    songViewModel.Playlist.Add(song);
+                }
             }
-            // tell the LB to display whatever is in mediaList
+        }
+
+        private string AudioFormater()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("All Supported Audio | ");
+            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            {
+                sb.Append($"*.{type}; ");
+            }
+
+            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            {
+                sb.Append($"|{type}s |*.{type}");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        private TimeSpan GetSongDurationInSeconds(string filePath)
+        {
+            MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
+
+            return audioReader.TotalTime;
         }
     }
 }
