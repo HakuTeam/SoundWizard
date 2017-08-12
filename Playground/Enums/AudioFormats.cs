@@ -5,7 +5,6 @@
         WAV,
         MP3,
         OGG,
-        WMA,
-        MP4
+        WMA
     }
 }

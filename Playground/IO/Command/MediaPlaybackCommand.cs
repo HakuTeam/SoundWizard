@@ -2,30 +2,30 @@
 
 namespace Playground.IO.Command
 {
-    using Playground.Model;
     using System.Collections.ObjectModel;
+    using ViewModel;
 
     internal class MediaPlaybackCommand : Command
     {
-        public MediaPlaybackCommand(ObservableCollection<Song> playList, Song currentSong)
-            : base(playList, currentSong)
+        public MediaPlaybackCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
+            : base(mediaElement, playList, listBoxView)
         {
         }
 
         public override void Execute()
         {
-            // this.MediaElement.Stop();
-           
-            //if (this.ListBoxView.SelectedIndex == this.ListBoxView.Items.Count - 1)
-            //{
-            //    this.ListBoxView.SelectedIndex = 0;
-            //}
-            //else
-            //{
-            //    this.ListBoxView.SelectedIndex++;
-            //}
+            this.MediaElement.Stop();
 
-           // this.MediaElement.Play();
+            if (this.ListBoxView.SelectedIndex == this.ListBoxView.Items.Count - 1)
+            {
+                this.ListBoxView.SelectedIndex = 0;
+            }
+            else
+            {
+                this.ListBoxView.SelectedIndex++;
+            }
+
+            this.MediaElement.Play();
         }
     }
 }

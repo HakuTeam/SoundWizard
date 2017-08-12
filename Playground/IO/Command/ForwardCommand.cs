@@ -1,23 +1,22 @@
 ﻿namespace Playground.IO.Command
 {
-    using Playground.Model;
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
+    using ViewModel;
 
     public class ForwardCommand : Command
     {
-        public ForwardCommand(ObservableCollection<Song> playList, Song currentSong)
-            : base(playList, currentSong)
+        public ForwardCommand(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
+            : base(mediaElement, playList, listBoxView)
         {
         }
 
         public override void Execute()
         {
-            
-            //if (this.ListBoxView.SelectedIndex <= this.PlayList.Count - 1)
-            //{
-            //    this.ListBoxView.SelectedIndex++;
-            //}
+            if (this.ListBoxView.SelectedIndex <= this.PlayList.Count - 1)
+            {
+                this.ListBoxView.SelectedIndex++;
+            }
         }
     }
 }

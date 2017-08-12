@@ -1,40 +1,49 @@
 ﻿namespace Playground
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Threading;
-    using ViewModel;
-    using Playground.Model;
     using System.Windows.Input;
-    using System.Windows.Media;
+    using System.Windows.Threading;
+    using IO;
+    using ViewModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
+        public static bool isPlaying = false;
+        private MediaElement mediaElement;
+        private CommandInterpreter command;
+
         public MainWindow()
         {
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
-            this.songViewModel = new SongViewModel(mediaElement, Playlist);
-            this.DataContext = songViewModel;
             this.AudioSlider.Value = 1;
-            this.MediaElement.Volume = 1;           
+            this.MediaElement.Volume = 1;
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
-            
-        }        
-        
-        public static bool isPlaying = false;
-        private MediaElement mediaElement;
-        private SongViewModel songViewModel;
+            this.PlayListSongs = new ObservableCollection<SongViewModel>();
+            this.DataContext = this.PlayListSongs;
+            this.command = new CommandInterpreter(this.mediaElement, this.PlayListSongs, this.Playlist);
+        }
+
+        public ObservableCollection<SongViewModel> PlayListSongs { get; set; }
 
         public MediaElement MediaElement
         {
             get { return this.mediaElement; }
             set { this.mediaElement = value; }
         }
+
+        public SongViewModel CurrentSong
+        {
+            get { return this.Playlist.SelectedItem as SongViewModel; }
+            set { this.Playlist.SelectedItem = value; }
+        }
+
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;
@@ -45,16 +54,22 @@
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            //songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
-        }        
+            this.command.InterpretCommand(incomingCommand);
+        }
+
+        public void CommandProcessing(object sender, RoutedEventArgs e)
+        {
+            var incomingCommand = ((FrameworkElement)e.Source).Name;
+            this.command.InterpretCommand(incomingCommand);
+        }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            var song = songViewModel.CurrentSong;
-            songViewModel.PlaySong(sender);
-            seekBar.Maximum = songViewModel.CurrentSong.Duration.TotalSeconds;
+            var song = this.CurrentSong;
+            var incomingCommand = ((FrameworkElement)e.Source).Name;
+            this.command.InterpretCommand(incomingCommand);
+
+            seekBar.Maximum = song.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -76,33 +91,21 @@
             }
         }
 
-        private void ChangeValue(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            var slider = sender as Slider;
-            double value = slider.Value;
-
-            seekBar.Value = value;
-            this.MediaPlayer.Position = TimeSpan.FromSeconds(value);
-        }
-
         private void MainWindowKeys(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
             {
                 this.MediaPlayer.Position -= TimeSpan.FromSeconds(1);
             }
-
             if (e.Key == Key.Right)
             {
                 this.MediaPlayer.Position += TimeSpan.FromSeconds(1);
             }
-
             if (e.Key == Key.Add)
             {
                 this.MediaElement.Volume += 0.05;
                 this.AudioSlider.Value += 0.05;
             }
-
             if (e.Key == Key.Subtract)
             {
                 this.MediaElement.Volume -= 0.05;
@@ -110,18 +113,13 @@
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ChangeValue(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
-            this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
-            this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;
-            this.MediaElement.Height =SystemParameters.PrimaryScreenHeight;
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
-            this.WindowState = WindowState.Maximized;
+            var slider = sender as Slider;
+            double value = slider.Value;
 
-            this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
-            //new VideoWindow(Resources["Media"] as VisualBrush).Show();
+            seekBar.Value = value;
+            this.MediaPlayer.Position = TimeSpan.FromSeconds(value);
         }
     }
 }
