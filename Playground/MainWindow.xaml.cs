@@ -7,6 +7,7 @@
     using ViewModel;
     using Playground.Model;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,10 +20,10 @@
             this.MediaElement = this.MediaPlayer;
             this.songViewModel = new SongViewModel(mediaElement, Playlist);
             this.DataContext = songViewModel;
-            
             this.AudioSlider.Value = 1;
             this.MediaElement.Volume = 1;           
             this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
+            
         }        
         
         public static bool isPlaying = false;
@@ -107,6 +108,11 @@
                 this.MediaElement.Volume -= 0.05;
                 this.AudioSlider.Value -= 0.05;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new VideoWindow(Resources["Media"] as VisualBrush).Show();
         }
     }
 }
