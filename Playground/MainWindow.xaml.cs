@@ -112,7 +112,16 @@
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new VideoWindow(Resources["Media"] as VisualBrush).Show();
+            this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
+            this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
+            this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;
+            this.MediaElement.Height =SystemParameters.PrimaryScreenHeight;
+            this.Width = SystemParameters.PrimaryScreenWidth;
+            this.Height = SystemParameters.PrimaryScreenHeight;
+            this.WindowState = WindowState.Maximized;
+
+            this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
+            //new VideoWindow(Resources["Media"] as VisualBrush).Show();
         }
     }
 }
