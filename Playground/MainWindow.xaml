@@ -61,6 +61,7 @@
         <ListBox Name="Playlist"
                  ItemsSource="{Binding Playlist}"
                  Opacity="0.8"
+                 DragDrop.DragEnter="Playlist_Drop"
                  Background="DimGray"
                  BorderBrush="Transparent"
                  ScrollViewer.VerticalScrollBarVisibility="Visible"

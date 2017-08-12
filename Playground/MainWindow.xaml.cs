@@ -7,6 +7,8 @@
     using System.Windows.Threading;
     using Playground.Model;
     using ViewModel;
+    using System.Collections.Generic;
+    using Services;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -134,6 +136,16 @@
             this.WindowState = WindowState.Maximized;
             this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
             //new VideoWindow(Resources["Media"] as VisualBrush).Show();
+        }
+
+        private void Playlist_Drop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string file in files)
+            {
+                
+            }
+            // tell the LB to display whatever is in mediaList
         }
     }
 }

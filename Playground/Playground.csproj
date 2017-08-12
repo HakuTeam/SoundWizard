@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Services\FileItem.cs" />
     <Compile Include="Services\ISongDataService.cs" />
     <Compile Include="Services\SongDataService.cs" />
     <Compile Include="Utility\CustomCommand.cs" />

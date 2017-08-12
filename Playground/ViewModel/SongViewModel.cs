@@ -148,7 +148,7 @@
             }
             OpenCommand open = new OpenCommand(Playlist, currentSong);
             open.Execute();
-            if (firstLoad)
+            if (firstLoad && this.Playlist.Count > 0)
             {
                 this.CurrentSong = this.Playlist[0];
                 this.ListBox.SelectedIndex = 0;
