@@ -6,26 +6,22 @@
     using Command;
     using Exceptions;
     using Interfaces;
-    using ViewModel;
+    using Playground.Model;
 
-    internal class CommandInterpreter : IInterpreter
+    public class CommandInterpreter : IInterpreter
     {
-        private MediaElement mediaElement;
-        private ObservableCollection<SongViewModel> playList;
-        private ListBox ListBoxView;
+        private ObservableCollection<Song> playList;      
 
-        public CommandInterpreter(MediaElement mediaElement, ObservableCollection<SongViewModel> playList, ListBox listBoxView)
-        {
-            this.mediaElement = mediaElement;
+        public CommandInterpreter(ObservableCollection<Song> playList)
+        {          
             this.playList = playList;
-            this.ListBoxView = listBoxView;
         }
 
-        public void InterpretCommand(string commandName)
+        public void InterpretCommand(string commandName, Song currentSong)
         {
             try
             {
-                IExecutable command = this.ParseCommand(commandName);
+                IExecutable command = this.ParseCommand(commandName, currentSong);
                 command.Execute();
             }
             catch (Exception e)
@@ -35,30 +31,30 @@
             }
         }
 
-        private IExecutable ParseCommand(string command)
+        private IExecutable ParseCommand(string command, Song currentSong)
         {
             switch (command)
             {
                 case "PlayButton":
-                    return new PlayCommand(this.mediaElement, this.playList);
+                    return new PlayCommand(this.playList, currentSong);
 
                 case "OpenButton":
-                    return new OpenCommand(this.mediaElement, this.playList);
+                    return new OpenCommand(this.playList, currentSong);
 
                 case "ForwardButton":
-                    return new ForwardCommand(this.mediaElement, this.playList, this.ListBoxView);
+                    return new ForwardCommand(this.playList, currentSong);
 
                 case "RewindButton":
-                    return new RewindCommand(this.mediaElement, this.playList, this.ListBoxView);
+                    return new RewindCommand(this.playList, currentSong);
 
                 case "StopButton":
-                    return new StopCommand(this.mediaElement, this.playList);
+                    return new StopCommand(this.playList, currentSong);
 
                 case "Playlist":
-                    return new SelectionChangerCommand(this.mediaElement, this.playList, this.ListBoxView);
+                    return new SelectionChangerCommand(this.playList, currentSong);
 
                 case "MediaPlayerPlayBack":
-                    return new MediaPlaybackCommand(this.mediaElement, this.playList, this.ListBoxView);
+                    return new MediaPlaybackCommand(this.playList, currentSong);
 
                 default:
                     // You can either write custom message or use the one written in the exception class.
