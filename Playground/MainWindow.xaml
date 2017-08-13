@@ -1,13 +1,17 @@
-﻿<Controls:MetroWindow  
-    x:Class="Playground.MainWindow"
+﻿<controls:MetroWindow  
+        x:Class="Playground.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:viewModel="clr-namespace:Playground.ViewModel"
         mc:Ignorable="d"
-        KeyDown="MainWindowKeys"
+    KeyDown="MainWindowKeys"
         Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico">
+    <d:MetroWindow.DataContext>
+        <Binding Source="{d:DesignInstance Type=viewModel:SongViewModel, IsDesignTimeCreatable=True}" />
+    </d:MetroWindow.DataContext>
     <Canvas>
         <Canvas.Background>
             <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
@@ -87,13 +91,6 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Background" Value="LightGray" />
-                    <Setter Property="FontWeight" Value="DemiBold"></Setter>
-                    <Setter Property="BorderThickness" Value="2" />
-                </Style>
-            </ListBox.ItemContainerStyle>
         </ListBox>
         <Slider IsMoveToPointEnabled="True" Name="AudioSlider" Minimum="0" Maximum="1" ValueChanged="Volume_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Canvas.Left="20" Canvas.Top="119" Width="675" />
 
@@ -108,8 +105,9 @@
         <Button Click="Button_Click" Content="Full screen" Canvas.Left="101" Canvas.Top="155" Height="37" Width="76" />
         <Button BorderThickness="0" FontSize="30" Name="ExitButton" Width="109" Height="63" Background="Transparent" BorderBrush="Black" Command="{Binding ExitCommand}" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Canvas.Left="1075" Canvas.Top="10">Exit</Button>
         <Grid>
-            <MediaElement LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible" Canvas.Left="584" Canvas.Top="276" Width="600" Height="385" Margin="584,279,-584,-279" />
+            <MediaElement LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible"
+                          Width="600" Height="385" Margin="584,279,-584,-279" />
         </Grid>
     </Canvas>
     <!--</Grid>-->
-</Controls:MetroWindow>
+</controls:MetroWindow>

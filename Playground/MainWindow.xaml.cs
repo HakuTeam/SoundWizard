@@ -5,22 +5,17 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Threading;
-    using Playground.Model;
+    using Model;
     using ViewModel;
-    using System.Collections.Generic;
-    using Services;
-    using IO.Command;
     using NAudio.Wave;
-    using System.Text;
     using Enums;
     using System.Linq;
     using System.IO;
-    using MahApps.Metro.Controls;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow: MetroWindow
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -30,7 +25,7 @@
             this.DataContext = songViewModel;
             this.AudioSlider.Value = 1;
             this.MediaElement.Volume = 1;
-            this.MediaPlayer.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
+            this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
         }
 
         public static bool isPlaying = false;
@@ -60,7 +55,6 @@
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            var song = songViewModel.CurrentSong;
             songViewModel.PlaySong(sender);
             seekBar.Maximum = songViewModel.CurrentSong.Duration.TotalSeconds;
             seekBar.Value = 0;
@@ -68,11 +62,6 @@
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += this.Timer_Tick;
             timer.Start();
-        }
-
-        private void HandleCheck(object sender, RoutedEventArgs e)
-        {
-            MediaPlayer.Position += TimeSpan.FromMinutes(1);
         }
 
         public void Timer_Tick(object sender, EventArgs e)
@@ -172,23 +161,6 @@
                     songViewModel.Playlist.Add(song);
                 }
             }
-        }
-
-        private string AudioFormater()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("All Supported Audio | ");
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
-            {
-                sb.Append($"*.{type}; ");
-            }
-
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
-            {
-                sb.Append($"|{type}s |*.{type}");
-            }
-
-            return sb.ToString().Trim();
         }
 
         private TimeSpan GetSongDurationInSeconds(string filePath)
