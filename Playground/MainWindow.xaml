@@ -6,42 +6,73 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:viewModel="clr-namespace:Playground.ViewModel"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     mc:Ignorable="d"
     KeyDown="MainWindowKeys"
     Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico"
     BorderThickness="0" 
-    GlowBrush="Black"
+    GlowBrush="#8C9EFF"
     ResizeMode="CanResizeWithGrip"
     >
     <d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:SongViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>
     <Canvas>
-        <Button BorderThickness="0" Name="OpenButton" Height="70" Width="70" Background="Transparent" BorderBrush="Black" Command="{Binding OpenCommand}" Canvas.Left="700" Canvas.Top="100">
-            <StackPanel>
-                <Image Source="/PlayerSkin/ButtonIcons/OpenSongsButtonIcon.png" />
-            </StackPanel>
-        </Button>
-        <Button BorderThickness="0" Name="RewindButton" Width="70" Height="70"  Background="Transparent" BorderBrush="Black" Command="{Binding RewindCommand}" Canvas.Left="800" Canvas.Top="100">
-            <StackPanel>
-                <Image Source="/PlayerSkin/ButtonIcons/PreviousSongButtonIcon.png" />
-            </StackPanel>
-        </Button>
-        <Button BorderThickness="0" Name="PlayButton" Width="70" Height="70"  Background="Transparent" Command="{Binding PlayCommand}" Canvas.Left="900" Canvas.Top="100">
-            <StackPanel>
-                <Image Source="/PlayerSkin/ButtonIcons/PlayButtonIcon.png" />
-            </StackPanel>
-        </Button>
-        <Button BorderThickness="0" Name="ForwardButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Command="{Binding ForwardCommand}" Canvas.Left="1000" Canvas.Top="100">
-            <StackPanel>
-                <Image Source="/PlayerSkin/ButtonIcons/NextSongButtonIcon.png" />
-            </StackPanel>
-        </Button>
-        <Button BorderThickness="0" Name="StopButton" Width="70" Height="70" Background="Transparent" BorderBrush="Black" Command="{Binding StopCommand}" Canvas.Left="1100" Canvas.Top="100">
-            <StackPanel>
-                <Image Source="/PlayerSkin/ButtonIcons/StopButtonIcon.png" />
-            </StackPanel>
-        </Button>
+        <Button
+            Name="OpenButton" 
+            Content="{iconPacks:PackIconMaterial FolderPlus, Width=32, Height=32}"
+            ToolTip="Load Files"
+            Style="{DynamicResource MetroCircleButtonStyle}" 
+            Height="70" 
+            Width="70" 
+            Background="Transparent"
+            Command="{Binding OpenCommand}"
+            Canvas.Left="700" 
+            Canvas.Top="100" />
+        <Button 
+            Name="RewindButton" 
+            Content="{iconPacks:PackIconMaterial ChevronDoubleLeft, Width=32, Height=32}"
+            ToolTip="Rewind"
+            Style="{DynamicResource MetroCircleButtonStyle}" 
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding RewindCommand}"
+            Canvas.Left="800" 
+            Canvas.Top="100" />
+        <Button 
+            Name="PlayButton" 
+            Content="{iconPacks:PackIconMaterial Play, Width=32, Height=32}"
+            ToolTip="Play"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding PlayCommand}"
+            Canvas.Left="900"
+            Canvas.Top="100" />
+        <Button
+            Name="ForwardButton" 
+            Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Width=32, Height=32}"
+            ToolTip="Foreward"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding ForwardCommand}"
+            Canvas.Left="1000"
+            Canvas.Top="100" />
+        <Button
+            Name="StopButton" 
+            Content="{iconPacks:PackIconMaterial Stop, Width=32, Height=32}"
+            ToolTip="Stop"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding StopCommand}"
+            Canvas.Left="1100"
+            Canvas.Top="100" />
         <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Canvas.Left="10" Canvas.Top="10" Width="1060" >Sound Wizard</TextBox>
         <ListBox Name="Playlist"
                  ItemsSource="{Binding Playlist}"
@@ -95,20 +126,47 @@
         </ListBox>
         <Slider IsMoveToPointEnabled="True" Name="AudioSlider" Minimum="0" Maximum="1" ValueChanged="Volume_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Canvas.Left="20" Canvas.Top="119" Width="675" />
 
-        <ToggleButton x:Name = "tb" Content = "Toggle"
-         IsChecked="{Binding Path=Repeat}"
-         Width = "76" HorizontalAlignment = "Center" Canvas.Left="20" Canvas.Top="155" Height="37" />
-
+        <ToggleButton 
+            x:Name = "tb"
+            Content="{iconPacks:PackIconMaterial Repeat}"
+            ToolTip="Repeat All"
+            IsChecked="{Binding Path=Repeat}"
+            HorizontalAlignment = "Center"
+            Canvas.Left="20"
+            Canvas.Top="155" 
+            Height="43"
+            Width="43"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            />
+        <Button 
+            Click="Button_Click" 
+            Content="{iconPacks:PackIconMaterial Fullscreen}"
+            ToolTip="Full Screen Mode"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Canvas.Left="68" 
+            Canvas.Top="155" 
+            Height="43"
+            Width="43" />
+        <Button
+            Name="ExitButton" 
+            Content="{iconPacks:PackIconMaterial ExitToApp, Width=30, Height=30}"
+            ToolTip="Exit Program"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding ExitCommand}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Canvas.Left="1075"
+            Canvas.Top="10" />
         <Border BorderThickness="2" BorderBrush="Black" Height="43" Canvas.Left="1000" Canvas.Top="202" Width="170">
             <Label Background="White" Name="songStatus"  HorizontalContentAlignment="Center" />
         </Border>
         <Slider IsMoveToPointEnabled="True" Name="seekBar" Height="35" ValueChanged="ChangeValue" Canvas.Left="20" Canvas.Top="210" Width="975" />
-        <Button Click="Button_Click" Content="Full screen" Canvas.Left="101" Canvas.Top="155" Height="37" Width="76" />
-        <Button BorderThickness="0" FontSize="30" Name="ExitButton" Width="109" Height="63" Background="Transparent" BorderBrush="Black" Command="{Binding ExitCommand}" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Canvas.Left="1075" Canvas.Top="10">Exit</Button>
         <Grid>
             <MediaElement LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible"
                           Width="600" Height="385" Margin="584,279,-584,-279" />
         </Grid>
     </Canvas>
-    <!--</Grid>-->
 </controls:MetroWindow>
