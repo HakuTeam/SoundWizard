@@ -5,29 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         KeyDown="MainWindowKeys"
-        Title="Sound Wizard" Height="700"  Width="1200" ResizeMode="NoResize" Icon="PlayerSkin\SoundWizard.ico">
-    <!--Refactor the Playlist to use this template or delete the comment!-->
-    <!--<Window.Resources>
-        -->
-    <!--<VisualBrush x:Key="Media" Stretch="Uniform">
-            <VisualBrush.Visual>
-                <MediaElement Source="C:\Users\badbutcher\Desktop\Games\2017.07.26-14.35_01.mp4" />
-            </VisualBrush.Visual>
-        </VisualBrush>-->
-    <!--
-    </Window.Resources>-->
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="487*" />
-            <RowDefinition Height="185*" />
-        </Grid.RowDefinitions>-->
-    <!--<Grid.RowDefinitions>
-            <RowDefinition Height="326*" />
-            <RowDefinition Height="325*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Rectangle Fill="{StaticResource Media}" Grid.RowSpan="2" />-->
-
+        Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico">
     <Canvas>
         <Canvas.Background>
             <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
