@@ -16,7 +16,7 @@
     Background="AliceBlue"
     >
     <d:MetroWindow.DataContext>
-        <Binding Source="{d:DesignInstance Type=viewModel:SongViewModel, IsDesignTimeCreatable=True}" />
+        <Binding Source="{d:DesignInstance Type=viewModel:MainViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>
     <Canvas>
         <Image 

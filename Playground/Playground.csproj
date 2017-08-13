@@ -84,7 +84,7 @@
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\SongViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -16,12 +16,12 @@
     using Playground.IO.Command;
     using System.Windows;
 
-    public class SongViewModel 
+    public class MainViewModel 
     {
         private MediaElement mediaElement;
         private Song currentSong;
 
-        public SongViewModel(MediaElement mediaElement, ListBox listBox)
+        public MainViewModel(MediaElement mediaElement, ListBox listBox)
         {
             this.Playlist = new ObservableCollection<Song>();
             this.MediaElement = mediaElement;

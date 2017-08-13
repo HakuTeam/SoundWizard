@@ -21,8 +21,8 @@
         {
             this.InitializeComponent();
             this.MediaElement = this.MediaPlayer;
-            this.songViewModel = new SongViewModel(mediaElement, Playlist);
-            this.DataContext = songViewModel;
+            this.mainViewModel = new MainViewModel(mediaElement, Playlist);
+            this.DataContext = mainViewModel;
             this.AudioSlider.Value = 1;
             this.MediaElement.Volume = 1;
             this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
@@ -30,7 +30,7 @@
 
         public static bool isPlaying = false;
         private MediaElement mediaElement;
-        private SongViewModel songViewModel;
+        private MainViewModel mainViewModel;
 
         public MediaElement MediaElement
         {
@@ -48,15 +48,15 @@
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            //songViewModel.command.InterpretCommand(incomingCommand, songViewModel.CurrentSong);
+            mainViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            //mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentSong);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            songViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            songViewModel.PlaySong(sender);
-            seekBar.Maximum = songViewModel.CurrentSong.Duration.TotalSeconds;
+            mainViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            mainViewModel.PlaySong(sender);
+            seekBar.Maximum = mainViewModel.CurrentSong.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -158,7 +158,7 @@
 
                     Song song = new Song(songName, songDuration, songPath, album, artist, genre);
 
-                    songViewModel.Playlist.Add(song);
+                    mainViewModel.Playlist.Add(song);
                 }
             }
         }
