@@ -28,7 +28,6 @@
             this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
         }
 
-        public static bool isPlaying = false;
         private MediaElement mediaElement;
         private MainViewModel mainViewModel;
 

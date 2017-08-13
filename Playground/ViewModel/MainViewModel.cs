@@ -116,7 +116,6 @@
 
         private void StopSong(object obj)
         {
-            MainWindow.isPlaying = true;
             this.MediaElement.Stop();
         }
 

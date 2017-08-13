@@ -12,15 +12,15 @@
 
         public override void Execute()
         {
-            if (!MainWindow.isPlaying)
+            if (true)
             {
                 //this.MediaElement.Pause();
-                MainWindow.isPlaying = true;
+                //MainWindow.IsPlaying = true;
             }
             else
             {
               //  this.MediaElement.Play();
-                MainWindow.isPlaying = false;
+                //MainWindow.IsPlaying = false;
             }
         }
     }

@@ -193,14 +193,14 @@
             Canvas.Left="20" 
             Canvas.Top="194" 
             Height="48" 
-            Width="242" />
+            Width="260" />
         <Slider 
             IsMoveToPointEnabled="True" 
-            x:Name="seekBar" Height="20" 
+            x:Name="seekBar" Height="31" 
             ValueChanged="ChangeValue" 
-            Canvas.Left="276" 
+            Canvas.Left="320" 
             Canvas.Top="211" 
-            Width="797"
+            Width="753"
             Style="{DynamicResource FlatSlider}" 
             />
         <Grid>
