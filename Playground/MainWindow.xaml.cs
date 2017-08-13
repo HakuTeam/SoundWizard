@@ -15,11 +15,12 @@
     using Enums;
     using System.Linq;
     using System.IO;
+    using MahApps.Metro.Controls;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow: MetroWindow
     {
         public MainWindow()
         {
