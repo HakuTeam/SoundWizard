@@ -13,68 +13,70 @@
     BorderThickness="0" 
     GlowBrush="#8C9EFF"
     ResizeMode="CanResizeWithGrip"
+    Background="AliceBlue"
     >
     <d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:SongViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>
     <Canvas>
+        <Image 
+            Source="PlayerSkin/header.jpg" Height="192" Width="1700" Canvas.Left="-51" />
         <Button
-            Name="OpenButton" 
-            Content="{iconPacks:PackIconMaterial FolderPlus, Width=32, Height=32}"
+            x:Name="OpenButton" 
+            Content="{iconPacks:PackIconMaterial FolderPlus, Height=32, Width=32}"
             ToolTip="Load Files"
             Style="{DynamicResource MetroCircleButtonStyle}" 
             Height="70" 
             Width="70" 
             Background="Transparent"
             Command="{Binding OpenCommand}"
-            Canvas.Left="264" 
-            Canvas.Top="102" />
+            Canvas.Left="24" 
+            Canvas.Top="16" />
         <Button 
-            Name="RewindButton" 
-            Content="{iconPacks:PackIconMaterial ChevronDoubleLeft, Width=32, Height=32}"
+            x:Name="RewindButton" 
+            Content="{iconPacks:PackIconMaterial ChevronDoubleLeft, Height=32, Width=32}"
             ToolTip="Rewind"
             Style="{DynamicResource MetroCircleButtonStyle}" 
             Width="70"
             Height="70"
             Background="Transparent"
             Command="{Binding RewindCommand}"
-            Canvas.Left="342" 
-            Canvas.Top="102" />
+            Canvas.Left="102" 
+            Canvas.Top="16" />
         <Button 
-            Name="PlayButton" 
-            Content="{iconPacks:PackIconMaterial Play, Width=32, Height=32}"
+            x:Name="PlayButton" 
+            Content="{iconPacks:PackIconMaterial Play, Height=32, Width=32}"
             ToolTip="Play"
             Style="{DynamicResource MetroCircleButtonStyle}"
             Width="70"
             Height="70"
             Background="Transparent"
             Command="{Binding PlayCommand}"
-            Canvas.Left="420"
-            Canvas.Top="102" />
+            Canvas.Left="180"
+            Canvas.Top="16" />
         <Button
-            Name="ForwardButton" 
-            Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Width=32, Height=32}"
+            x:Name="ForwardButton" 
+            Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Height=32, Width=32}"
             ToolTip="Foreward"
             Style="{DynamicResource MetroCircleButtonStyle}"
             Width="70"
             Height="70"
             Background="Transparent"
             Command="{Binding ForwardCommand}"
-            Canvas.Left="490"
-            Canvas.Top="102" />
+            Canvas.Left="250"
+            Canvas.Top="16" />
         <Button
-            Name="StopButton" 
-            Content="{iconPacks:PackIconMaterial Stop, Width=32, Height=32}"
+            x:Name="StopButton" 
+            Content="{iconPacks:PackIconMaterial Stop, Height=32, Width=32}"
             ToolTip="Stop"
             Style="{DynamicResource MetroCircleButtonStyle}"
             Width="70"
             Height="70"
             Background="Transparent"
             Command="{Binding StopCommand}"
-            Canvas.Left="560"
-            Canvas.Top="102" />
-        <TextBox IsReadOnly="True" BorderThickness="5" FontFamily="Consolas" FontWeight="UltraBold" FontStyle="Italic" VerticalContentAlignment="Center" TextAlignment="Center" Background="Gold" FontSize="45" Canvas.Left="95" Canvas.Top="19" Width="420" >Sound Wizard</TextBox>
-        <ListBox Name="Playlist"
+            Canvas.Left="320"
+            Canvas.Top="16" />
+        <ListBox x:Name="Playlist"
                  ItemsSource="{Binding Playlist}"
                  Opacity="0.8"
                  DragDrop.Drop="Playlist_Drop"
@@ -96,30 +98,30 @@
                             <ColumnDefinition Width="60" />
                             <ColumnDefinition Width="65" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Name="Title"
+                        <TextBlock x:Name="Title"
                            HorizontalAlignment="Left"
                            Grid.Column="0" Grid.Row="0"
-                           Text="{Binding Path=Title}"
-                           ToolTip="{Binding Path=Title}" />
-                        <TextBlock Name="Album"
+                           Text="{Binding Title}"
+                           ToolTip="{Binding Title}" />
+                        <TextBlock x:Name="Album"
                            HorizontalAlignment="Center"
                            Grid.Column="1" Grid.Row="0"
-                           Text="{Binding Path=Album}"
-                           ToolTip="{Binding Path=Album}" />
-                        <TextBlock Name="Artist"
+                           Text="{Binding Album}"
+                           ToolTip="{Binding Album}" />
+                        <TextBlock x:Name="Artist"
                            HorizontalAlignment="Center"
                            Grid.Column="2" Grid.Row="0"
-                           Text="{Binding Path=Artist}"
-                           ToolTip="{Binding Path=Artist}" />
-                        <TextBlock Name="Genre"
+                           Text="{Binding Artist}"
+                           ToolTip="{Binding Artist}" />
+                        <TextBlock x:Name="Genre"
                            HorizontalAlignment="Center"
                            Grid.Column="3" Grid.Row="0"
-                           Text="{Binding Path=Genre}"
-                           ToolTip="{Binding Path=Genre}" />
-                        <TextBlock Name="Duration"
+                           Text="{Binding Genre}"
+                           ToolTip="{Binding Genre}" />
+                        <TextBlock x:Name="Duration"
                            Grid.Column="4" Grid.Row="0"
                            HorizontalAlignment="Center"
-                           Text="{Binding Path=DurationFormated}" />
+                           Text="{Binding DurationFormated}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -128,7 +130,7 @@
             <Label 
                 x:Name="AudioSliderLabel"
                 Content="{iconPacks:PackIconMaterial VolumeLow, Height=25, Width=25}"
-                Width="35" Margin="0,2"
+                Width="35" Margin="0,-16,0,20"
         />
             <Slider 
                 x:Name="AudioSlider" 
@@ -140,12 +142,12 @@
                 AutoToolTipPrecision="2"
                 Width="135"
                 Style="{DynamicResource FlatSlider}" 
-                Margin="0,10" 
+                Margin="0,-8,0,28" 
                 />
             <Label 
                 x:Name="AudioSliderLabel_Copy"
                 Content="{iconPacks:PackIconMaterial VolumeHigh, Height=25, Width=25}"
-                Width="35" Margin="0,2"
+                Width="35" Margin="0,-16,0,20"
         />
         </StackPanel>
 
@@ -153,10 +155,10 @@
             x:Name = "tb"
             Content="{iconPacks:PackIconMaterial Repeat}"
             ToolTip="Repeat All"
-            IsChecked="{Binding Path=Repeat}"
+            IsChecked="{Binding Repeat}"
             HorizontalAlignment = "Center"
-            Canvas.Left="20"
-            Canvas.Top="197" 
+            Canvas.Left="288"
+            Canvas.Top="101" 
             Height="43"
             Width="43"
             Style="{DynamicResource MetroCircleButtonStyle}"
@@ -166,37 +168,43 @@
             Content="{iconPacks:PackIconMaterial Fullscreen}"
             ToolTip="Full Screen Mode"
             Style="{DynamicResource MetroCircleButtonStyle}"
-            Canvas.Left="68" 
-            Canvas.Top="197" 
+            Canvas.Left="336" 
+            Canvas.Top="101" 
             Height="43"
             Width="43" />
         <Button
-            Name="ExitButton" 
-            Content="{iconPacks:PackIconMaterial ExitToApp, Width=30, Height=30}"
+            x:Name="ExitButton" 
+            Content="{iconPacks:PackIconMaterial ExitToApp, Height=30, Width=30}"
             ToolTip="Exit Program"
             Style="{DynamicResource MetroCircleButtonStyle}"
             Width="70"
             Height="70"
-            Background="Transparent"
+            Background="Yellow"
+            Opacity="0.5"
             Command="{Binding ExitCommand}"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
-            Canvas.Left="20"
-            Canvas.Top="10" />
-        <Border BorderThickness="2" BorderBrush="Black" Height="61" Canvas.Left="536" Canvas.Top="19" Width="242">
-            <Label Background="White" Name="songStatus"  HorizontalContentAlignment="Center" />
-        </Border>
+            Canvas.Left="1112" />
+        <Label 
+            x:Name="songStatus"
+            Content="00:00:00 - 00:00:00"
+            FontSize="30"
+            HorizontalContentAlignment="Center" 
+            Canvas.Left="20" 
+            Canvas.Top="194" 
+            Height="48" 
+            Width="242" />
         <Slider 
             IsMoveToPointEnabled="True" 
-            Name="seekBar" Height="35" 
+            x:Name="seekBar" Height="20" 
             ValueChanged="ChangeValue" 
-            Canvas.Left="118" 
-            Canvas.Top="210" 
-            Width="877"
+            Canvas.Left="276" 
+            Canvas.Top="211" 
+            Width="797"
             Style="{DynamicResource FlatSlider}" 
             />
         <Grid>
-            <MediaElement LoadedBehavior="Manual" Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible"
+            <MediaElement LoadedBehavior="Manual" x:Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible"
                           Width="600" Height="385" Margin="584,279,-584,-279" />
         </Grid>
     </Canvas>
