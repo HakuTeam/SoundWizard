@@ -1,21 +1,22 @@
 ﻿<controls:MetroWindow  
-        x:Class="Playground.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:viewModel="clr-namespace:Playground.ViewModel"
-        mc:Ignorable="d"
+    x:Class="Playground.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:viewModel="clr-namespace:Playground.ViewModel"
+    mc:Ignorable="d"
     KeyDown="MainWindowKeys"
-        Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico">
+    Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico"
+    BorderThickness="0" 
+    GlowBrush="Black"
+    ResizeMode="CanResizeWithGrip"
+    >
     <d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:SongViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>
     <Canvas>
-        <Canvas.Background>
-            <ImageBrush ImageSource="/PlayerSkin/bg.jpg" Stretch="UniformToFill" />
-        </Canvas.Background>
         <Button BorderThickness="0" Name="OpenButton" Height="70" Width="70" Background="Transparent" BorderBrush="Black" Command="{Binding OpenCommand}" Canvas.Left="700" Canvas.Top="100">
             <StackPanel>
                 <Image Source="/PlayerSkin/ButtonIcons/OpenSongsButtonIcon.png" />
