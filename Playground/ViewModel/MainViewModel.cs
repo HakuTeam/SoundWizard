@@ -18,7 +18,7 @@
         private Media currentMedia;
         private bool isMediaPlaying;
 
-        public MainViewModel(MediaElement mediaElement, ListBox listBox)
+        public MainViewModel(MediaElement mediaElement, DataGrid listBox)
         {
             this.Playlist = new ObservableCollection<Media>();
             this.MediaElement = mediaElement;
@@ -43,7 +43,7 @@
 
         public ICommand FullScreenCommand { get; set; }
 
-        public ListBox ListBox { get; set; }
+        public DataGrid ListBox { get; set; }
 
         public ObservableCollection<Media> Playlist { get; set; }
 

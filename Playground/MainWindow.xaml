@@ -75,7 +75,7 @@
             Command="{Binding StopCommand}"
             Canvas.Left="320"
             Canvas.Top="16" />
-        <ListBox x:Name="Playlist"
+        <DataGrid x:Name="Playlist"
                  ItemsSource="{Binding Playlist}"
                  Opacity="0.8"
                  DragDrop.Drop="Playlist_Drop"
@@ -84,7 +84,7 @@
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  AllowDrop="True"
                  SelectionChanged="Playlist_SelectionChanged" HorizontalAlignment="Right" Width="569" Height="385" Canvas.Top="276" Canvas.Left="10">
-            <ListBox.ItemTemplate>
+            <DataGrid.ItemTemplate>
                 <DataTemplate>
                     <Grid ShowGridLines="True">
                         <Grid.RowDefinitions>
@@ -123,8 +123,8 @@
                            Text="{Binding DurationFormated}" />
                     </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </DataGrid.ItemTemplate>
+        </DataGrid>
         <StackPanel Height="39" Canvas.Left="20" Orientation="Horizontal" Canvas.Top="119">
             <Label
                 x:Name="AudioSliderLabel"
