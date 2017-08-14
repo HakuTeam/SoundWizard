@@ -43,6 +43,8 @@
 
         public ICommand RewindCommand { get; set; }
 
+        public ICommand FullScreenCommand { get; set; }
+
         public ListBox ListBox { get; set; }
 
         public ObservableCollection<Song> Playlist { get; set; }
@@ -73,6 +75,26 @@
             StopCommand = new CustomCommand(StopSong, CanStopSong);
             RewindCommand = new CustomCommand(RewindLoop, CanRewindLoop);
             ForwardCommand = new CustomCommand(ForwardLoop, CanForwardLoop);
+            FullScreenCommand = new CustomCommand(FullScreen, CanFullScreen);
+        }
+
+        private bool CanFullScreen(object obj)
+        {
+            return true;
+        }
+
+        private void FullScreen(object obj)
+        {
+            var currentWin = obj as Window;
+            currentWin.WindowStyle = WindowStyle.None;
+            this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
+            this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
+            this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;
+            this.MediaElement.Height = SystemParameters.PrimaryScreenHeight;
+            currentWin.Width = SystemParameters.PrimaryScreenWidth;
+            currentWin.Height = SystemParameters.PrimaryScreenHeight;
+            currentWin.WindowState = WindowState.Maximized;
+            this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
         }
 
         private bool CanForwardLoop(object obj)

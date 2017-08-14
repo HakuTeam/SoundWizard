@@ -164,8 +164,10 @@
             Style="{DynamicResource MetroCircleButtonStyle}"
             />
         <Button 
-            Click="Button_Click" 
+            x:Name="FS"
+            Command="{Binding FullScreenCommand}" 
             Content="{iconPacks:PackIconMaterial Fullscreen}"
+            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
             ToolTip="Full Screen Mode"
             Style="{DynamicResource MetroCircleButtonStyle}"
             Canvas.Left="336" 

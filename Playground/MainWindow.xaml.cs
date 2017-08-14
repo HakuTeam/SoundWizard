@@ -18,6 +18,9 @@
     /// </summary>
     public partial class MainWindow
     {
+        private MediaElement mediaElement;
+        private MainViewModel mainViewModel;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -28,9 +31,6 @@
             this.MediaElement.Volume = 1;
             this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
         }
-
-        private MediaElement mediaElement;
-        private MainViewModel mainViewModel;
 
         public MediaElement MediaElement
         {
@@ -118,20 +118,6 @@
                 this.WindowState = WindowState.Normal;
                 this.MediaElement.Margin = new Thickness(584, 279, -584, -279);
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowStyle = WindowStyle.None;
-            this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
-            this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
-            this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;
-            this.MediaElement.Height = SystemParameters.PrimaryScreenHeight;
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
-            this.WindowState = WindowState.Maximized;
-            this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
-            //new VideoWindow(Resources["Media"] as VisualBrush).Show();
         }
 
         private void Playlist_Drop(object sender, DragEventArgs e)

@@ -10,7 +10,7 @@
 
         public SongDataService()
         {
-            this.songRepository = songRepository;
+            //this.songRepository = songRepository;
         }
 
         public void DeleteSong(Song song)
