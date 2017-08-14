@@ -50,16 +50,14 @@
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-                mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
-                mainViewModel.PlayMedia(sender);
-                seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
-                seekBar.Value = 0;
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Tick += this.Timer_Tick;
-                timer.Start();
-   
+            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+            mainViewModel.PlayMedia(sender);
+            seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
+            seekBar.Value = 0;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += this.Timer_Tick;
+            timer.Start();
         }
 
         public void Timer_Tick(object sender, EventArgs e)
