@@ -23,6 +23,7 @@
             this.MediaElement = mediaElement;
             this.ListBox = listBox;
             this.LoadCommands();
+            mediaElement.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
         }
 
         public bool Repeat { get; set; }
@@ -208,6 +209,29 @@
             MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
 
             return audioReader.TotalTime;
+        }
+
+        private void LoopMediaEnded(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Stop();
+
+            if (ListBox.SelectedIndex == this.ListBox.Items.Count - 1)
+            {
+                if (CanForwardLoop(sender))
+                {
+                    ListBox.SelectedIndex = 0;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                ListBox.SelectedIndex++;
+            }
+
+            mediaElement.Play();
         }
     }
 }
