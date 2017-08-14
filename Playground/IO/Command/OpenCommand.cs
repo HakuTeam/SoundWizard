@@ -10,6 +10,7 @@
     using NAudio.Wave;
     using System.Linq;
     using Playground.Model;
+    using Utility;
 
     public class OpenCommand : Command
     {
@@ -33,38 +34,9 @@
             {
                
                 string[] filename = fileDialog.FileNames;
-                foreach (var songPath in filename)
-                {
-                    int extensionDotIndex = songPath.LastIndexOf('.');
-                    string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
-                    if (!Enum.IsDefined(typeof(AudioFormats), extName))
-                    {
-                        ErrorWindow errowWindow = new ErrorWindow();
-                        errowWindow.ShowDialog();
-                    }
-                    else
-                    {
-                        TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
-                        TagLib.File fileInfo = TagLib.File.Create(songPath);
-
-                        string songName = Path.GetFileNameWithoutExtension(songPath);
-                        string genre = fileInfo.Tag.Genres.FirstOrDefault();
-                        string album = fileInfo.Tag.Album;
-                        string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
-
-                        Song song = new Song(songName, songDuration, songPath, album, artist, genre); 
-
-                        this.PlayList.Add(song);                        
-                    }
-                }
+                FileLoader fileLoader = new FileLoader(filename, this.PlayList);
+                fileLoader.LoadMediaFile();
             }
-        }
-
-        private TimeSpan GetSongDurationInSeconds(string filePath)
-        {
-            MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
-            
-            return audioReader.TotalTime;
         }
 
         private string AudioFormater()
