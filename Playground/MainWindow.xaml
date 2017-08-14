@@ -54,6 +54,17 @@
             Canvas.Left="180"
             Canvas.Top="16" />
         <Button
+            x:Name="PauseButton"
+            Content="{iconPacks:PackIconMaterial Pause, Height=32, Width=32}"
+            ToolTip="Play"
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Width="70"
+            Height="70"
+            Background="Transparent"
+            Command="{Binding PauseCommand}"
+            Canvas.Left="218"
+            Canvas.Top="86" />
+        <Button
             x:Name="ForwardButton"
             Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Height=32, Width=32}"
             ToolTip="Foreward"
