@@ -5,10 +5,10 @@
 
     public interface ISongDataService
     {
-        void DeleteSong(Song song);
+        void DeleteSong(Media song);
 
-        List<Song> GetAllSongs();
+        List<Media> GetAllSongs();
 
-        Song GetSongDetail(int songId);
+        Media GetSongDetail(int songId);
     }
 }

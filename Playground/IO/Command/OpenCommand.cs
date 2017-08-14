@@ -10,7 +10,7 @@
 
     public class OpenCommand : Command
     {
-        public OpenCommand(ObservableCollection<Song> playList, Song currentSong)
+        public OpenCommand(ObservableCollection<Media> playList, Media currentSong)
             : base(playList, currentSong)
         {
         }

@@ -6,15 +6,15 @@
 
     public abstract class Command : IExecutable
     {
-        protected Command(ObservableCollection<Song> playList, Song selectedSong)
+        protected Command(ObservableCollection<Media> playList, Media selectedSong)
         {
             this.PlayList = playList;
             this.CurrentSong = selectedSong;
         }
 
-        public ObservableCollection<Song> PlayList { get; set; }
+        public ObservableCollection<Media> PlayList { get; set; }
 
-        public Song CurrentSong { get; set; }
+        public Media CurrentSong { get; set; }
 
         public abstract void Execute();
     }

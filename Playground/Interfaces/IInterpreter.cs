@@ -4,6 +4,6 @@
 
     public interface IInterpreter
     {
-        void InterpretCommand(string command, Song currentSong);
+        void InterpretCommand(string command, Media currentSong);
     }
 }

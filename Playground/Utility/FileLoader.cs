@@ -11,9 +11,9 @@
     public class FileLoader
     {
         private string[] filePaths;
-        private ObservableCollection<Song> playlist;
+        private ObservableCollection<Media> playlist;
 
-        public FileLoader(string[] filePaths, ObservableCollection<Song> playlist)
+        public FileLoader(string[] filePaths, ObservableCollection<Media> playlist)
         {
             this.filePaths = filePaths;
             this.playlist = playlist;
@@ -40,7 +40,7 @@
                     string album = fileInfo.Tag.Album;
                     string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
 
-                    Song song = new Song(songName, songDuration, songPath, album, artist, genre);
+                    Media song = new Media(songName, songDuration, songPath, album, artist, genre);
 
                     this.playlist.Add(song);
                 }

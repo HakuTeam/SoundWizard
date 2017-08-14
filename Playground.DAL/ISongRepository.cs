@@ -5,10 +5,10 @@
 
     public interface ISongRepository
     {
-        Song GetSong(int songId);
+        Media GetSong(int songId);
 
-        List<Song> GetAllSongs();
+        List<Media> GetAllSongs();
 
-        void DeleteSong(Song song);
+        void DeleteSong(Media song);
     }
 }

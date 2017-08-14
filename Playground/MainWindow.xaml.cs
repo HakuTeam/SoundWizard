@@ -44,15 +44,15 @@
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            mainViewModel.CurrentSong = Playlist.SelectedItem as Song;
+            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
             ///mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentSong);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mainViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            mainViewModel.PlaySong(sender);
-            seekBar.Maximum = mainViewModel.CurrentSong.Duration.TotalSeconds;
+            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+            mainViewModel.PlayMedia(sender);
+            seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);

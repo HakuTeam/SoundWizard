@@ -13,17 +13,17 @@
             //this.songRepository = songRepository;
         }
 
-        public void DeleteSong(Song song)
+        public void DeleteSong(Media song)
         {
             this.songRepository.DeleteSong(song);
         }
 
-        public List<Song> GetAllSongs()
+        public List<Media> GetAllSongs()
         {
             return this.songRepository.GetAllSongs();
         }
 
-        public Song GetSongDetail(int songId)
+        public Media GetSongDetail(int songId)
         {
             return this.songRepository.GetSong(songId);
         }

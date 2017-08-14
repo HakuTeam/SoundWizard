@@ -2,10 +2,11 @@
 {
     using System;
     using System.Text;
+    using Interfaces;
 
-    public class Song
+    public class Media : IMedia
     {
-        public Song(string title, TimeSpan duration, string path, string album, string artist, string genre)
+        public Media(string title, TimeSpan duration, string path, string album, string artist, string genre)
         {
             this.Title = title;
             this.Duration = duration;

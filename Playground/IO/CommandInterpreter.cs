@@ -9,14 +9,14 @@
 
     public class CommandInterpreter : IInterpreter
     {
-        private ObservableCollection<Song> playList;
+        private ObservableCollection<Media> playList;
 
-        public CommandInterpreter(ObservableCollection<Song> playList)
+        public CommandInterpreter(ObservableCollection<Media> playList)
         {
             this.playList = playList;
         }
 
-        public void InterpretCommand(string commandName, Song currentSong)
+        public void InterpretCommand(string commandName, Media currentSong)
         {
             try
             {
@@ -30,7 +30,7 @@
             }
         }
 
-        private IExecutable ParseCommand(string command, Song currentSong)
+        private IExecutable ParseCommand(string command, Media currentSong)
         {
             switch (command)
             {

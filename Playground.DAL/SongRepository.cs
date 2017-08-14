@@ -7,25 +7,25 @@
 
     public class SongRepository : ISongRepository
     {
-        private List<Song> songs;
+        private List<Media> songs;
 
         public SongRepository()
         {
-            this.songs = new List<Song>();
-            this.songs.Add(new Song("Dummy Song", TimeSpan.FromSeconds(55), "Dummy path", "Dummy Album", "Dummy Artist", "Dummy genre"));
+            this.songs = new List<Media>();
+            this.songs.Add(new Media("Dummy Song", TimeSpan.FromSeconds(55), "Dummy path", "Dummy Album", "Dummy Artist", "Dummy genre"));
         }
 
-        public Song GetSong(int songId)
+        public Media GetSong(int songId)
         {
             return this.songs.ElementAtOrDefault(songId);
         }
 
-        public List<Song> GetAllSongs()
+        public List<Media> GetAllSongs()
         {
             return this.songs;
         }
 
-        public void DeleteSong(Song song)
+        public void DeleteSong(Media song)
         {
             this.songs.Remove(song);
         }
