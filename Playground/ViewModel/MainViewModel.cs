@@ -16,7 +16,6 @@
     {
         private MediaElement mediaElement;
         private Media currentMedia;
-        private bool isMediaPlaying;
 
         public MainViewModel(MediaElement mediaElement, ListBox listBox)
         {
@@ -32,6 +31,8 @@
         public ICommand ForwardCommand { get; set; }
 
         public ICommand StopCommand { get; set; }
+
+        public ICommand PauseCommand { get; set; }
 
         public ICommand PlayCommand { get; set; }
 
@@ -66,30 +67,36 @@
         }
 
         public void PlayMedia(object obj)
-        {
-            this.MediaElement.Source = new Uri(this.currentMedia.Path);
+        {   
+            if (!MediaElement.CanPause)
+            {
+                this.MediaElement.Source = new Uri(this.currentMedia.Path);
+                this.MediaElement.Play();
+            }
+
             this.MediaElement.Play();
-            //if (!isMediaPlaying)
-            //{
-            //    this.MediaElement.Play();
-            //    isMediaPlaying = true;
-            //}
-            //else
-            //{
-            //    this.MediaElement.Stop();
-            //    isMediaPlaying = false;
-            //}
         }
 
         private void LoadCommands()
         {
             this.PlayCommand = new CustomCommand(this.PlayMedia, this.CanPlayMedia);
+            this.PauseCommand = new CustomCommand(this.PauseMedia, this.CanPauseMedia);
             this.OpenCommand = new CustomCommand(this.LoadNewMedia, this.CanLoadNewMedia);
             this.ExitCommand = new CustomCommand(this.CloseApp, this.CanCloseApp);
             this.StopCommand = new CustomCommand(this.StopMedia, this.CanStopMedia);
             this.RewindCommand = new CustomCommand(this.RewindLoop, this.CanRewindLoop);
             this.ForwardCommand = new CustomCommand(this.ForwardLoop, this.CanForwardLoop);
             this.FullScreenCommand = new CustomCommand(this.FullScreen, this.CanFullScreen);
+        }
+
+        private void PauseMedia(object obj)
+        {
+            this.MediaElement.Pause();
+        }
+
+        private bool CanPauseMedia(object obj)
+        {
+            return this.mediaElement.CanPause;
         }
 
         private bool CanFullScreen(object obj)

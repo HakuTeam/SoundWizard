@@ -50,21 +50,23 @@
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
-            mainViewModel.PlayMedia(sender);
-            seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
-            seekBar.Value = 0;
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += this.Timer_Tick;
-            timer.Start();
+
+                mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+                mainViewModel.PlayMedia(sender);
+                seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
+                seekBar.Value = 0;
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += this.Timer_Tick;
+                timer.Start();
+   
         }
 
         public void Timer_Tick(object sender, EventArgs e)
         {
             if (this.MediaElement.NaturalDuration.HasTimeSpan)
             {
-                mediaStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                mediaStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"hh\:mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
                 seekBar.Value = this.MediaElement.Position.TotalSeconds;
             }
         }
@@ -82,12 +84,12 @@
         {
             if (e.Key == Key.Left)
             {
-                this.MediaPlayer.Position -= TimeSpan.FromSeconds(1);
+                this.MediaPlayer.Position -= TimeSpan.FromSeconds(5);
             }
 
             if (e.Key == Key.Right)
             {
-                this.MediaPlayer.Position += TimeSpan.FromSeconds(1);
+                this.MediaPlayer.Position += TimeSpan.FromSeconds(5);
             }
 
             if (e.Key == Key.Add)
