@@ -17,11 +17,11 @@
         private MediaElement mediaElement;
         private Media currentMedia;
 
-        public MainViewModel(MediaElement mediaElement, DataGrid listBox)
+        public MainViewModel(MediaElement mediaElement, DataGrid mediaGrid)
         {
             this.Playlist = new ObservableCollection<Media>();
             this.MediaElement = mediaElement;
-            this.ListBox = listBox;
+            this.MediaGrid = mediaGrid;
             this.LoadCommands();
             mediaElement.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
         }
@@ -44,7 +44,7 @@
 
         public ICommand FullScreenCommand { get; set; }
 
-        public DataGrid ListBox { get; set; }
+        public DataGrid MediaGrid { get; set; }
 
         public ObservableCollection<Media> Playlist { get; set; }
 
@@ -120,35 +120,35 @@
 
         private bool CanForwardLoop(object obj)
         {
-            return (this.ListBox.SelectedIndex < this.Playlist.Count - 1 || this.Repeat) && this.Playlist.Count != 0;
+            return (this.MediaGrid.SelectedIndex < this.Playlist.Count - 1 || this.Repeat) && this.Playlist.Count != 0;
         }
 
         private void ForwardLoop(object obj)
         {
-            if (this.ListBox.SelectedIndex == this.Playlist.Count - 1 && this.Repeat)
+            if (this.MediaGrid.SelectedIndex == this.Playlist.Count - 1 && this.Repeat)
             {
-                this.ListBox.SelectedIndex = 0;
+                this.MediaGrid.SelectedIndex = 0;
             }
             else
             {
-                this.ListBox.SelectedIndex++;
+                this.MediaGrid.SelectedIndex++;
             }
         }
 
         private bool CanRewindLoop(object obj)
         {
-            return (this.ListBox.SelectedIndex != 0 || this.Repeat) && this.Playlist.Count > 0;
+            return (this.MediaGrid.SelectedIndex != 0 || this.Repeat) && this.Playlist.Count > 0;
         }
 
         private void RewindLoop(object obj)
         {
-            if (this.ListBox.SelectedIndex == 0 && this.Repeat)
+            if (this.MediaGrid.SelectedIndex == 0 && this.Repeat)
             {
-                this.ListBox.SelectedIndex = this.Playlist.Count - 1;
+                this.MediaGrid.SelectedIndex = this.Playlist.Count - 1;
             }
             else
             {
-                this.ListBox.SelectedIndex--;
+                this.MediaGrid.SelectedIndex--;
             }
         }
 
@@ -195,7 +195,7 @@
             if (firstLoad && this.Playlist.Count > 0)
             {
                 this.CurrentMedia = this.Playlist[0];
-                this.ListBox.SelectedIndex = 0;
+                this.MediaGrid.SelectedIndex = 0;
                 this.mediaElement.Pause();
             }
         }
@@ -233,11 +233,11 @@
         {
             mediaElement.Stop();
 
-            if (ListBox.SelectedIndex == this.ListBox.Items.Count - 1)
+            if (MediaGrid.SelectedIndex == this.MediaGrid.Items.Count - 1)
             {
                 if (CanForwardLoop(sender))
                 {
-                    ListBox.SelectedIndex = 0;
+                    MediaGrid.SelectedIndex = 0;
                 }
                 else
                 {
@@ -246,7 +246,7 @@
             }
             else
             {
-                ListBox.SelectedIndex++;
+                MediaGrid.SelectedIndex++;
             }
 
             mediaElement.Play();
