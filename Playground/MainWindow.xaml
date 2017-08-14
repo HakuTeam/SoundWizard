@@ -84,7 +84,7 @@
                  BorderBrush="Transparent"
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  AllowDrop="True"
-                     SelectionChanged="Playlist_SelectionChanged" HorizontalAlignment="Right" Width="569" Height="385" Canvas.Top="276" Canvas.Left="10">
+                 SelectionChanged="Playlist_SelectionChanged" HorizontalAlignment="Right" Width="569" Height="385" Canvas.Top="276" Canvas.Left="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid ShowGridLines="True">

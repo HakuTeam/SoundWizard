@@ -81,6 +81,7 @@
     <Compile Include="Services\ISongDataService.cs" />
     <Compile Include="Services\SongDataService.cs" />
     <Compile Include="Utility\CustomCommand.cs" />
+    <Compile Include="Utility\FileLoader.cs" />
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
     </Compile>

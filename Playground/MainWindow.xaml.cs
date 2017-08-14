@@ -11,6 +11,7 @@
     using Enums;
     using System.Linq;
     using System.IO;
+    using Utility;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -136,37 +137,8 @@
         private void Playlist_Drop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (var songPath in files)
-            {
-                int extensionDotIndex = songPath.LastIndexOf('.');
-                string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
-                if (!Enum.IsDefined(typeof(AudioFormats), extName))
-                {
-                    ErrorWindow errowWindow = new ErrorWindow();
-                    errowWindow.ShowDialog();
-                }
-                else
-                {
-                    TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
-                    TagLib.File fileInfo = TagLib.File.Create(songPath);
-
-                    string songName = Path.GetFileNameWithoutExtension(songPath);
-                    string genre = fileInfo.Tag.Genres.FirstOrDefault();
-                    string album = fileInfo.Tag.Album;
-                    string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
-
-                    Song song = new Song(songName, songDuration, songPath, album, artist, genre);
-
-                    mainViewModel.Playlist.Add(song);
-                }
-            }
-        }
-
-        private TimeSpan GetSongDurationInSeconds(string filePath)
-        {
-            MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
-
-            return audioReader.TotalTime;
+            FileLoader fileLoader = new FileLoader(files, songViewModel.Playlist);
+            fileLoader.LoadMediaFile();
         }
     }
 }
