@@ -45,7 +45,7 @@
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
             mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
-            ///mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentSong);
+            ///mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentMedia);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,7 +64,7 @@
         {
             if (this.MediaElement.NaturalDuration.HasTimeSpan)
             {
-                songStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                mediaStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
                 seekBar.Value = this.MediaElement.Position.TotalSeconds;
             }
         }
