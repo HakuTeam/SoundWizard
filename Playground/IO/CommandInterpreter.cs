@@ -16,11 +16,11 @@
             this.playList = playList;
         }
 
-        public void InterpretCommand(string commandName, Media currentSong)
+        public void InterpretCommand(string commandName, Media currentMedia)
         {
             try
             {
-                IExecutable command = this.ParseCommand(commandName, currentSong);
+                IExecutable command = this.ParseCommand(commandName, currentMedia);
                 command.Execute();
             }
             catch (Exception e)
@@ -30,12 +30,12 @@
             }
         }
 
-        private IExecutable ParseCommand(string command, Media currentSong)
+        private IExecutable ParseCommand(string command, Media currentMedia)
         {
             switch (command)
             {
                 case "OpenButton":
-                    return new OpenCommand(this.playList, currentSong);
+                    return new OpenCommand(this.playList, currentMedia);
   
                 default:
                     // You can either write custom message or use the one written in the exception class.

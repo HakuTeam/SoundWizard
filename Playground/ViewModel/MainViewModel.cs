@@ -16,6 +16,7 @@
     {
         private MediaElement mediaElement;
         private Media currentMedia;
+        private bool isMediaPlaying;
 
         public MainViewModel(MediaElement mediaElement, ListBox listBox)
         {
@@ -68,6 +69,16 @@
         {
             this.MediaElement.Source = new Uri(this.currentMedia.Path);
             this.MediaElement.Play();
+            //if (!isMediaPlaying)
+            //{
+            //    this.MediaElement.Play();
+            //    isMediaPlaying = true;
+            //}
+            //else
+            //{
+            //    this.MediaElement.Stop();
+            //    isMediaPlaying = false;
+            //}
         }
 
         private void LoadCommands()

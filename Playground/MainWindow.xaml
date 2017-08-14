@@ -183,7 +183,7 @@
             VerticalAlignment="Bottom"
             Canvas.Left="1112" />
         <Label
-            x:Name="songStatus"
+            x:Name="mediaStatus"
             Content="00:00:00 - 00:00:00"
             FontSize="30"
             HorizontalContentAlignment="Center"

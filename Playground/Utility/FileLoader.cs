@@ -21,10 +21,10 @@
 
         public void LoadMediaFile()
         {
-            foreach (var songPath in this.filePaths)
+            foreach (var mediaPath in this.filePaths)
             {
-                int extensionDotIndex = songPath.LastIndexOf('.');
-                string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
+                int extensionDotIndex = mediaPath.LastIndexOf('.');
+                string extName = mediaPath.Substring(extensionDotIndex + 1).ToUpper();
                 if (!Enum.IsDefined(typeof(MediaFormats), extName))
                 {
                     ErrorWindow errowWindow = new ErrorWindow();
@@ -32,22 +32,22 @@
                 }
                 else
                 {
-                    TimeSpan songDuration = this.GetSongDurationInSeconds(songPath);
-                    TagLib.File fileInfo = TagLib.File.Create(songPath);
+                    TimeSpan mediaDuration = this.GetMediaDurationInSeconds(mediaPath);
+                    TagLib.File fileInfo = TagLib.File.Create(mediaPath);
 
-                    string songName = Path.GetFileNameWithoutExtension(songPath);
+                    string mediaName = Path.GetFileNameWithoutExtension(mediaPath);
                     string genre = fileInfo.Tag.Genres.FirstOrDefault();
                     string album = fileInfo.Tag.Album;
                     string artist = fileInfo.Tag.AlbumArtists.FirstOrDefault();
 
-                    Media song = new Media(songName, songDuration, songPath, album, artist, genre);
+                    Media media = new Media(mediaName, mediaDuration, mediaPath, album, artist, genre);
 
-                    this.playlist.Add(song);
+                    this.playlist.Add(media);
                 }
             }
         }
 
-        private TimeSpan GetSongDurationInSeconds(string filePath)
+        private TimeSpan GetMediaDurationInSeconds(string filePath)
         {
             MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
 
