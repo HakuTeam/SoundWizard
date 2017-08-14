@@ -67,8 +67,13 @@
         }
 
         public void PlayMedia(object obj)
-        {   
-            if (!MediaElement.CanPause)
+        {
+            if (this.MediaElement.Source == null)
+            {
+                this.MediaElement.Source = new Uri(this.currentMedia.Path);
+            }
+
+            if (MediaElement.Source.LocalPath != currentMedia.Path)
             {
                 this.MediaElement.Source = new Uri(this.currentMedia.Path);
                 this.MediaElement.Play();
