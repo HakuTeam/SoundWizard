@@ -2,13 +2,9 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Text;
-    using System.Windows.Controls;
     using Enums;
     using Microsoft.Win32;
-    using NAudio.Wave;
-    using System.Linq;
     using Playground.Model;
     using Utility;
 
@@ -32,7 +28,6 @@
 
             if (result == true)
             {
-               
                 string[] filename = fileDialog.FileNames;
                 FileLoader fileLoader = new FileLoader(filename, this.PlayList);
                 fileLoader.LoadMediaFile();
@@ -43,12 +38,12 @@
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("All Supported Audio | ");
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
             {
                 sb.Append($"*.{type}; ");
             }
 
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
             {
                 sb.Append($"|{type}s |*.{type}");
             }

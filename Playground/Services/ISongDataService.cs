@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Playground.Model;
-
-namespace Playground.Services
+﻿namespace Playground.Services
 {
+    using System.Collections.Generic;
+    using Playground.Model;
+
     public interface ISongDataService
     {
         void DeleteSong(Song song);

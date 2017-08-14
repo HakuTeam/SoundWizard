@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow  
+﻿<controls:MetroWindow
     x:Class="Playground.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,41 +10,40 @@
     mc:Ignorable="d"
     KeyDown="MainWindowKeys"
     Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico"
-    BorderThickness="0" 
+    BorderThickness="0"
     GlowBrush="#8C9EFF"
     ResizeMode="CanResizeWithGrip"
-    Background="AliceBlue"
-    >
-    <d:MetroWindow.DataContext>
+    Background="AliceBlue">
+    <!--<d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:MainViewModel, IsDesignTimeCreatable=True}" />
-    </d:MetroWindow.DataContext>
+    </d:MetroWindow.DataContext>-->
     <Canvas>
-        <Image 
+        <Image
             Source="PlayerSkin/header.jpg" Height="192" Width="1700" Canvas.Left="-51" />
         <Button
-            x:Name="OpenButton" 
+            x:Name="OpenButton"
             Content="{iconPacks:PackIconMaterial FolderPlus, Height=32, Width=32}"
             ToolTip="Load Files"
-            Style="{DynamicResource MetroCircleButtonStyle}" 
-            Height="70" 
-            Width="70" 
+            Style="{DynamicResource MetroCircleButtonStyle}"
+            Height="70"
+            Width="70"
             Background="Transparent"
             Command="{Binding OpenCommand}"
-            Canvas.Left="24" 
+            Canvas.Left="24"
             Canvas.Top="16" />
-        <Button 
-            x:Name="RewindButton" 
+        <Button
+            x:Name="RewindButton"
             Content="{iconPacks:PackIconMaterial ChevronDoubleLeft, Height=32, Width=32}"
             ToolTip="Rewind"
-            Style="{DynamicResource MetroCircleButtonStyle}" 
+            Style="{DynamicResource MetroCircleButtonStyle}"
             Width="70"
             Height="70"
             Background="Transparent"
             Command="{Binding RewindCommand}"
-            Canvas.Left="102" 
+            Canvas.Left="102"
             Canvas.Top="16" />
-        <Button 
-            x:Name="PlayButton" 
+        <Button
+            x:Name="PlayButton"
             Content="{iconPacks:PackIconMaterial Play, Height=32, Width=32}"
             ToolTip="Play"
             Style="{DynamicResource MetroCircleButtonStyle}"
@@ -55,7 +54,7 @@
             Canvas.Left="180"
             Canvas.Top="16" />
         <Button
-            x:Name="ForwardButton" 
+            x:Name="ForwardButton"
             Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Height=32, Width=32}"
             ToolTip="Foreward"
             Style="{DynamicResource MetroCircleButtonStyle}"
@@ -66,7 +65,7 @@
             Canvas.Left="250"
             Canvas.Top="16" />
         <Button
-            x:Name="StopButton" 
+            x:Name="StopButton"
             Content="{iconPacks:PackIconMaterial Stop, Height=32, Width=32}"
             ToolTip="Stop"
             Style="{DynamicResource MetroCircleButtonStyle}"
@@ -127,13 +126,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Height="39" Canvas.Left="20" Orientation="Horizontal" Canvas.Top="119">
-            <Label 
+            <Label
                 x:Name="AudioSliderLabel"
                 Content="{iconPacks:PackIconMaterial VolumeLow, Height=25, Width=25}"
-                Width="35" Margin="0,-16,0,20"
-        />
-            <Slider 
-                x:Name="AudioSlider" 
+                Width="35" Margin="0,-16,0,20" />
+            <Slider
+                x:Name="AudioSlider"
                 IsMoveToPointEnabled="True"
                 Minimum="0"
                 Maximum="1"
@@ -141,41 +139,38 @@
                 AutoToolTipPlacement="BottomRight"
                 AutoToolTipPrecision="2"
                 Width="135"
-                Style="{DynamicResource FlatSlider}" 
-                Margin="0,-8,0,28" 
-                />
-            <Label 
+                Style="{DynamicResource FlatSlider}"
+                Margin="0,-8,0,28" />
+            <Label
                 x:Name="AudioSliderLabel_Copy"
                 Content="{iconPacks:PackIconMaterial VolumeHigh, Height=25, Width=25}"
-                Width="35" Margin="0,-16,0,20"
-        />
+                Width="35" Margin="0,-16,0,20" />
         </StackPanel>
 
-        <ToggleButton 
+        <ToggleButton
             x:Name = "tb"
             Content="{iconPacks:PackIconMaterial Repeat}"
             ToolTip="Repeat All"
             IsChecked="{Binding Repeat}"
             HorizontalAlignment = "Center"
             Canvas.Left="288"
-            Canvas.Top="101" 
+            Canvas.Top="101"
             Height="43"
             Width="43"
-            Style="{DynamicResource MetroCircleButtonStyle}"
-            />
-        <Button 
+            Style="{DynamicResource MetroCircleButtonStyle}" />
+        <Button
             x:Name="FS"
-            Command="{Binding FullScreenCommand}" 
+            Command="{Binding FullScreenCommand}"
             Content="{iconPacks:PackIconMaterial Fullscreen}"
             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
             ToolTip="Full Screen Mode"
             Style="{DynamicResource MetroCircleButtonStyle}"
-            Canvas.Left="336" 
-            Canvas.Top="101" 
+            Canvas.Left="336"
+            Canvas.Top="101"
             Height="43"
             Width="43" />
         <Button
-            x:Name="ExitButton" 
+            x:Name="ExitButton"
             Content="{iconPacks:PackIconMaterial ExitToApp, Height=30, Width=30}"
             ToolTip="Exit Program"
             Style="{DynamicResource MetroCircleButtonStyle}"
@@ -187,24 +182,23 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Canvas.Left="1112" />
-        <Label 
+        <Label
             x:Name="songStatus"
             Content="00:00:00 - 00:00:00"
             FontSize="30"
-            HorizontalContentAlignment="Center" 
-            Canvas.Left="20" 
-            Canvas.Top="194" 
-            Height="48" 
+            HorizontalContentAlignment="Center"
+            Canvas.Left="20"
+            Canvas.Top="194"
+            Height="48"
             Width="260" />
-        <Slider 
-            IsMoveToPointEnabled="True" 
-            x:Name="seekBar" Height="31" 
-            ValueChanged="ChangeValue" 
-            Canvas.Left="320" 
-            Canvas.Top="211" 
+        <Slider
+            IsMoveToPointEnabled="True"
+            x:Name="seekBar" Height="31"
+            ValueChanged="ChangeValue"
+            Canvas.Left="320"
+            Canvas.Top="211"
             Width="753"
-            Style="{DynamicResource FlatSlider}" 
-            />
+            Style="{DynamicResource FlatSlider}" />
         <Grid>
             <MediaElement LoadedBehavior="Manual" x:Name="MediaPlayer" VerticalAlignment="Top" Visibility="Visible"
                           Width="600" Height="385" Margin="584,279,-584,-279" />

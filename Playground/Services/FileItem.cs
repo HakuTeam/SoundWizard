@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Playground.Services
+﻿namespace Playground.Services
 {
+    using System.IO;
+
     public class FileItem
     {
-        public string FullName { get; set; }
         public FileItem(string file)
         {
-            FullName = file;
+            this.FullName = file;
         }
+
+        public string FullName { get; set; }
 
         public override string ToString()
         {
-            return Path.GetFileNameWithoutExtension(FullName);
+            return Path.GetFileNameWithoutExtension(this.FullName);
         }
     }
 }

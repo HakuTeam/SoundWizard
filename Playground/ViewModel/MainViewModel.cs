@@ -1,22 +1,18 @@
 ﻿namespace Playground.ViewModel
 {
     using System;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using Annotations;
-    using Model;
     using System.Collections.ObjectModel;
-    using Playground.IO;
-    using System.Windows.Input;
-    using Playground.Utility;
-    using System.Windows.Controls;
     using System.Text;
-    using Playground.Enums;
-    using NAudio.Wave;
-    using Playground.IO.Command;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using Model;
+    using NAudio.Wave;
+    using Playground.Enums;
+    using Playground.IO.Command;
+    using Playground.Utility;
 
-    public class MainViewModel 
+    public class MainViewModel
     {
         private MediaElement mediaElement;
         private Song currentSong;
@@ -26,7 +22,7 @@
             this.Playlist = new ObservableCollection<Song>();
             this.MediaElement = mediaElement;
             this.ListBox = listBox;
-            LoadCommands();
+            this.LoadCommands();
         }
 
         public bool Repeat { get; set; }
@@ -63,19 +59,25 @@
 
         public MediaElement MediaElement
         {
-            get { return mediaElement; }
-            set { mediaElement = value; }
+            get { return this.mediaElement; }
+            set { this.mediaElement = value; }
+        }
+
+        public void PlaySong(object obj)
+        {
+            this.MediaElement.Source = new Uri(this.currentSong.Path);
+            this.MediaElement.Play();
         }
 
         private void LoadCommands()
         {
-            PlayCommand = new CustomCommand(PlaySong, CanPlaySong);
-            OpenCommand = new CustomCommand(LoadNewSong, CanLoadNewSong);
-            ExitCommand = new CustomCommand(CloseApp, CanCloseApp);
-            StopCommand = new CustomCommand(StopSong, CanStopSong);
-            RewindCommand = new CustomCommand(RewindLoop, CanRewindLoop);
-            ForwardCommand = new CustomCommand(ForwardLoop, CanForwardLoop);
-            FullScreenCommand = new CustomCommand(FullScreen, CanFullScreen);
+            this.PlayCommand = new CustomCommand(this.PlaySong, this.CanPlaySong);
+            this.OpenCommand = new CustomCommand(this.LoadNewSong, this.CanLoadNewSong);
+            this.ExitCommand = new CustomCommand(this.CloseApp, this.CanCloseApp);
+            this.StopCommand = new CustomCommand(this.StopSong, this.CanStopSong);
+            this.RewindCommand = new CustomCommand(this.RewindLoop, this.CanRewindLoop);
+            this.ForwardCommand = new CustomCommand(this.ForwardLoop, this.CanForwardLoop);
+            this.FullScreenCommand = new CustomCommand(this.FullScreen, this.CanFullScreen);
         }
 
         private bool CanFullScreen(object obj)
@@ -147,6 +149,7 @@
             {
                 return true;
             }
+
             return false;
         }
 
@@ -167,38 +170,32 @@
             {
                 firstLoad = true;
             }
-            OpenCommand open = new OpenCommand(Playlist, currentSong);
+
+            OpenCommand open = new OpenCommand(this.Playlist, this.currentSong);
             open.Execute();
             if (firstLoad && this.Playlist.Count > 0)
             {
                 this.CurrentSong = this.Playlist[0];
                 this.ListBox.SelectedIndex = 0;
-                mediaElement.Pause();
+                this.mediaElement.Pause();
             }
         }
 
         private bool CanPlaySong(object obj)
         {
-
             return this.Playlist.Count > 0;
-        }
-
-        public void PlaySong(object obj)
-        {
-            this.MediaElement.Source = new Uri(currentSong.Path);
-            this.MediaElement.Play();
         }
 
         private string AudioFormater()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("All Supported Audio | ");
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
             {
                 sb.Append($"*.{type}; ");
             }
 
-            foreach (AudioFormats type in Enum.GetValues(typeof(AudioFormats)))
+            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
             {
                 sb.Append($"|{type}s |*.{type}");
             }

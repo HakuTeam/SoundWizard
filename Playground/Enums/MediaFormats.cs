@@ -1,11 +1,13 @@
 ﻿namespace Playground.Enums
 {
-    public enum AudioFormats
+    public enum MediaFormats
     {
         WAV,
         MP3,
         OGG,
         WMA,
-        MP4
+        MP4,
+        AVI,
+        WMV
     }
 }

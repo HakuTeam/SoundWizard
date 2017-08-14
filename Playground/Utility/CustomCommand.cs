@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace Playground.Utility
+﻿namespace Playground.Utility
 {
+    using System;
+    using System.Windows.Input;
+
     public class CustomCommand : ICommand
     {
         private Action<object> execute;
@@ -16,7 +12,7 @@ namespace Playground.Utility
         {
             this.execute = execute;
             this.canExecute = canExecute;
-        }        
+        }
 
         public event EventHandler CanExecuteChanged
         {
@@ -26,13 +22,13 @@ namespace Playground.Utility
 
         public bool CanExecute(object parameter)
         {
-            bool b = canExecute == null ? true : canExecute(parameter);
+            bool b = this.canExecute == null ? true : this.canExecute(parameter);
             return b;
         }
 
         public void Execute(object parameter)
         {
-            execute(parameter);
+            this.execute(parameter);
         }
     }
 }

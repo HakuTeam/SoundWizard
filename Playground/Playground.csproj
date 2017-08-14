@@ -98,13 +98,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\AudioFormats.cs" />
+    <Compile Include="Enums\MediaFormats.cs" />
     <Compile Include="Exceptions\CannotParseCommandException.cs" />
     <Compile Include="Exceptions\InvalidCommandException.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IInterpreter.cs" />
-    <Compile Include="IO\Command\MediaPlaybackCommand.cs" />
-    <Compile Include="IO\Command\SelectionChangerCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -116,11 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\Command\Command.cs" />
-    <Compile Include="IO\Command\ForwardCommand.cs" />
     <Compile Include="IO\Command\OpenCommand.cs" />
-    <Compile Include="IO\Command\PlayCommand.cs" />
-    <Compile Include="IO\Command\RewindCommand.cs" />
-    <Compile Include="IO\Command\StopCommand.cs" />
     <Compile Include="IO\CommandInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

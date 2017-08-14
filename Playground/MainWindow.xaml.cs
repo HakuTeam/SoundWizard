@@ -6,12 +6,8 @@
     using System.Windows.Input;
     using System.Windows.Threading;
     using Model;
-    using ViewModel;
-    using NAudio.Wave;
-    using Enums;
-    using System.Linq;
-    using System.IO;
     using Utility;
+    using ViewModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -49,7 +45,7 @@
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
             mainViewModel.CurrentSong = Playlist.SelectedItem as Song;
-            //mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentSong);
+            ///mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentSong);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)

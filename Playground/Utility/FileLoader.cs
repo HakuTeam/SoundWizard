@@ -1,17 +1,17 @@
-﻿using NAudio.Wave;
-using Playground.Enums;
-using Playground.Model;
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-
-namespace Playground.Utility
+﻿namespace Playground.Utility
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Linq;
+    using NAudio.Wave;
+    using Playground.Enums;
+    using Playground.Model;
+
     public class FileLoader
     {
         private string[] filePaths;
-        ObservableCollection<Song> playlist;
+        private ObservableCollection<Song> playlist;
 
         public FileLoader(string[] filePaths, ObservableCollection<Song> playlist)
         {
@@ -25,7 +25,7 @@ namespace Playground.Utility
             {
                 int extensionDotIndex = songPath.LastIndexOf('.');
                 string extName = songPath.Substring(extensionDotIndex + 1).ToUpper();
-                if (!Enum.IsDefined(typeof(AudioFormats), extName))
+                if (!Enum.IsDefined(typeof(MediaFormats), extName))
                 {
                     ErrorWindow errowWindow = new ErrorWindow();
                     errowWindow.ShowDialog();
