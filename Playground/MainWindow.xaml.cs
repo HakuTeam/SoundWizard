@@ -137,7 +137,7 @@
         private void Playlist_Drop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            FileLoader fileLoader = new FileLoader(files, songViewModel.Playlist);
+            FileLoader fileLoader = new FileLoader(files, mainViewModel.Playlist);
             fileLoader.LoadMediaFile();
         }
     }
