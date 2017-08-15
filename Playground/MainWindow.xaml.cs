@@ -20,11 +20,11 @@
         public MainWindow()
         {
             this.InitializeComponent();
-            this.MediaElement = this.MediaPlayer;
-            this.mainViewModel = new MainViewModel(mediaElement, Playlist);
-            this.DataContext = mainViewModel;
-            this.AudioSlider.Value = 1;
-            this.MediaElement.Volume = 1;
+            MediaElement = MediaPlayer;
+            this.mainViewModel = new MainViewModel(this.mediaElement, Playlist);
+            DataContext = this.mainViewModel;
+            AudioSlider.Value = 1;
+            MediaElement.Volume = 1;
             this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
         }
 
@@ -34,39 +34,39 @@
             set { this.mediaElement = value; }
         }
 
+        public void Timer_Tick(object sender, EventArgs e)
+        {
+            if (MediaElement.NaturalDuration.HasTimeSpan)
+            {
+                mediaStatus.Content = string.Format("{0} - {1}", MediaElement.Position.ToString(@"hh\:mm\:ss"), MediaElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+                seekBar.Value = MediaElement.Position.TotalSeconds;
+            }
+        }
+
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;
             double value = slider.Value;
-            this.MediaPlayer.Volume = value;
+            MediaPlayer.Volume = value;
         }
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
             var incomingCommand = $"{((FrameworkElement)e.Source).Name}PlayBack";
-            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+            this.mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
             ///mainViewModel.command.InterpretCommand(incomingCommand, mainViewModel.CurrentMedia);
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
-            mainViewModel.PlayMedia(sender);
-            seekBar.Maximum = mainViewModel.CurrentMedia.Duration.TotalSeconds;
+            this.mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+            this.mainViewModel.PlayMedia(sender);
+            seekBar.Maximum = this.mainViewModel.CurrentMedia.Duration.TotalSeconds;
             seekBar.Value = 0;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += this.Timer_Tick;
             timer.Start();
-        }
-
-        public void Timer_Tick(object sender, EventArgs e)
-        {
-            if (this.MediaElement.NaturalDuration.HasTimeSpan)
-            {
-                mediaStatus.Content = string.Format("{0} - {1}", this.MediaElement.Position.ToString(@"hh\:mm\:ss"), this.MediaElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
-                seekBar.Value = this.MediaElement.Position.TotalSeconds;
-            }
         }
 
         private void ChangeValue(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -75,51 +75,51 @@
             double value = slider.Value;
 
             seekBar.Value = value;
-            this.MediaPlayer.Position = TimeSpan.FromSeconds(value);
+            MediaPlayer.Position = TimeSpan.FromSeconds(value);
         }
 
         private void MainWindowKeys(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
             {
-                this.MediaPlayer.Position -= TimeSpan.FromSeconds(5);
+                MediaPlayer.Position -= TimeSpan.FromSeconds(5);
             }
 
             if (e.Key == Key.Right)
             {
-                this.MediaPlayer.Position += TimeSpan.FromSeconds(5);
+                MediaPlayer.Position += TimeSpan.FromSeconds(5);
             }
 
             if (e.Key == Key.Add)
             {
-                this.MediaElement.Volume += 0.05;
-                this.AudioSlider.Value += 0.05;
+                MediaElement.Volume += 0.05;
+                AudioSlider.Value += 0.05;
             }
 
             if (e.Key == Key.Subtract)
             {
-                this.MediaElement.Volume -= 0.05;
-                this.AudioSlider.Value -= 0.05;
+                MediaElement.Volume -= 0.05;
+                AudioSlider.Value -= 0.05;
             }
 
             if (e.Key == Key.Escape)
             {
-                this.WindowStyle = WindowStyle.SingleBorderWindow;
-                this.MediaElement.MaxWidth = 600;
-                this.MediaElement.MaxHeight = 385;
-                this.MediaElement.Width = 600;
-                this.MediaElement.Height = 385;
-                this.Width = 1200;
-                this.Height = 700;
-                this.WindowState = WindowState.Normal;
-                this.MediaElement.Margin = new Thickness(584, 279, -584, -279);
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                MediaElement.MaxWidth = 600;
+                MediaElement.MaxHeight = 385;
+                MediaElement.Width = 600;
+                MediaElement.Height = 385;
+                Width = 1200;
+                Height = 700;
+                WindowState = WindowState.Normal;
+                MediaElement.Margin = new Thickness(584, 279, -584, -279);
             }
         }
 
         private void Playlist_Drop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            FileLoader fileLoader = new FileLoader(files, mainViewModel.Playlist);
+            FileLoader fileLoader = new FileLoader(files, this.mainViewModel.Playlist);
             fileLoader.LoadMediaFile();
         }
     }

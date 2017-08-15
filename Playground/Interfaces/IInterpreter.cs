@@ -1,6 +1,6 @@
 ﻿namespace Playground.Interfaces
 {
-    using Playground.Model;
+    using Model;
 
     public interface IInterpreter
     {

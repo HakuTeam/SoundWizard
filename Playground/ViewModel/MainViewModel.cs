@@ -23,7 +23,7 @@
             this.MediaElement = mediaElement;
             this.ListBox = listBox;
             this.LoadCommands();
-            mediaElement.MediaEnded += new RoutedEventHandler(LoopMediaEnded);
+            this.mediaElement.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
         }
 
         public bool Repeat { get; set; }
@@ -73,7 +73,7 @@
                 this.MediaElement.Source = new Uri(this.currentMedia.Path);
             }
 
-            if (MediaElement.Source.LocalPath != currentMedia.Path)
+            if (this.MediaElement.Source.LocalPath != this.currentMedia.Path)
             {
                 this.MediaElement.Source = new Uri(this.currentMedia.Path);
                 this.MediaElement.Play();
@@ -236,11 +236,11 @@
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
-            mediaElement.Stop();
+            this.mediaElement.Stop();
 
             if (ListBox.SelectedIndex == this.ListBox.Items.Count - 1)
             {
-                if (CanForwardLoop(sender))
+                if (this.CanForwardLoop(sender))
                 {
                     ListBox.SelectedIndex = 0;
                 }
@@ -254,7 +254,7 @@
                 ListBox.SelectedIndex++;
             }
 
-            mediaElement.Play();
+            this.mediaElement.Play();
         }
     }
 }

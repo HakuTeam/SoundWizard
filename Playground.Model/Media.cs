@@ -4,7 +4,7 @@
     using System.Text;
     using Interfaces;
 
-    public class Media : IMedia , IMediaMetaData
+    public class Media : IMedia, IMediaMetaData
     {
         public Media(string title, TimeSpan duration, string path, string album, string artist, string genre)
         {
@@ -28,7 +28,7 @@
 
         public string DurationFormated
         {
-            get { return $"{this.Duration.Hours:00}:{this.Duration.Minutes:00}:{this.Duration.Seconds:00}"; }
+            get { return $"{Duration.Hours:00}:{Duration.Minutes:00}:{Duration.Seconds:00}"; }
         }
 
         public string Path { get; set; }
@@ -37,7 +37,7 @@
         {
             var result = new StringBuilder();
             result.Append(this.Title);
-            result.Append($" {this.Duration:g}");
+            result.Append($" {Duration:g}");
 
             return result.ToString();
         }

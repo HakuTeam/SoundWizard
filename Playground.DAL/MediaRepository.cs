@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Playground.Model;
+    using Model;
 
     public class MediaRepository : IMediaRepository
     {
-        private List<Media> medias;
+        private readonly List<Media> medias;
 
         public MediaRepository()
         {

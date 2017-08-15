@@ -5,8 +5,8 @@
 
     public class CustomCommand : ICommand
     {
-        private Action<object> execute;
-        private Predicate<object> canExecute;
+        private readonly Action<object> execute;
+        private readonly Predicate<object> canExecute;
 
         public CustomCommand(Action<object> execute, Predicate<object> canExecute)
         {

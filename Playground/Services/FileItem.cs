@@ -1,7 +1,7 @@
 ﻿namespace Playground.Services
 {
-    using Interfaces;
     using System.IO;
+    using Interfaces;
 
     public class FileItem : IFileItem
     {

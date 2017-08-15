@@ -2,7 +2,7 @@
 {
     using System.Collections.ObjectModel;
     using Interfaces;
-    using Playground.Model;
+    using Model;
 
     public abstract class Command : IExecutable
     {
