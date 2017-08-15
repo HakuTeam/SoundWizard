@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-    xmlns:viewModel="clr-namespace:Playground.ViewModel"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     mc:Ignorable="d"
     Title="Sound Wizard" Height="700"  Width="1200" Icon="PlayerSkin\SoundWizard.ico"
@@ -19,7 +18,7 @@
     <Canvas>
         <Image
             Source="PlayerSkin/header.jpg" Height="192" Width="1700" Canvas.Left="-51" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="OpenButton"
             Content="{iconPacks:PackIconMaterial FolderPlus, Height=32, Width=32}"
             ToolTip="Load Files"
@@ -30,7 +29,7 @@
             Command="{Binding OpenCommand}"
             Canvas.Left="24"
             Canvas.Top="16" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="RewindButton"
             Content="{iconPacks:PackIconMaterial ChevronDoubleLeft, Height=32, Width=32}"
             ToolTip="Rewind"
@@ -41,7 +40,7 @@
             Command="{Binding RewindCommand}"
             Canvas.Left="102"
             Canvas.Top="16" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="PlayButton"
             Content="{iconPacks:PackIconMaterial Play, Height=32, Width=32}"
             ToolTip="Play"
@@ -52,7 +51,7 @@
             Command="{Binding PlayCommand}"
             Canvas.Left="180"
             Canvas.Top="16" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="PauseButton"
             Content="{iconPacks:PackIconMaterial Pause, Height=32, Width=32}"
             ToolTip="Play"
@@ -63,7 +62,7 @@
             Command="{Binding PauseCommand}"
             Canvas.Left="218"
             Canvas.Top="86" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="ForwardButton"
             Content="{iconPacks:PackIconMaterial ChevronDoubleRight, Height=32, Width=32}"
             ToolTip="Foreward"
@@ -74,7 +73,7 @@
             Command="{Binding ForwardCommand}"
             Canvas.Left="250"
             Canvas.Top="16" />
-        <Button
+        <Button KeyboardNavigation.IsTabStop="False"
             x:Name="StopButton"
             Content="{iconPacks:PackIconMaterial Stop, Height=32, Width=32}"
             ToolTip="Stop"
@@ -85,7 +84,7 @@
             Command="{Binding StopCommand}"
             Canvas.Left="320"
             Canvas.Top="16" />
-        <DataGrid x:Name="Playlist"
+        <DataGrid x:Name="Playlist" IsReadOnly="True" KeyboardNavigation.DirectionalNavigation="None"
             ItemsSource="{Binding Playlist}"
             AutoGenerateColumns="False"
             Opacity="0.8"
@@ -123,7 +122,7 @@
                 x:Name="AudioSliderLabel"
                 Content="{iconPacks:PackIconMaterial VolumeLow, Height=25, Width=25}"
                 Width="35" Margin="0,-16,0,20" />
-            <Slider
+            <Slider  KeyboardNavigation.IsTabStop="False"
                 x:Name="AudioSlider"
                 IsMoveToPointEnabled="True"
                 Minimum="0"
@@ -140,7 +139,7 @@
                 Width="35" Margin="0,-16,0,20" />
         </StackPanel>
 
-        <ToggleButton
+        <ToggleButton  KeyboardNavigation.IsTabStop="False"
             x:Name = "tb"
             Content="{iconPacks:PackIconMaterial Repeat}"
             ToolTip="Repeat All"
@@ -151,7 +150,7 @@
             Height="43"
             Width="43"
             Style="{DynamicResource MetroCircleButtonStyle}" />
-        <Button
+        <Button  KeyboardNavigation.IsTabStop="False"
             x:Name="FS"
             Command="{Binding FullScreenCommand}"
             Content="{iconPacks:PackIconMaterial Fullscreen}"
@@ -162,7 +161,7 @@
             Canvas.Top="101"
             Height="43"
             Width="43" />
-        <Button
+        <Button  KeyboardNavigation.IsTabStop="False"
             x:Name="ExitButton"
             Content="{iconPacks:PackIconMaterial ExitToApp, Height=30, Width=30}"
             ToolTip="Exit Program"
@@ -184,7 +183,7 @@
             Canvas.Top="194"
             Height="48"
             Width="260" />
-        <Slider
+        <Slider  KeyboardNavigation.IsTabStop="False"
             IsMoveToPointEnabled="True"
             x:Name="seekBar" Height="31"
             ValueChanged="ChangeValue"
