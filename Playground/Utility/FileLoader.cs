@@ -7,8 +7,9 @@
     using NAudio.Wave;
     using Playground.Enums;
     using Playground.Model;
+    using Interfaces;
 
-    public class FileLoader
+    public class FileLoader : IFileLoader
     {
         private string[] filePaths;
         private ObservableCollection<Media> playlist;

@@ -4,7 +4,7 @@
     using System.Text;
     using Interfaces;
 
-    public class Media : IMedia
+    public class Media : IMedia , IMediaMetaData
     {
         public Media(string title, TimeSpan duration, string path, string album, string artist, string genre)
         {
