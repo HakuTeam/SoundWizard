@@ -5,11 +5,11 @@
     using Command;
     using Exceptions;
     using Interfaces;
-    using Playground.Model;
+    using Model;
 
     public class CommandInterpreter : IInterpreter
     {
-        private ObservableCollection<Media> playList;
+        private readonly ObservableCollection<Media> playList;
 
         public CommandInterpreter(ObservableCollection<Media> playList)
         {
@@ -36,7 +36,7 @@
             {
                 case "OpenButton":
                     return new OpenCommand(this.playList, currentMedia);
-  
+
                 default:
                     // You can either write custom message or use the one written in the exception class.
 

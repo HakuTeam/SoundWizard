@@ -5,7 +5,7 @@
     using System.Text;
     using Enums;
     using Microsoft.Win32;
-    using Playground.Model;
+    using Model;
     using Utility;
 
     public class OpenCommand : Command
@@ -29,7 +29,7 @@
             if (result == true)
             {
                 string[] filename = fileDialog.FileNames;
-                FileLoader fileLoader = new FileLoader(filename, this.PlayList);
+                FileLoader fileLoader = new FileLoader(filename, PlayList);
                 fileLoader.LoadMediaFile();
             }
         }

@@ -1,7 +1,7 @@
 ﻿namespace Playground.DAL
 {
     using System.Collections.Generic;
-    using Playground.Model;
+    using Model;
 
     public interface IMediaRepository
     {

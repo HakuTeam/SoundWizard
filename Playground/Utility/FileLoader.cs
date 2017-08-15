@@ -4,14 +4,15 @@
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
+    using Enums;
+    using Interfaces;
+    using Model;
     using NAudio.Wave;
-    using Playground.Enums;
-    using Playground.Model;
 
-    public class FileLoader
+    public class FileLoader : IFileLoader
     {
-        private string[] filePaths;
-        private ObservableCollection<Media> playlist;
+        private readonly string[] filePaths;
+        private readonly ObservableCollection<Media> playlist;
 
         public FileLoader(string[] filePaths, ObservableCollection<Media> playlist)
         {

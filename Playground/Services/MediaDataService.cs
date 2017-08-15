@@ -1,17 +1,12 @@
 ﻿namespace Playground.Services
 {
     using System.Collections.Generic;
-    using Playground.DAL;
-    using Playground.Model;
+    using DAL;
+    using Model;
 
     public class MediaDataService : IMediaDataService
     {
-        private IMediaRepository mediaRepository = new MediaRepository();
-
-        public MediaDataService()
-        {
-            //this.mediaRepository = mediaRepository;
-        }
+        private readonly IMediaRepository mediaRepository = new MediaRepository();
 
         public void DeleteMedia(Media media)
         {

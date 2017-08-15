@@ -1,7 +1,7 @@
 ﻿namespace Playground.Services
 {
     using System.Collections.Generic;
-    using Playground.Model;
+    using Model;
 
     public interface IMediaDataService
     {
