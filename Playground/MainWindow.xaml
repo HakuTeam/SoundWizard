@@ -99,19 +99,24 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Title}"
-                    Header="Title"/>
+                    Header="Title"
+                    Width="170" />
                 <DataGridTextColumn
                     Binding="{Binding Album}"
-                    Header="Album" />
+                    Header="Album"
+                    Width="100"/>
                 <DataGridTextColumn
                     Binding="{Binding Artist}"
-                    Header="Artist" />
+                    Header="Artist"
+                    Width="100"/>
                 <DataGridTextColumn
                     Binding="{Binding Genre}"
-                    Header="Genre" />
+                    Header="Genre"
+                    Width="100"/>
                 <DataGridTextColumn
                     Binding="{Binding DurationFormated}"
-                    Header="Duration" />
+                    Header="Duration"
+                    Width="85"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Height="39" Canvas.Left="20" Orientation="Horizontal" Canvas.Top="119">
