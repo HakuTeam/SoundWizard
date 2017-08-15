@@ -50,6 +50,10 @@
 
         public ICommand VolumeIncreaseCommand { get; set; }
 
+        public ICommand VolumeDecreaseCommand { get; set; }
+
+        public ICommand ExitFullScreenCommand { get; set; }
+
         public DataGrid MediaGrid { get; set; }
 
         public ObservableCollection<Media> Playlist { get; set; }
@@ -101,6 +105,39 @@
             this.ReversePositionCommand = new CustomCommand(this.ReversePosition, CanReversePosition);
             this.ForwardPositionCommand = new CustomCommand(this.ForwardPosition, CanForwardPosition);
             this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, CanVolumeIncrease);
+            this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, CanVolumeDecrease);
+            this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, CanExitFullScreen);
+        }
+
+        private bool CanExitFullScreen(object obj)
+        {
+            return true;
+        }
+
+        private void ExitFullScreen(object obj)
+        {
+            var currentWin = obj as Window;
+            currentWin.WindowStyle = WindowStyle.SingleBorderWindow;
+            MediaElement.MaxWidth = 600;
+            MediaElement.MaxHeight = 385;
+            MediaElement.Width = 600;
+            MediaElement.Height = 385;
+            currentWin.Width = 1200;
+            currentWin.Height = 700;
+            currentWin.WindowState = WindowState.Normal;
+            MediaElement.Margin = new Thickness(584, 279, -584, -279);
+        }
+
+        private bool CanVolumeDecrease(object obj)
+        {
+            return true;
+        }
+
+        private void VolumeDecrease(object obj)
+        {
+            var currentWin = obj as Slider;
+            MediaElement.Volume -= 0.05;
+            currentWin.Value -= 0.05;
         }
 
         private bool CanVolumeIncrease(object obj)

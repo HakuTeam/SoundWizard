@@ -203,5 +203,11 @@
         <KeyBinding Command="{Binding VolumeIncreaseCommand}" Key="Add" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Slider}">
         </KeyBinding>
+        <KeyBinding Command="{Binding VolumeDecreaseCommand}" Key="Subtract" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Slider}">
+        </KeyBinding>
+        <KeyBinding Command="{Binding ExitFullScreenCommand}" Key="Esc" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+        </KeyBinding>
     </Window.InputBindings>
 </controls:MetroWindow>
