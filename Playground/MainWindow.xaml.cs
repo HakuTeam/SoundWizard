@@ -28,6 +28,12 @@
             this.MediaPlayer.MediaEnded += this.LoopMediaEnded;
         }
 
+        public Slider Slider
+        {
+            get { return this.AudioSlider; }
+            set { this.AudioSlider = value; }
+        }
+
         public MediaElement MediaElement
         {
             get { return this.mediaElement; }
@@ -78,43 +84,43 @@
             MediaPlayer.Position = TimeSpan.FromSeconds(value);
         }
 
-        private void MainWindowKeys(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Left)
-            {
-                MediaPlayer.Position -= TimeSpan.FromSeconds(5);
-            }
-
-            if (e.Key == Key.Right)
-            {
-                MediaPlayer.Position += TimeSpan.FromSeconds(5);
-            }
-
-            if (e.Key == Key.Add)
-            {
-                MediaElement.Volume += 0.05;
-                AudioSlider.Value += 0.05;
-            }
-
-            if (e.Key == Key.Subtract)
-            {
-                MediaElement.Volume -= 0.05;
-                AudioSlider.Value -= 0.05;
-            }
-
-            if (e.Key == Key.Escape)
-            {
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                MediaElement.MaxWidth = 600;
-                MediaElement.MaxHeight = 385;
-                MediaElement.Width = 600;
-                MediaElement.Height = 385;
-                Width = 1200;
-                Height = 700;
-                WindowState = WindowState.Normal;
-                MediaElement.Margin = new Thickness(584, 279, -584, -279);
-            }
-        }
+        //private void MainWindowKeys(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Left)
+        //    {
+        //        MediaPlayer.Position -= TimeSpan.FromSeconds(5);
+        //    }
+        //
+        //    if (e.Key == Key.Right)
+        //    {
+        //        MediaPlayer.Position += TimeSpan.FromSeconds(5);
+        //    }
+        //
+        //    if (e.Key == Key.Add)
+        //    {
+        //        MediaElement.Volume += 0.05;
+        //        AudioSlider.Value += 0.05;
+        //    }
+        //
+        //    if (e.Key == Key.Subtract)
+        //    {
+        //        MediaElement.Volume -= 0.05;
+        //        AudioSlider.Value -= 0.05;
+        //    }
+        //
+        //    if (e.Key == Key.Escape)
+        //    {
+        //        WindowStyle = WindowStyle.SingleBorderWindow;
+        //        MediaElement.MaxWidth = 600;
+        //        MediaElement.MaxHeight = 385;
+        //        MediaElement.Width = 600;
+        //        MediaElement.Height = 385;
+        //        Width = 1200;
+        //        Height = 700;
+        //        WindowState = WindowState.Normal;
+        //        MediaElement.Margin = new Thickness(584, 279, -584, -279);
+        //    }
+        //}
 
         private void Playlist_Drop(object sender, DragEventArgs e)
         {

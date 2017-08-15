@@ -44,6 +44,12 @@
 
         public ICommand FullScreenCommand { get; set; }
 
+        public ICommand ReversePositionCommand { get; set; }
+
+        public ICommand ForwardPositionCommand { get; set; }
+
+        public ICommand VolumeIncreaseCommand { get; set; }
+
         public DataGrid MediaGrid { get; set; }
 
         public ObservableCollection<Media> Playlist { get; set; }
@@ -92,6 +98,41 @@
             this.RewindCommand = new CustomCommand(this.RewindLoop, this.CanRewindLoop);
             this.ForwardCommand = new CustomCommand(this.ForwardLoop, this.CanForwardLoop);
             this.FullScreenCommand = new CustomCommand(this.FullScreen, this.CanFullScreen);
+            this.ReversePositionCommand = new CustomCommand(this.ReversePosition, CanReversePosition);
+            this.ForwardPositionCommand = new CustomCommand(this.ForwardPosition, CanForwardPosition);
+            this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, CanVolumeIncrease);
+        }
+
+        private bool CanVolumeIncrease(object obj)
+        {
+            return true;
+        }
+
+        private void VolumeIncrease(object obj)
+        {
+            var currentWin = obj as Slider;
+            MediaElement.Volume += 0.05;
+            currentWin.Value += 0.05;
+        }
+
+        private bool CanForwardPosition(object obj)
+        {
+            return true;
+        }
+
+        private void ForwardPosition(object obj)
+        {
+            this.MediaElement.Position += TimeSpan.FromSeconds(2);
+        }
+
+        private bool CanReversePosition(object obj)
+        {
+            return true;
+        }
+
+        private void ReversePosition(object obj)
+        {
+            this.MediaElement.Position -= TimeSpan.FromSeconds(2);
         }
 
         private void PauseMedia(object obj)
