@@ -101,7 +101,7 @@
 
         private bool CanPauseMedia(object obj)
         {
-            return this.mediaElement.CanPause;
+            return true;
         }
 
         private bool CanFullScreen(object obj)
