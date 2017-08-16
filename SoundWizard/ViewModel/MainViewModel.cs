@@ -11,6 +11,7 @@
     using Model;
     using NAudio.Wave;
     using Utility;
+    using IO;
 
     public class MainViewModel
     {
@@ -271,8 +272,9 @@
                 firstLoad = true;
             }
 
-            OpenCommand open = new OpenCommand(this.Playlist, this.currentMedia);
-            open.Execute();
+            CommandInterpreter commandInterpreter = new CommandInterpreter(Playlist);
+            commandInterpreter.InterpretCommand(obj.ToString(), this.currentMedia);
+
             if (firstLoad && this.Playlist.Count > 0)
             {
                 this.CurrentMedia = this.Playlist[0];

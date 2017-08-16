@@ -4,7 +4,7 @@
     using Interfaces;
     using Model;
 
-    public abstract class Command : IExecutable
+    public abstract class Command : ICommand, IExecutable
     {
         protected Command(ObservableCollection<Media> playList, Media selectedMedia)
         {
