@@ -117,7 +117,6 @@
         private void ExitFullScreen(object obj)
         {
             var currentWin = obj as Window;
-            currentWin.WindowStyle = WindowStyle.SingleBorderWindow;
             MediaElement.MaxWidth = 600;
             MediaElement.MaxHeight = 385;
             MediaElement.Width = 600;
@@ -190,7 +189,6 @@
         private void FullScreen(object obj)
         {
             var currentWin = obj as Window;
-            currentWin.WindowStyle = WindowStyle.None;
             this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
             this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
             this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;

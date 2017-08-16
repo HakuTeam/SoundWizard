@@ -11,7 +11,12 @@
     BorderThickness="0"
     GlowBrush="#8C9EFF"
     ResizeMode="CanResizeWithGrip"
-    Background="AliceBlue">
+    Background="AliceBlue"
+    ShowTitleBar="False"
+    ShowCloseButton="False"
+    ShowMinButton="False"
+    ShowMaxRestoreButton="False"
+    WindowStartupLocation="CenterScreen">
     <!--<d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:MainViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>-->
