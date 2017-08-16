@@ -200,10 +200,10 @@
         <KeyBinding Command="{Binding ReversePositionCommand}" Key="Left"></KeyBinding>
         <KeyBinding Command="{Binding ForwardPositionCommand}" Key="Right"></KeyBinding>
         <KeyBinding Command="{Binding VolumeIncreaseCommand}" Key="Add" 
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Slider}">
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=VolumeSlider}">
         </KeyBinding>
         <KeyBinding Command="{Binding VolumeDecreaseCommand}" Key="Subtract" 
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Slider}">
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=VolumeSlider}">
         </KeyBinding>
         <KeyBinding Command="{Binding ExitFullScreenCommand}" Key="Esc" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
