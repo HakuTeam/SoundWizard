@@ -77,9 +77,10 @@
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\ICommandPattern.cs" />
     <Compile Include="Interfaces\IFileItem.cs" />
     <Compile Include="Interfaces\IFileLoader.cs" />
+    <Compile Include="ViewModel\IMainViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\FileItem.cs" />
     <Compile Include="Services\IMediaDataService.cs" />

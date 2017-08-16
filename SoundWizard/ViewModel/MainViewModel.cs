@@ -7,25 +7,22 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using Enums;
-    using IO.Command;
     using Model;
     using NAudio.Wave;
     using Utility;
     using IO;
     using MahApps.Metro.Controls;
+    using Interfaces;
 
-    public class MainViewModel
+    public class MainViewModel : IMainViewModel
     {
-        private MediaElement mediaElement;
-        private Media currentMedia;
-
         public MainViewModel(MediaElement mediaElement, DataGrid mediaGrid)
         {
             this.Playlist = new ObservableCollection<Media>();
             this.MediaElement = mediaElement;
             this.MediaGrid = mediaGrid;
             this.LoadCommands();
-            this.mediaElement.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
+            this.MediaElement.MediaEnded += new RoutedEventHandler(this.LoopMediaEnded);
         }
 
         public bool Repeat { get; set; }
@@ -60,34 +57,20 @@
 
         public ObservableCollection<Media> Playlist { get; set; }
 
-        public Media CurrentMedia
-        {
-            get
-            {
-                return this.currentMedia;
-            }
-            set
-            {
-                this.currentMedia = value;
-            }
-        }
-
-        public MediaElement MediaElement
-        {
-            get { return this.mediaElement; }
-            set { this.mediaElement = value; }
-        }
+        public Media CurrentMedia { get; set; }
+        
+        public MediaElement MediaElement { get; set; }
 
         public void PlayMedia(object obj)
         {
             if (this.MediaElement.Source == null)
             {
-                this.MediaElement.Source = new Uri(this.currentMedia.Path);
+                this.MediaElement.Source = new Uri(this.CurrentMedia.Path);
             }
 
-            if (this.MediaElement.Source.LocalPath != this.currentMedia.Path)
+            if (this.MediaElement.Source.LocalPath != this.CurrentMedia.Path)
             {
-                this.MediaElement.Source = new Uri(this.currentMedia.Path);
+                this.MediaElement.Source = new Uri(this.CurrentMedia.Path);
                 this.MediaElement.Play();
             }
 
@@ -104,11 +87,11 @@
             this.RewindCommand = new CustomCommand(this.RewindLoop, this.CanRewindLoop);
             this.ForwardCommand = new CustomCommand(this.ForwardLoop, this.CanForwardLoop);
             this.FullScreenCommand = new CustomCommand(this.FullScreen, this.CanFullScreen);
-            this.ReversePositionCommand = new CustomCommand(this.ReversePosition, CanReversePosition);
-            this.ForwardPositionCommand = new CustomCommand(this.ForwardPosition, CanForwardPosition);
-            this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, CanVolumeIncrease);
-            this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, CanVolumeDecrease);
-            this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, CanExitFullScreen);
+            this.ReversePositionCommand = new CustomCommand(this.ReversePosition, this.CanReversePosition);
+            this.ForwardPositionCommand = new CustomCommand(this.ForwardPosition, this.CanForwardPosition);
+            this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, this.CanVolumeIncrease);
+            this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, this.CanVolumeDecrease);
+            this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, this.CanExitFullScreen);
         }
 
         private bool CanExitFullScreen(object obj)
@@ -282,13 +265,13 @@
             }
 
             CommandInterpreter commandInterpreter = new CommandInterpreter(Playlist);
-            commandInterpreter.InterpretCommand(obj.ToString(), this.currentMedia);
+            commandInterpreter.InterpretCommand(obj.ToString(), this.CurrentMedia);
 
             if (firstLoad && this.Playlist.Count > 0)
             {
                 this.CurrentMedia = this.Playlist[0];
                 this.MediaGrid.SelectedIndex = 0;
-                this.mediaElement.Pause();
+                this.MediaElement.Pause();
             }
         }
 
@@ -323,7 +306,7 @@
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
         {
-            this.mediaElement.Stop();
+            this.MediaElement.Stop();
 
             if (MediaGrid.SelectedIndex == this.MediaGrid.Items.Count - 1)
             {
@@ -341,7 +324,7 @@
                 MediaGrid.SelectedIndex++;
             }
 
-            this.mediaElement.Play();
+            this.MediaElement.Play();
         }
     }
 }
