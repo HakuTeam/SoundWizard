@@ -16,7 +16,8 @@
     ShowCloseButton="False"
     ShowMinButton="False"
     ShowMaxRestoreButton="False"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"     
+    >
     <!--<d:MetroWindow.DataContext>
         <Binding Source="{d:DesignInstance Type=viewModel:MainViewModel, IsDesignTimeCreatable=True}" />
     </d:MetroWindow.DataContext>-->
@@ -90,7 +91,8 @@
             Command="{Binding StopCommand}"
             Canvas.Left="320"
             Canvas.Top="16" />
-        <DataGrid x:Name="Playlist" IsReadOnly="True" KeyboardNavigation.DirectionalNavigation="None"
+        <DataGrid x:Name="Playlist" IsReadOnly="True" 
+                  KeyboardNavigation.DirectionalNavigation="None"
             ItemsSource="{Binding Playlist}"
             AutoGenerateColumns="False"
             Opacity="0.8"
@@ -100,6 +102,11 @@
             AllowDrop="True"
             SelectionChanged="Playlist_SelectionChanged"
             HorizontalAlignment="Right" Width="569" Height="385" Canvas.Top="276" Canvas.Left="10">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Title}"

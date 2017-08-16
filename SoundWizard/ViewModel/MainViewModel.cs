@@ -12,6 +12,7 @@
     using NAudio.Wave;
     using Utility;
     using IO;
+    using MahApps.Metro.Controls;
 
     public class MainViewModel
     {
@@ -189,7 +190,7 @@
 
         private void FullScreen(object obj)
         {
-            var currentWin = obj as Window;
+            var currentWin = obj as MetroWindow;
             this.MediaElement.MaxWidth = SystemParameters.PrimaryScreenWidth;
             this.MediaElement.MaxHeight = SystemParameters.PrimaryScreenHeight;
             this.MediaElement.Width = SystemParameters.PrimaryScreenWidth;
@@ -198,6 +199,14 @@
             currentWin.Height = SystemParameters.PrimaryScreenHeight;
             currentWin.WindowState = WindowState.Maximized;
             this.MediaElement.Margin = new Thickness(0, 0, 0, 0);
+            if (this.MediaElement.HasVideo)
+            {
+                currentWin.IgnoreTaskbarOnMaximize = true;
+            }
+            else
+            {
+                currentWin.IgnoreTaskbarOnMaximize = false;
+            }
         }
 
         private bool CanForwardLoop(object obj)
