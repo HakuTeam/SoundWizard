@@ -23,7 +23,18 @@
     </d:MetroWindow.DataContext>-->
     <Canvas>
         <Image
-            Source="PlayerSkin/header.jpg" Height="192" Width="1700" Canvas.Left="-51" />
+            Height="192" Width="1700" Canvas.Left="-51">
+            <Image.Style>
+                <Style>
+                    <Setter Property="Image.Source" Value="PlayerSkin/header.jpg"/>
+                    <Style.Triggers>
+                        <Trigger Property="Image.IsMouseOver" Value="True">
+                            <Setter Property="Image.Source" Value="PlayerSkin/headerChanged1.jpg"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Button KeyboardNavigation.IsTabStop="False"
             x:Name="OpenButton"
             Content="{iconPacks:PackIconMaterial FolderPlus, Height=32, Width=32}"

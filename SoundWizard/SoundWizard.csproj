@@ -156,5 +156,8 @@
   <ItemGroup>
     <Resource Include="PlayerSkin\header.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PlayerSkin\headerChanged1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
