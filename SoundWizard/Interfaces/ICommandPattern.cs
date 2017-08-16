@@ -4,7 +4,7 @@ namespace SoundWizard.Interfaces
     using Model;
     using System.Collections.ObjectModel;
 
-    public interface ICommand
+    public interface ICommandPattern
     {
         ObservableCollection<Media> PlayList { get; set; }
 
