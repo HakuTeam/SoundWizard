@@ -25,7 +25,7 @@
     </controls:MetroWindow.Resources>
     <Grid>
         <TextBlock x:Name="ErrorText" Margin="0,15,0,30" TextAlignment="Center">
-            Invalid audio format.
+            Invalid audio/video format.
         </TextBlock>
         <Button Click="CloseOnClick" Margin="62,49,62,15">
             <TextBlock>
