@@ -140,6 +140,25 @@
                     Header="Duration"
                     Width="85"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu >
+                <ContextMenu >
+                    <MenuItem Header="Play" Command="{Binding PlayCommand} ">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Play" Margin="5" Height="15" Width="15" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Pause" Command="{Binding PauseCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Pause" Margin="5" Height="15" Width="15" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Remove" Command="{Binding RemoveMediaCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="DeleteCircle" Margin="5" Height="15" Width="15" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <StackPanel Height="39" Canvas.Left="20" Orientation="Horizontal" Canvas.Top="119">
             <Label

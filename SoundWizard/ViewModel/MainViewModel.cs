@@ -2,18 +2,14 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Text;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using Enums;
     using Model;
-    using NAudio.Wave;
     using Utility;
     using IO;
     using MahApps.Metro.Controls;
     using Interfaces;
-    using System.Linq;
 
     public class MainViewModel : IMainViewModel
     {
@@ -302,30 +298,6 @@
         public bool CanPlayMedia(object obj)
         {
             return this.Playlist.Count > 0 && this.CurrentMedia != null;
-        }
-
-        private string AudioFormater()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("All Supported Audio | ");
-            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
-            {
-                sb.Append($"*.{type}; ");
-            }
-
-            foreach (MediaFormats type in Enum.GetValues(typeof(MediaFormats)))
-            {
-                sb.Append($"|{type}s |*.{type}");
-            }
-
-            return sb.ToString().Trim();
-        }
-
-        private TimeSpan GetMediaDurationInSeconds(string filePath)
-        {
-            MediaFoundationReader audioReader = new MediaFoundationReader(filePath);
-
-            return audioReader.TotalTime;
         }
 
         private void LoopMediaEnded(object sender, RoutedEventArgs e)
