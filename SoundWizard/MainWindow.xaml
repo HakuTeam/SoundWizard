@@ -232,7 +232,7 @@
         <KeyBinding Command="{Binding ExitFullScreenCommand}" Key="Esc" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         </KeyBinding>
-        <KeyBinding Command="{Binding RemoveSongCommand}" Key="Delete" 
+        <KeyBinding Command="{Binding RemoveMediaCommand}" Key="Delete" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         </KeyBinding>
     </Window.InputBindings>

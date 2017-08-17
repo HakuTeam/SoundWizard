@@ -95,10 +95,10 @@
             this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, this.CanVolumeIncrease);
             this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, this.CanVolumeDecrease);
             this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, this.CanExitFullScreen);
-            this.RemoveMediaCommand = new CustomCommand(this.RemoveSong, this.CanRemoveSong);
+            this.RemoveMediaCommand = new CustomCommand(this.RemoveMedia, this.CanRemoveMedia);
         }
 
-        private void RemoveSong(object obj)
+        private void RemoveMedia(object obj)
         {
             //this.MediaGrid.SelectedItem = Playlist.FirstOrDefault(w => w == this.MediaGrid.SelectedItem);
             this.MediaElement.Stop();
@@ -108,7 +108,7 @@
             //this.CurrentMedia = this.Playlist[0];
         }
 
-        private bool CanRemoveSong(object obj)
+        private bool CanRemoveMedia(object obj)
         {
             if (CurrentMedia == null)
             {
