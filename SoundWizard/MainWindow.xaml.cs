@@ -58,6 +58,10 @@
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.mainViewModel.CurrentMedia = Playlist.SelectedItem as Media;
+            if (!this.mainViewModel.CanPlayMedia(sender))
+            {
+                return;
+            }
             this.mainViewModel.PlayMedia(sender);
             seekBar.Maximum = this.mainViewModel.CurrentMedia.Duration.TotalSeconds;
             seekBar.Value = 0;

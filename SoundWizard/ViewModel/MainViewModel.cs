@@ -13,6 +13,7 @@
     using IO;
     using MahApps.Metro.Controls;
     using Interfaces;
+    using System.Linq;
 
     public class MainViewModel : IMainViewModel
     {
@@ -53,6 +54,8 @@
 
         public ICommand ExitFullScreenCommand { get; set; }
 
+        public ICommand RemoveSongCommand { get; set; }
+
         public DataGrid MediaGrid { get; set; }
 
         public ObservableCollection<Media> Playlist { get; set; }
@@ -92,6 +95,27 @@
             this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, this.CanVolumeIncrease);
             this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, this.CanVolumeDecrease);
             this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, this.CanExitFullScreen);
+            this.RemoveSongCommand = new CustomCommand(this.RemoveSong, this.CanRemoveSong);
+        }
+
+        private void RemoveSong(object obj)
+        {
+            //this.MediaGrid.SelectedItem = Playlist.FirstOrDefault(w => w == this.MediaGrid.SelectedItem);
+            this.MediaElement.Stop();
+            var a = Playlist.IndexOf(CurrentMedia);
+            this.Playlist.RemoveAt(a);
+
+            //this.CurrentMedia = this.Playlist[0];
+        }
+
+        private bool CanRemoveSong(object obj)
+        {
+            if (CurrentMedia == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private bool CanExitFullScreen(object obj)
@@ -275,9 +299,9 @@
             }
         }
 
-        private bool CanPlayMedia(object obj)
+        public bool CanPlayMedia(object obj)
         {
-            return this.Playlist.Count > 0;
+            return this.Playlist.Count > 0 && this.CurrentMedia != null;
         }
 
         private string AudioFormater()
