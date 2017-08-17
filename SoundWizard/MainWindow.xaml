@@ -142,7 +142,7 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu >
                 <ContextMenu >
-                    <MenuItem Header="Play" Command="{Binding PlayCommand} ">
+                    <MenuItem Header="Play" Command="{Binding PlayCommand}">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="Play" Margin="5" Height="15" Width="15" />
                         </MenuItem.Icon>
