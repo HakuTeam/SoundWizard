@@ -54,7 +54,7 @@
 
         public ICommand ExitFullScreenCommand { get; set; }
 
-        public ICommand RemoveSongCommand { get; set; }
+        public ICommand RemoveMediaCommand { get; set; }
 
         public DataGrid MediaGrid { get; set; }
 
@@ -95,7 +95,7 @@
             this.VolumeIncreaseCommand = new CustomCommand(this.VolumeIncrease, this.CanVolumeIncrease);
             this.VolumeDecreaseCommand = new CustomCommand(this.VolumeDecrease, this.CanVolumeDecrease);
             this.ExitFullScreenCommand = new CustomCommand(this.ExitFullScreen, this.CanExitFullScreen);
-            this.RemoveSongCommand = new CustomCommand(this.RemoveSong, this.CanRemoveSong);
+            this.RemoveMediaCommand = new CustomCommand(this.RemoveSong, this.CanRemoveSong);
         }
 
         private void RemoveSong(object obj)
